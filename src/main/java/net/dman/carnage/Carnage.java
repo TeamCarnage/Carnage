@@ -2,32 +2,21 @@ package net.dman.carnage;
 
 import net.dman.carnage.item.ModItems;
 import net.fabricmc.api.ModInitializer;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Carnage implements ModInitializer {
-	public static final String MOD_ID = "Carnage";
+	// Define mod ID constant - must match your fabric.mod.json
+	public static final String MOD_ID = "carnage";
 
-	// This logger is used to write text to the console and the log file.
-	// It is considered best practice to use your mod id as the logger's name.
-	// That way, it's clear which mod wrote info, warnings, and errors.
+	// Create a logger for your mod
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
 	@Override
 	public void onInitialize() {
+		// Initialize your mod components here
+		ModItems.initialize();
 
-
-		// This code runs as soon as Minecraft is in a mod-load-ready state.
-		// However, some things (like resources) may still be uninitialized.
-		// Proceed with mild caution.
-
-		LOGGER.info("I'm waking up, from ash and dust. (Carnage Loaded)");
-	}
-	public class CarnageItemsInit implements ModInitializer {
-		@Override
-		public void onInitialize() {
-			ModItems.initialize();
-		}
+		LOGGER.info("Initializing " + MOD_ID);
 	}
 }
