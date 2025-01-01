@@ -1,0 +1,37 @@
+{
+	"schemaVersion": 1,
+	"id": "carnage",
+	"version": "0.0.1",
+	"name": "Carnage",
+	"description": "Blood Is Fuel was gonna get us copyrighted so we changed to Carnage.",
+	"authors": [
+		"Tman, Deamoz"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/carnage/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.dman.carnage.Carnage"
+		],
+		"fabric-datagen": [
+			"net.dman.carnage.CarnageDataGenerator"
+		]
+	},
+	"mixins": [
+		"carnage.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.16.9",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
