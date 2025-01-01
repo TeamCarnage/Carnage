@@ -25,4 +25,7 @@ public class ModItems {
             fabricItemGroupEntries.add(BLOOD_ESSENCE);
         });
     }
+
+    public static void initialize() {
+    }
 }
