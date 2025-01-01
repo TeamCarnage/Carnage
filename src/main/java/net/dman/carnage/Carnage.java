@@ -17,11 +17,10 @@ public class Carnage implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.registerModItems();
-
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("I'm waking up, from ash and dust.");
+		LOGGER.info("I'm waking up, from ash and dust. (Carnage Loaded)");
 	}
 }
