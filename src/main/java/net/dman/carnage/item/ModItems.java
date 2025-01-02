@@ -16,13 +16,13 @@ public final class ModItems {
     }
 
     // Declare the item but don't register it yet
-    public static final Item PHANTOMS_KISS;
+    public static final Item BLOOD_ESSENCE;
 
     static {
         // Register items in static block
-        PHANTOMS_KISS = Registry.register(
+        BLOOD_ESSENCE = Registry.register(
                 Registries.ITEM,
-                Identifier.of(Carnage.MOD_ID, "phantoms_kiss"),
+                Identifier.of(Carnage.MOD_ID, "blood_essence"),
                 new Item(new Item.Settings())
         );
     }
@@ -67,4 +67,4 @@ public final class ModItems {
     }
 
 
-        }
+}
