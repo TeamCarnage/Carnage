@@ -14,7 +14,7 @@ import java.util.function.Supplier;
 
 public enum ModToolMaterials implements ToolMaterial {
     PHANTOMS_KISS(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 3096, 9.0F, 5.0F, 15, () -> Ingredient.ofItems(Items.PHANTOM_MEMBRANE));
-
+    BLAZERENDER(BlockTags.INCORRECT_FOR_DIAMOND_TOOL, 1, 1, 1, 1 () -> Ingredient.ofItems(Items.NETHERITE_INGOT));
     private final TagKey<Block> inverseTag;
     private final int itemDurability;
     private final float miningSpeed;
