@@ -26,11 +26,19 @@ public final class ModItems {
 
         PHANTOMS_KISS = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "phantoms_kiss"),
+                                          
+        // start of tman
                 new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS, new Item.Settings()));
 
         BLAZERENDER = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "blazerender"),
                 new BlazerenderItem(ModToolMaterials.BLAZERENDER, new Item.Settings()));
+
+       // end of tman
+      
+                // next line seems uneccissarly long ik, but this defines the Values of the Tool, feel free to make it looks nice but do not change any values or code (unless itll result in the same function :3)
+                new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS, new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ModToolMaterials.PHANTOMS_KISS, 5, -3.1f))));
+
     }
 
     public static void initialize() {
