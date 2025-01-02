@@ -26,9 +26,9 @@ public class PhantomsKissItem extends SwordItem {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 1)); // 5 seconds of Speed 2
         }
 
-        world.playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.PLAYERS, // enderman sound effect
-                0.5f, 1.2f);
+        // Play sound for only the player who clicked
+        player.playSound(SoundEvents.ENTITY_ENDERMAN_TELEPORT, 0.5f, 1.2f);
+        //                             enderman sound effect        half volume    sharper, faster tone
 
         player.getItemCooldownManager().set(this, 200); // 200 TICKS, which is 10 seconds at 20tps
 

@@ -29,5 +29,13 @@
 		"ground": {
 			"translation": [0, 6.25, 0]
 		}
-	}
+	},
+	"overrides": [
+		{
+			"predicate": {
+				"hotbar": 1
+			},
+			"model": "carnage:item/phantoms_kiss_hotbar"
+		}
+	]
 }

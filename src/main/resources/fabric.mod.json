@@ -16,10 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-          "xyz.carnage.Carnage"
+			"xyz.carnage.Carnage"
+		],
+		"client": [
+			"xyz.carnage.CarnageClient"
 		],
 		"fabric-datagen": [
-          "xyz.carnage.CarnageDataGenerator"
+			"xyz.carnage.CarnageDataGenerator"
 		]
 	},
 	"mixins": [
