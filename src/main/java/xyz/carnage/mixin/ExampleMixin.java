@@ -1,6 +1,6 @@
-package net.dman.carnage.mixin;
+package xyz.carnage.mixin;
 
-import net.dman.carnage.item.ModItems;
+import xyz.carnage.items.ModItems;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
 import net.minecraft.client.render.entity.PlayerEntityRenderer;
 import net.minecraft.client.render.entity.model.BipedEntityModel;

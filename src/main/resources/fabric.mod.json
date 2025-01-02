@@ -3,7 +3,7 @@
 	"id": "carnage",
 	"version": "0.0.1",
 	"name": "Carnage",
-	"description": "Blood Is Fuel was gonna get us copyrighted so we changed to Carnage.",
+	"description": "Carnage: A more fast-paced and skillful style of PvP to Minecraft Java.",
 	"authors": [
 		"Tman, Deamoz, DiaDuckk"
 	],
@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.dman.carnage.Carnage"
+          "xyz.carnage.Carnage"
 		],
 		"fabric-datagen": [
-			"net.dman.carnage.CarnageDataGenerator"
+          "xyz.carnage.CarnageDataGenerator"
 		]
 	},
 	"mixins": [

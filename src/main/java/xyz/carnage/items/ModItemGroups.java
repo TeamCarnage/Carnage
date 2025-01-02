@@ -1,6 +1,6 @@
-package net.dman.carnage.item;
+package xyz.carnage.items;
 
-import net.dman.carnage.Carnage;
+import xyz.carnage.Carnage;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -23,7 +23,8 @@ public class ModItemGroups {
                 .displayName(Text.translatable("itemgroup.carnage"))
                 .entries((context, entries) -> {
                     entries.add(ModItems.PHANTOMS_KISS);
-                    // Add other items here
+                //  entries.add(ModItems.ITEM);
+                //  Add other items here...
                 })
                 .build()
         );
