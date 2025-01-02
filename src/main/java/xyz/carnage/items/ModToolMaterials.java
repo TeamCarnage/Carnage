@@ -1,4 +1,4 @@
-package net.dman.carnage.item;
+package xyz.carnage.items;
 
 
 
