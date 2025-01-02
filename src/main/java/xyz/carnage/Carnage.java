@@ -1,7 +1,7 @@
 package xyz.carnage;
 
-import xyz.carnage.items.ModItemGroups;
-import xyz.carnage.items.ModItems;
+import xyz.carnage.itemmgmt.ModItemGroups;
+import xyz.carnage.itemmgmt.ModItems;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

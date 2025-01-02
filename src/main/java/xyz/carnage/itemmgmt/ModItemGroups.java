@@ -1,4 +1,4 @@
-package xyz.carnage.items;
+package xyz.carnage.itemmgmt;
 
 import xyz.carnage.Carnage;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
