@@ -23,6 +23,7 @@ public class ModItemGroups {
                 .displayName(Text.translatable("itemgroup.carnage"))
                 .entries((context, entries) -> {
                     entries.add(ModItems.BLOOD_ESSENCE);
+                    entries.add(ModItems.PHANTOMS_KISS);
                 //  entries.add(ModItems.ITEM);
                 //  Add other items here...
                 })
