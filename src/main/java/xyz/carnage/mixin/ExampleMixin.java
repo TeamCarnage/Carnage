@@ -16,7 +16,7 @@ public class ExampleMixin {
     @Inject(method = "getArmPose", at = @At("HEAD"), cancellable = true)
     private static void MOD_ID$getArmPoseForItem(AbstractClientPlayerEntity player, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
         ItemStack itemStack = player.getStackInHand(hand);
-        if (itemStack.isOf(ModItems.BLOOD_ESSENCE)) {
+        if (itemStack.isOf(ModItems.PHANTOMS_KISS)) {
             if (!player.isUsingItem()) {
                 cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_CHARGE);
             }
