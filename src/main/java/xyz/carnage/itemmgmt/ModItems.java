@@ -12,37 +12,30 @@ import xyz.carnage.itemmgmt.items.PhantomsKissItem;
 
 public final class ModItems {
     private ModItems() {
-        // return null;
+        // Prevent instantiation
     }
 
-    public static final Item BLOOD_ESSENCE; // Declare
-    public static final Item PHANTOMS_KISS; // Declare
+    public static final Item BLOOD_ESSENCE;
+    public static final Item PHANTOMS_KISS;
     public static final Item BLAZERENDER;
 
-    static { // Register all items in ONE static block
+    static {
         BLOOD_ESSENCE = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "blood_essence"),
                 new BloodEssenceItem(new Item.Settings()));
 
         PHANTOMS_KISS = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "phantoms_kiss"),
-                                          
-        // start of tman
-                new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS, new Item.Settings()));
+                new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS,
+                        new Item.Settings().attributeModifiers(
+                                SwordItem.createAttributeModifiers(ModToolMaterials.PHANTOMS_KISS, 5, -3.1f))));
 
         BLAZERENDER = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "blazerender"),
                 new BlazerenderItem(ModToolMaterials.BLAZERENDER, new Item.Settings()));
-
-       // end of tman
-      
-                // next line seems uneccissarly long ik, but this defines the Values of the Tool, feel free to make it looks nice but do not change any values or code (unless itll result in the same function :3)
-                new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS, new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ModToolMaterials.PHANTOMS_KISS, 5, -3.1f))));
-
     }
 
     public static void initialize() {
         Carnage.LOGGER.info("Registering items for " + Carnage.MOD_ID);
     }
-
 }
