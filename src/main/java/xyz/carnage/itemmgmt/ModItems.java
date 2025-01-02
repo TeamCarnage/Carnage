@@ -24,7 +24,8 @@ public final class ModItems {
 
         PHANTOMS_KISS = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "phantoms_kiss"),
-                new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS, new Item.Settings()));
+                // next line seems uneccissarly long ik, but this defines the Values of the Tool, feel free to make it looks nice but do not change any values or code (unless itll result in the same function :3)
+                new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS, new Item.Settings().attributeModifiers(SwordItem.createAttributeModifiers(ModToolMaterials.PHANTOMS_KISS, 5, -3.1f))));
     }
 
     public static void initialize() {
