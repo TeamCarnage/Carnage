@@ -3,10 +3,7 @@ package net.dman.carnage.item;
 import net.dman.carnage.Carnage;
 import net.fabricmc.fabric.api.itemgroup.v1.FabricItemGroup;
 import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.*;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
@@ -29,6 +26,9 @@ public final class ModItems {
                 new Item(new Item.Settings())
         );
     }
+
+
+
     public class PhantomToolMaterial implements ToolMaterial {
         @Override
         public int getDurability() {
@@ -54,7 +54,6 @@ public final class ModItems {
         public int getEnchantability() {
             return 15;
         }
-
         @Override
         public Ingredient getRepairIngredient() {
             return null;
@@ -67,17 +66,5 @@ public final class ModItems {
 
     }
 
-    public final class CarnageItemGroup {
-        public static final ItemGroup CARNAGE_GROUP = FabricItemGroup.builder()
-                .icon(() -> new ItemStack(ModItems.PHANTOMS_KISS))
-                .displayName(Text.translatable("itemGroup.carnage.carnage"))
-                .entries((context, entries) -> {
-                    entries.add(ModItems.PHANTOMS_KISS);
-                })
-                .build();
 
-        public static void initialize() {
-            Registry.register(Registries.ITEM_GROUP, Identifier.of("Phantoms Kiss", "carnage"), CARNAGE_GROUP);
         }
-    }
-}

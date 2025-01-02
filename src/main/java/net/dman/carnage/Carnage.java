@@ -1,5 +1,6 @@
 package net.dman.carnage;
 
+import net.dman.carnage.item.ModItemGroups;
 import net.dman.carnage.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
@@ -14,12 +15,9 @@ public class Carnage implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
-		// Initialize your mod components here
 		ModItems.initialize();
+		ModItemGroups.registerItemGroups();
 
 		LOGGER.info("Initializing " + MOD_ID);
-	}
-	public class BLOOD_ESSENCE {
-
 	}
 }
