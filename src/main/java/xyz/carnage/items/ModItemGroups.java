@@ -19,7 +19,7 @@ public class ModItemGroups {
 
     public static void registerItemGroups() {
         Registry.register(Registries.ITEM_GROUP, CARNAGE_GROUP, FabricItemGroup.builder()
-                .icon(() -> new ItemStack(ModItems.PHANTOMS_KISS))
+                .icon(() -> new ItemStack(ModItems.BLOOD_ESSENCE))
                 .displayName(Text.translatable("itemgroup.carnage"))
                 .entries((context, entries) -> {
                     entries.add(ModItems.PHANTOMS_KISS);
