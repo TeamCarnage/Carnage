@@ -22,7 +22,6 @@ public class PhantomsKissItem extends SwordItem {
         ItemStack stack = player.getStackInHand(hand);
 
         if (!world.isClient) {
-
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, 100, 0)); // 5 seconds of Invisibility
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 1)); // 5 seconds of Speed 2
         }
