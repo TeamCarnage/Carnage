@@ -19,4 +19,7 @@ public class Carnage implements ModInitializer {
 
 		LOGGER.info("Initializing " + MOD_ID);
 	}
+	public class BLOOD_ESSENCE {
+
+	}
 }

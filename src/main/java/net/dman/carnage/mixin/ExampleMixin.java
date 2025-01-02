@@ -1,26 +1,25 @@
 package net.dman.carnage.mixin;
 
-import net.minecraft.client.render.VertexConsumerProvider;
-import net.minecraft.client.render.entity.feature.PlayerHeldItemFeatureRenderer;
-import net.minecraft.client.render.model.json.ModelTransformationMode;
-import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
+import net.dman.carnage.item.ModItems;
+import net.minecraft.client.network.AbstractClientPlayerEntity;
+import net.minecraft.client.render.entity.PlayerEntityRenderer;
+import net.minecraft.client.render.entity.model.BipedEntityModel;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Arm;
+import net.minecraft.util.Hand;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(PlayerHeldItemFeatureRenderer.class)
+@Mixin(PlayerEntityRenderer.class)
 public class ExampleMixin {
-	@Inject(method = "renderItem", at = @At("HEAD"), cancellable = true)
-	protected void renderItem(LivingEntity entity, ItemStack stack, ModelTransformationMode transformationMode, Arm arm, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, CallbackInfo ci) {
-		if (!entity.isUsingItem()) {
-            if ((entity.getMainArm() == Arm.RIGHT && arm == Arm.LEFT)) {
-                entity.getMainHandStack();
+    @Inject(method = "getArmPose", at = @At("HEAD"), cancellable = true)
+    private static void MOD_ID$getArmPoseForItem(AbstractClientPlayerEntity player, Hand hand, CallbackInfoReturnable<BipedEntityModel.ArmPose> cir) {
+        ItemStack itemStack = player.getStackInHand(hand);
+        if (itemStack.isOf(ModItems.PHANTOMS_KISS)) {  // Changed to use isOf() method
+            if (!player.isUsingItem()) {
+                cir.setReturnValue(BipedEntityModel.ArmPose.CROSSBOW_CHARGE);
             }
-            if ((entity.getMainArm() == Arm.LEFT && arm == Arm.RIGHT) && entity.getMainHandStack().getItem() instanceof Item) {ci.cancel();return;}}
-	}
+        }
+    }
 }

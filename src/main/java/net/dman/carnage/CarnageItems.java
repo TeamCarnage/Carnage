@@ -28,3 +28,5 @@ public final class CarnageItems {
         }
     }
 }
+
+// This Code is basically useless but some stuff relies on it ill leave it here cuz I don't know how to safely delete it.
