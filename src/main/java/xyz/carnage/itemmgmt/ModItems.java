@@ -5,10 +5,6 @@ import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemGroup; // For ItemGroup
-import net.minecraft.item.Item; // For Item.Settings
-import net.minecraft.registry.Registries; // For registry access
 
 import xyz.carnage.itemmgmt.items.BlazerenderItem;
 import xyz.carnage.itemmgmt.items.BloodEssenceItem;
@@ -38,36 +34,15 @@ public final class ModItems {
                 Identifier.of(Carnage.MOD_ID, "phantoms_kiss"),
                 new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS,
                         new Item.Settings().attributeModifiers(
-                              SwordItem.createAttributeModifiers(ModToolMaterials.PHANTOMS_KISS, 5, -3.1f))));
+                                SwordItem.createAttributeModifiers(ModToolMaterials.PHANTOMS_KISS, 5, -3.1f))));
 
         BLAZERENDER = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "blazerender"),
                 new BlazerenderItem(ModToolMaterials.BLAZERENDER,
                         new Item.Settings().attributeModifiers(
-                                SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,4,-2.4f))));
-      //                        SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,3,-2.3f)))); // whats the use of this? -diaduck
-
-//        BLAZERENDER = Registry.register(Registries.ITEM,
-//                Identifier.of(Carnage.MOD_ID, "blazerender"),
-//                new BlazerenderItem(new Item.Settings().group(ItemGroup.BUILDING_BLOCKS) // Replace with any group available
-//                        .fireproof() // Example additional property if needed
-//                ));
-
-//        BLAZERENDER = Registry.register(Registries.ITEM,
-//                Identifier.of(Carnage.MOD_ID, "blazerender"),
-//                new BlazerenderItem(new Item.Settings()));
-
-
-
-
-        //BLAZERENDER = new BlazerenderItem(new Item.Settings().group(ItemGroup.COMBAT));
-
-        }
-
-                                
+                                SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,3,-2.3f))));
 
     }
-
 
     public static void initialize() {
         Carnage.LOGGER.info("Registering items for " + Carnage.MOD_ID);

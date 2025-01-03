@@ -20,9 +20,12 @@ public class BlazerenderItem extends PushSwordItem {
         super(ModToolMaterials.BLAZERENDER, settings, new PushSwordItem.PushableItemSettings()
                 .setCooldownTicks(20)
                 .setPushRadius(10.0)
+        );
+        this.material = ModToolMaterials.BLAZERENDER; // Using the custom material from ModToolMaterials
+    }
 
     public BlazerenderItem(ToolMaterial toolMaterial, Settings settings) {
-        super(settings, new PushItem.PushableItemSettings()
+        super(toolMaterial, settings, new PushSwordItem.PushableItemSettings()
                 // Cooldown
                 .setCooldownTicks(10)
                 // Pushing Mobs Away
@@ -37,9 +40,8 @@ public class BlazerenderItem extends PushSwordItem {
                 .setSoundVolume(0.5f)
                 .setSoundPitch(1.2f)
         );
-        this.material = ModToolMaterials.BLAZERENDER; // Using the custom material from ModToolMaterials
+        this.material = toolMaterial; // Use the provided material for this constructor
     }
-
 
     public void onItemUse(World world, PlayerEntity player) {
         // When the sword is used, apply push effects as well as sword functionality
@@ -58,7 +60,7 @@ public class BlazerenderItem extends PushSwordItem {
         onPushEffectUsed(world, player);
 
         // Now call the parent method with the correct arguments
-        return super.postHit(stack, player, target);  // Correct arguments passed
+        return super.postHit(stack, target, player);  // Correct order of arguments
     }
 
     // Add getter for material if needed
