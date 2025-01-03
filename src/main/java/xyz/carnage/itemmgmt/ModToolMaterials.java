@@ -58,10 +58,15 @@ public enum ModToolMaterials implements ToolMaterial {
         return this.inverseTag;
     }
 
-    @Override
+
+    //public int getEnchantability() {
+    //    return this.enchantability;
+    //}
+
     public int getEnchantability() {
         return this.enchantability;
     }
+
 
     @Override
     public Ingredient getRepairIngredient() {

@@ -19,8 +19,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public abstract class PushItem extends Item {
-    //private static final ToolMaterial toolMaterial = SwordItem;
+public abstract class PushSwordItem extends SwordItem {
     private final double pushRadius;
     private final double pushStrength;
     private final double upwardForce;
@@ -31,9 +30,9 @@ public abstract class PushItem extends Item {
     private final float soundVolume;
     private final float soundPitch;
 
-    protected PushItem(Settings settings, PushableItemSettings pushSettings) {
-        //super(toolMaterial, settings);
-        super(settings);
+    // The constructor now accepts a ToolMaterial to allow enchantments
+    protected PushSwordItem(ToolMaterial material, Settings settings, PushableItemSettings pushSettings) {
+        super(material, settings);  // Only pass ToolMaterial and Settings
         this.pushRadius = pushSettings.pushRadius;
         this.pushStrength = pushSettings.pushStrength;
         this.upwardForce = pushSettings.upwardForce;
@@ -73,7 +72,6 @@ public abstract class PushItem extends Item {
         return TypedActionResult.success(stack);
     }
 
-    // This method can be overridden by subclasses to add additional effects
     protected void onPushEffectUsed(World world, PlayerEntity player) {
         // Default implementation does nothing
     }
@@ -125,7 +123,6 @@ public abstract class PushItem extends Item {
         }
     }
 
-    // Builder class for push effect settings
     public static class PushableItemSettings {
         private double pushRadius = 5.0;
         private double pushStrength = 1.5;
@@ -137,6 +134,7 @@ public abstract class PushItem extends Item {
         private float soundVolume = 0.5f;
         private float soundPitch = 1.2f;
 
+        // Setters for builder pattern
         public PushableItemSettings setPushRadius(double radius) {
             this.pushRadius = radius;
             return this;
