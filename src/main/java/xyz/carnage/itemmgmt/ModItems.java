@@ -34,7 +34,7 @@ public final class ModItems {
                 Identifier.of(Carnage.MOD_ID, "phantoms_kiss"),
                 new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS,
                         new Item.Settings().attributeModifiers(
-                              SwordItem.createAttributeModifiers(ModToolMaterials.PHANTOMS_KISS, 5, -3.1f))));
+                                SwordItem.createAttributeModifiers(ModToolMaterials.PHANTOMS_KISS, 5, -3.1f))));
 
         BLAZERENDER = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "blazerender"),
