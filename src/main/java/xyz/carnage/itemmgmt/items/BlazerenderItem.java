@@ -23,15 +23,14 @@ public class BlazerenderItem extends SwordItem {
         ItemStack stack = player.getStackInHand(hand);
 
         if (!world.isClient) {
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY, 100, 0)); // 5 seconds of Invisibility
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 1)); // 5 seconds of Speed 2
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 0)); // 5 seconds of Invisibilityplayer.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 100, 1)); // 5 seconds of Speed 2
         }
 
         world.playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.ENTITY_ENDERMAN_TELEPORT, SoundCategory.PLAYERS, // enderman sound effect
+                SoundEvents.ENTITY_BLAZE_SHOOT, SoundCategory.PLAYERS, // blaze sound effect
                 0.5f, 1.2f);
 
-        player.getItemCooldownManager().set(this, 200); // 200 TICKS, which is 10 seconds at 20tps
+        player.getItemCooldownManager().set(this, 400); // 200 TICKS, which is 10 seconds at 20tps
 
         return TypedActionResult.success(stack);
     }
