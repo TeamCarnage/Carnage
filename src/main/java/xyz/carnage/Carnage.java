@@ -1,5 +1,11 @@
 package xyz.carnage;
 
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
+import xyz.carnage.itemmgmt.ModItemGroups;
+import xyz.carnage.itemmgmt.ModItems;
 import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,8 +22,11 @@ public class Carnage implements ModInitializer {
 		System.out.println("Carnage onInitialize triggered!");
 		LOGGER.info("Carnage onInitialize triggered!");
 
+
+		CustomParticles.registerParticles();
 		ModItems.initialize();
 		ModItemGroups.registerItemGroups();
+		CustomSounds.initialize();
 		LOGGER.info("Initializing " + MOD_ID);
 
 		// Register Combo Event Handlers
