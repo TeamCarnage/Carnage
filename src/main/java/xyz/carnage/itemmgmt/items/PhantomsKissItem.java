@@ -24,7 +24,7 @@ public class PhantomsKissItem extends SwordItem {
             // Play the sound effect
             World world = attacker.getWorld();
             world.playSound(null, player.getX(), player.getY(), player.getZ(),
-                    CustomSounds.PHANTOMS_KISS_HIT, SoundCategory.PLAYERS, // hypixel ding sound effect!
+                    SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.PLAYERS, // custom sound effect!
                     0.5f, 1.0f);
             // Send the message
             player.sendMessage(Text.literal("You hit " + target.getName().getString() + " with the sword!"), true);
