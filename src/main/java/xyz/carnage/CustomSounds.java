@@ -16,7 +16,7 @@ public class CustomSounds {
 
     // actual registration of all the custom SoundEvents
     private static SoundEvent registerSound(String id) {
-        Identifier identifier = Identifier.of(Carnage.MOD_ID, id);
+        Identifier identifier = Identifier.of(Carnage.MOD_ID, id); // Currently this shits useless because it wont work inside of my Item but well just keep it
         return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier));
     }
 

@@ -45,6 +45,7 @@ public final class ModItems {
                 new BlazerenderItem(ModToolMaterials.BLAZERENDER,
                         new Item.Settings().attributeModifiers(
                                 SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,4,-2.4f))));
+      //                        SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,3,-2.3f)))); // whats the use of this? -diaduck
 
 //        BLAZERENDER = Registry.register(Registries.ITEM,
 //                Identifier.of(Carnage.MOD_ID, "blazerender"),
@@ -62,6 +63,11 @@ public final class ModItems {
         //BLAZERENDER = new BlazerenderItem(new Item.Settings().group(ItemGroup.COMBAT));
 
         }
+
+                                
+
+    }
+
 
     public static void initialize() {
         Carnage.LOGGER.info("Registering items for " + Carnage.MOD_ID);

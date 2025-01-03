@@ -20,10 +20,19 @@ public class BlazerenderItem extends PushSwordItem {
         super(ModToolMaterials.BLAZERENDER, settings, new PushSwordItem.PushableItemSettings()
                 .setCooldownTicks(20)
                 .setPushRadius(10.0)
+
+    public BlazerenderItem(ToolMaterial toolMaterial, Settings settings) {
+        super(settings, new PushItem.PushableItemSettings()
+                // Cooldown
+                .setCooldownTicks(10)
+                // Pushing Mobs Away
+                .setPushRadius(10.0) // in blocks
                 .setPushStrength(1.5)
                 .setUpwardForce(0.5)
-                .setParticleType(ParticleTypes.FLAME)
+                // Particles
+                .setParticleType(ParticleTypes.FLAME) // shouldn't this be custom?
                 .setParticleCount(50)
+                // Sound Effects
                 .setUseSound(SoundEvents.ENTITY_BLAZE_SHOOT)
                 .setSoundVolume(0.5f)
                 .setSoundPitch(1.2f)
