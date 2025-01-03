@@ -27,6 +27,7 @@ public class BloodEssenceItem extends Item {
         world.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, // hypixel ding sound effect!
                 0.5f, 1.0f);
+        stack.decrement(1); //decreases by one
 
         stack.decrement(1); // decrease blood by 1 every use
 
