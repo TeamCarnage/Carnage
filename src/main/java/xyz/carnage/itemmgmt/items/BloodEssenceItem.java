@@ -27,6 +27,7 @@ public class BloodEssenceItem extends Item {
         world.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, // hypixel ding sound effect!
                 0.5f, 1.0f);
+        stack.decrement(1); //decreases by one
 
         player.getItemCooldownManager().set(this, 20); // 20 TICKS, which is 1 second at 20tps
 

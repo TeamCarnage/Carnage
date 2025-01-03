@@ -1,5 +1,9 @@
 package xyz.carnage;
 
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.util.Identifier;
 import xyz.carnage.itemmgmt.ModItemGroups;
 import xyz.carnage.itemmgmt.ModItems;
 import net.fabricmc.api.ModInitializer;
@@ -17,6 +21,7 @@ public class Carnage implements ModInitializer {
 
 		ModItems.initialize();
 		ModItemGroups.registerItemGroups();
+		CustomSounds.initialize();
 		LOGGER.info("Initializing " + MOD_ID);
 	}
 }
