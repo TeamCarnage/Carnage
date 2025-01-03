@@ -1,0 +1,33 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "0": "carnage:item/blazerender",
+    "layer0": "carnage:item/blazerender",
+    "particle": "carnage:item/blazerender"
+  },
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [11, -90, 55],
+      "translation": [0, 12, 3],
+      "scale": [1.2, 1.2, 1.2]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [11, 90, -55],
+      "translation": [0, 12, 3],
+      "scale": [1.2, 1.2, 1.2]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, -90, 25],
+      "translation": [1.13, 3.2, 1.13],
+      "scale": [1, 1, 1]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 90, -25],
+      "translation": [1.13, 3.2, 1.13],
+      "scale": [1, 1, 1]
+    },
+    "ground": {
+      "translation": [0, 6.25, 0]
+    }
+  }
+}

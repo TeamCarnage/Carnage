@@ -21,7 +21,7 @@ public class BloodEssenceItem extends Item {
         ItemStack stack = player.getStackInHand(hand);
 
         if (!world.isClient) {
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 150, 0));
         }
 
         world.playSound(null, player.getX(), player.getY(), player.getZ(),
@@ -29,7 +29,9 @@ public class BloodEssenceItem extends Item {
                 0.5f, 1.0f);
         stack.decrement(1); //decreases by one
 
-        player.getItemCooldownManager().set(this, 20); // 20 TICKS, which is 1 second at 20tps
+        stack.decrement(1); // decrease blood by 1 every use
+
+        player.getItemCooldownManager().set(this, 100); // 100 TICKS, which is 5 seconds at 20tps
 
         return TypedActionResult.success(stack);
     }
