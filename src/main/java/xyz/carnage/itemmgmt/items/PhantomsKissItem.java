@@ -27,7 +27,7 @@ public class PhantomsKissItem extends SwordItem {
                     SoundEvents.BLOCK_ANVIL_LAND, SoundCategory.PLAYERS, // custom sound effect!
                     0.5f, 1.0f);
             // Send the message
-            player.sendMessage(Text.literal("You hit " + target.getName().getString() + " with the sword!"), true);
+            player.sendMessage(Text.literal("You hit " + target.getName().getString() + " with the sword!"), true); // waffles about what you killed above your hotbar
         }
 
         return super.postHit(stack, target, attacker);
