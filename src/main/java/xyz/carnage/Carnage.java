@@ -22,6 +22,8 @@ public class Carnage implements ModInitializer {
 		System.out.println("Carnage onInitialize triggered!");
 		LOGGER.info("Carnage onInitialize triggered!");
 
+
+		CustomParticles.registerParticles();
 		ModItems.initialize();
 		ModItemGroups.registerItemGroups();
 		CustomSounds.initialize();
