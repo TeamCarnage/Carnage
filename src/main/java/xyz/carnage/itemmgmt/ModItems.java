@@ -40,7 +40,8 @@ public final class ModItems {
                 Identifier.of(Carnage.MOD_ID, "blazerender"),
                 new BlazerenderItem(ModToolMaterials.BLAZERENDER,
                         new Item.Settings().attributeModifiers(
-                                SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,4,-2.4f))));
+                                SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,3,-2.3f))));
+
     }
 
     public static void initialize() {
