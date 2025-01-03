@@ -19,5 +19,6 @@ import java.util.Map;
 @Mixin(ModelLoader.class)
 public abstract class ModelLoaderMixin {
     protected abstract void addModel(ModelIdentifier modelId);
-
+        // NOTHING FUCKING WORKS
+        // -diaduck
 }

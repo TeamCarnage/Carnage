@@ -23,5 +23,8 @@ public abstract class ItemRendererMixin {
             return ((ItemRendererAccessor) this).mccourse$getModels().getModelManager().getModel(new ModelIdentifier(Identifier.of(Carnage.MOD_ID, "phantoms_kiss"), "inventory"));
         }
         return value;
+
+        // NOTHING FUCKING WORKS
+        // -diaduck
     }
 }
