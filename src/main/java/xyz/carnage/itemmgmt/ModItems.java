@@ -38,7 +38,9 @@ public final class ModItems {
 
         BLAZERENDER = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "blazerender"),
-                new BlazerenderItem(ModToolMaterials.BLAZERENDER, new Item.Settings()));
+                new BlazerenderItem(ModToolMaterials.BLAZERENDER,
+                        new Item.Settings().attributeModifiers(
+                                SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,4,-2.4f))));
     }
 
     public static void initialize() {
