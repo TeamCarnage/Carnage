@@ -15,7 +15,7 @@ public class BlazerenderItem extends PushItem {
     public BlazerenderItem(ToolMaterial toolMaterial, Settings settings) {
         super(settings, new PushItem.PushableItemSettings()
                 // Cooldown
-//                .setCooldownTicks(400)
+                .setCooldownTicks(600)
                 // Pushing Mobs Away
                 .setPushRadius(10.0) // in blocks
                 .setPushStrength(1.5)
