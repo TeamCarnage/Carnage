@@ -37,7 +37,7 @@ public final class ModItems {
                               SwordItem.createAttributeModifiers(ModToolMaterials.PHANTOMS_KISS, 5, -3.1f))));
 
         BLAZERENDER = Registry.register(Registries.ITEM,
-                Identifier.of(Carnage.MOD_ID, "blazerender.json"),
+                Identifier.of(Carnage.MOD_ID, "blazerender"),
                 new BlazerenderItem(ModToolMaterials.BLAZERENDER, new Item.Settings()));
     }
 

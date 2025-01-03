@@ -21,16 +21,16 @@ public class BloodEssenceItem extends Item {
         ItemStack stack = player.getStackInHand(hand);
 
         if (!world.isClient) {
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 200, 1));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 150, 0));
         }
 
         world.playSound(null, player.getX(), player.getY(), player.getZ(),
                 SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, // hypixel ding sound effect!
                 0.5f, 1.0f);
 
-        stack.decrementUnlessCreative(1.0f); // trying to decrease blood by 1 every use
+        stack.decrement(1); // decrease blood by 1 every use
 
-        player.getItemCooldownManager().set(this, 20); // 20 TICKS, which is 1 second at 20tps
+        player.getItemCooldownManager().set(this, 100); // 100 TICKS, which is 5 seconds at 20tps
 
         return TypedActionResult.success(stack);
     }
