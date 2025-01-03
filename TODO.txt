@@ -1,3 +1,0 @@
-Use github issues for issues.
-TODO:
-- Write this list...

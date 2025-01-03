@@ -1,0 +1,3 @@
+Use [GitHub Issues](https://github.com/TeamCarnage/Carnage/issues) for issues.
+### TODO:
+- Write this list...
