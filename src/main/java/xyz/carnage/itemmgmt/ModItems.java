@@ -14,6 +14,7 @@ public final class ModItems {
     private ModItems() {
         // Prevent instantiation
     }
+    public static final String MOD_ID = "carnage";
 
     public static final Item BLOOD_ESSENCE;
     public static final Item PHANTOMS_KISS;
@@ -26,9 +27,13 @@ public final class ModItems {
 
         PHANTOMS_KISS = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "phantoms_kiss"),
-                new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS,
-                        new Item.Settings().attributeModifiers(
-                                SwordItem.createAttributeModifiers(ModToolMaterials.PHANTOMS_KISS, 5, -3.1f))));
+                new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS, new Item.Settings()));
+
+        //PHANTOMS_KISS = Registry.register(Registries.ITEM,
+        //        Identifier.of(Carnage.MOD_ID, "phantoms_kiss"),
+        //        new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS,
+        //                new Item.Settings().attributeModifiers(
+        //                        SwordItem.createAttributeModifiers(ModToolMaterials.PHANTOMS_KISS, 5, -3.1f))));
 
         BLAZERENDER = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "blazerender"),

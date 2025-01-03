@@ -2,9 +2,18 @@
 	"credit": "Made with Blockbench",
 	"parent": "item/handheld",
 	"textures": {
+		"0": "carnage:item/phantoms_kiss",
 		"layer0": "carnage:item/phantoms_kiss",
 		"particle": "carnage:item/phantoms_kiss"
 	},
+	"overrides": [
+		{
+			"predicate": {
+				"hotbar": 1
+			},
+			"model": "carnage:item/phantoms_kiss_hotbar"
+		}
+	],
 	"display": {
 		"thirdperson_righthand": {
 			"rotation": [11, -90, 55],
@@ -29,13 +38,5 @@
 		"ground": {
 			"translation": [0, 6.25, 0]
 		}
-	},
-	"overrides": [
-		{
-			"predicate": {
-				"hotbar": 1
-			},
-			"model": "carnage:item/phantoms_kiss_hotbar"
-		}
-	]
+	}
 }
