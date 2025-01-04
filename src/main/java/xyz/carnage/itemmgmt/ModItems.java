@@ -43,11 +43,22 @@ public final class ModItems {
                 new BlazerenderItem(ModToolMaterials.BLAZERENDER,
                         new Item.Settings().attributeModifiers(
                                 SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,3,-2.3f))));
-
-        BRINEBREAKER = Registry.register(Registries.ITEM,
-               Identifier.of(Carnage.MOD_ID, "brinebreaker"),
-                new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,
+      
+// start of origin:binebreaker
+      
+        //BRINEBREAKER = Registry.register(Registries.ITEM,
+                //Identifier.of(Carnage.MOD_ID, "brinebreaker"),            // this is mine and tmans bodged code! 
+                //new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,       // commenting to keep it if needed.
+                        //new Item.Settings().attributeModifiers(           //    -diaduck
+                                //TridentItem.createAttributeModifiers())));
+// end of origin:binebreaker
+      
+      BRINEBREAKER = Registry.register(Registries.ITEM,
+               Identifier.of(Carnage.MOD_ID, "brinebreaker"),             // this is your original code!! uncommented to work on it :)
+                new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,       //   -diaduck
                         SwordItem.createAttributeModifiers(ModToolMaterials.BRINEBREAKER, 5, -2.0f)));
+
+      
     }
 
     public static void initialize() {

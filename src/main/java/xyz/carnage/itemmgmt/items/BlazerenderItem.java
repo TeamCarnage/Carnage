@@ -44,17 +44,16 @@ public class BlazerenderItem extends PushSwordItem {
                 .setSoundVolume(0.5f)
                 .setSoundPitch(1.2f)
         );
-        this.material = toolMaterial; // Use the provided material for this constructor
+        this.material = toolMaterial; //
     }
 
     public void onItemUse(World world, PlayerEntity player) {
-        // When the sword is used, apply push effects as well as sword functionality
+        // when the sword is used apply push effects as well as sword functionality
         super.use(world, player, player.getActiveHand());
     }
 
     @Override
     protected void onPushEffectUsed(World world, PlayerEntity player) {
-        // Apply a special effect when the push effect is used (e.g., Fire Resistance)
         player.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 0));
     }
 
@@ -64,7 +63,7 @@ public class BlazerenderItem extends PushSwordItem {
         onPushEffectUsed(world, player);
 
         // Now call the parent method with the correct arguments
-        return super.postHit(stack, target, player);  // Correct order of arguments
+        return super.postHit(stack, target, player);
     }
 
     // Add getter for material if needed

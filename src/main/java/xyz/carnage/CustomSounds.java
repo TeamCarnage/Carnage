@@ -26,5 +26,6 @@ public class CustomSounds {
         Carnage.LOGGER.info("Registering " + Carnage.MOD_ID + " Sounds");
         // Technically this method can stay empty, but some developers like to notify
         // the console, that certain parts of the mod have been successfully initialized
+                    // these are some amazing GPT comments, deamoz.  -DiaDuck
     }
 }
