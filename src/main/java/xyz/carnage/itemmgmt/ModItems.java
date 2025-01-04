@@ -46,7 +46,8 @@ public final class ModItems {
 
         BRINEBREAKER = Registry.register(Registries.ITEM,
                Identifier.of(Carnage.MOD_ID, "brinebreaker"),
-                new BrinebreakerItem(ModToolMaterials.BRINEBREAKER, new Item.Settings()));
+                new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,
+                        SwordItem.createAttributeModifiers(ModToolMaterials.BRINEBREAKER, 5, -2.0f)));
     }
 
     public static void initialize() {
