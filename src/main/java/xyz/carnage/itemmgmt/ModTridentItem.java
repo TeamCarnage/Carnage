@@ -8,6 +8,10 @@ import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.component.type.ToolComponent;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.MovementType;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.player.PlayerEntity;
@@ -37,6 +41,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import xyz.carnage.Carnage;
 import xyz.carnage.itemmgmt.items.BrinebreakerItem;
+
 
 public class ModTridentItem extends Item implements ProjectileItem {
     public static final int MIN_DRAW_DURATION = 10;
@@ -174,5 +179,9 @@ public class ModTridentItem extends Item implements ProjectileItem {
     }
 
 
+
     }
+
+
+}
 

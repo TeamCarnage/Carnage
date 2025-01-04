@@ -31,6 +31,7 @@ import org.jetbrains.annotations.Nullable;
 import xyz.carnage.Carnage;
 import xyz.carnage.entity.BrineBreakerEntity;
 
+
 public class ModTridentEntity extends PersistentProjectileEntity {
     private static final TrackedData<Byte> LOYALTY = DataTracker.registerData(TridentEntity.class, TrackedDataHandlerRegistry.BYTE);
     private static final TrackedData<Boolean> ENCHANTED = DataTracker.registerData(TridentEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
@@ -52,8 +53,6 @@ public class ModTridentEntity extends PersistentProjectileEntity {
         this.dataTracker.set(LOYALTY, this.getLoyalty(stack));
         this.dataTracker.set(ENCHANTED, stack.hasGlint());
     }
-
-
 
     @Override
     protected void initDataTracker(DataTracker.Builder builder) {
