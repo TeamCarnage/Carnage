@@ -14,9 +14,9 @@ public enum ModToolMaterials implements ToolMaterial {
     PHANTOMS_KISS(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 3096, 9.0F, 5.0F, 15,
             () -> Ingredient.ofItems(Items.PHANTOM_MEMBRANE)),
     BLAZERENDER(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 2031, 10.0F, 4.0F, 20,
-            () -> Ingredient.ofItems(Items.BLAZE_ROD));
+            () -> Ingredient.ofItems(Items.BLAZE_ROD)),
     BRINEBREAKER(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 2031, 10.0F, 4.0F, 20,
-            () -> Ingredient.ofItems(Items.NETHERITE_INGOT);
+            () -> Ingredient.ofItems(Items.NETHERITE_INGOT));
 
     private final TagKey<Block> inverseTag;
     private final int itemDurability;
