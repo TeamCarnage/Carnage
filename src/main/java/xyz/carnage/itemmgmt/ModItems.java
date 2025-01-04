@@ -8,6 +8,7 @@ import net.minecraft.util.Identifier;
 
 import xyz.carnage.itemmgmt.items.BlazerenderItem;
 import xyz.carnage.itemmgmt.items.BloodEssenceItem;
+import xyz.carnage.itemmgmt.items.BrinebreakerItem;
 import xyz.carnage.itemmgmt.items.PhantomsKissItem;
 
 public final class ModItems {
