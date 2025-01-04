@@ -12,6 +12,7 @@ import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
+import xyz.carnage.CustomParticles;
 import xyz.carnage.itemmgmt.ModToolMaterials;
 import xyz.carnage.itemmgmt.templates.PushSwordItem;
 
@@ -36,7 +37,7 @@ public class BlazerenderItem extends PushSwordItem {
                 .setPushStrength(1.5)
                 .setUpwardForce(0.5)
                 // Particles
-                .setParticleType(ParticleTypes.FLAME) // shouldn't this be custom?
+                .setParticleType(CustomParticles.HELLFIRE) // Its custom now
                 .setParticleCount(50)
                 // Sound Effects
                 .setUseSound(SoundEvents.ENTITY_BLAZE_SHOOT)

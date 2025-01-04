@@ -36,7 +36,6 @@ public class ComboTracker {
 
             canProcessHit = false;  // Block further increments until next tick
         }
-
         lastHitTime = now;  // Update the last hit time
     }
 

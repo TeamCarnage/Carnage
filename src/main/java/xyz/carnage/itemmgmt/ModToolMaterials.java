@@ -17,6 +17,8 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(Items.BLAZE_ROD)),
     BRINEBREAKER(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 2031, 10.0F, 4.0F, 20,
             () -> Ingredient.ofItems(Items.NETHERITE_INGOT));
+            () -> Ingredient.ofItems(Items.BLAZE_ROD));
+
 
     private final TagKey<Block> inverseTag;
     private final int itemDurability;
@@ -62,7 +64,7 @@ public enum ModToolMaterials implements ToolMaterial {
 
 
     //public int getEnchantability() {
-    //    return this.enchantability;
+    //    return this.enchantability;       // why is this commented? -diaduck
     //}
 
     public int getEnchantability() {
