@@ -21,7 +21,6 @@ public final class ModItems {
     public static final Item BLOOD_ESSENCE;
     public static final Item PHANTOMS_KISS;
     public static final Item BLAZERENDER;
-    public static final Item BRINEBREAKER;
 
     static {
         BLOOD_ESSENCE = Registry.register(Registries.ITEM,
@@ -44,9 +43,6 @@ public final class ModItems {
                         new Item.Settings().attributeModifiers(
                                 SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,3,-2.3f))));
 
-        BRINEBREAKER = Registry.register(Registries.ITEM,
-               Identifier.of(Carnage.MOD_ID, "brinebreaker"),
-                new BrinebreakerItem(ModToolMaterials.BRINEBREAKER, new Item.Settings()));
     }
 
     public static void initialize() {
