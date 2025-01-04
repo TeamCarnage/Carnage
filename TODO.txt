@@ -1,4 +1,6 @@
-Use GitHub Issues for issues.
+    Use GitHub Project for most to-do items.
+https://github.com/orgs/TeamCarnage/projects/1/views/1
+    Use GitHub Issues for issues.
 https://github.com/TeamCarnage/Carnage/issues
 
 ### TODO:
