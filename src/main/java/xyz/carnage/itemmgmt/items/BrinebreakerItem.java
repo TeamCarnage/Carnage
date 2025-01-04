@@ -1,6 +1,7 @@
 package xyz.carnage.itemmgmt.items;
 
 
+
 /* import net.minecraft.item.TridentItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ToolMaterial;
@@ -15,6 +16,7 @@ public class BrinebreakerItem extends TridentItem {
 
     }
 }*/
+
 
 import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.LivingEntity;
@@ -36,5 +38,3 @@ public class BrinebreakerItem extends ModTridentItem {
         this.material = material;
     }
 }
-
-
