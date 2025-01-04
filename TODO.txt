@@ -1,0 +1,5 @@
+Use GitHub Issues for issues.
+https://github.com/TeamCarnage/Carnage/issues
+
+### TODO:
+- Write this list...
