@@ -1,11 +1,14 @@
 package xyz.carnage.itemmgmt.items;
 
+import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
+import net.minecraft.client.particle.Particle;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolMaterial;
+import net.minecraft.particle.ParticleType;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
@@ -66,4 +69,5 @@ public class BlazerenderItem extends PushSwordItem {
     public ToolMaterial getMaterial() {
         return material;
     }
+
 }
