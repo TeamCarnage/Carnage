@@ -42,10 +42,9 @@ public final class ModItems {
                 Identifier.of(Carnage.MOD_ID, "blazerender"),
                 new BlazerenderItem(ModToolMaterials.BLAZERENDER,
                         new Item.Settings().attributeModifiers(
-                                SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,3,-2.3f))));
-
+                                SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER, 3, -2.3f))));
         BRINEBREAKER = Registry.register(Registries.ITEM,
-               Identifier.of(Carnage.MOD_ID, "brinebreaker"),
+                Identifier.of(Carnage.MOD_ID, "brinebreaker"),
                 new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,
                         SwordItem.createAttributeModifiers(ModToolMaterials.BRINEBREAKER, 5, -2.0f)));
     }
