@@ -48,7 +48,7 @@ public final class ModItems {
                 Identifier.of(Carnage.MOD_ID, "brinebreaker"),                          // THIUS IS THE LOCAL TEMP CODE WORK WITH THIS :3
                 new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,
                         SwordItem.createAttributeModifiers(ModToolMaterials.BRINEBREAKER, 5, -2.0f)));
-                                SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,3,-2.3f))));
+                                SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,3,-2.3f);
       
 // start of origin:binebreaker
       
