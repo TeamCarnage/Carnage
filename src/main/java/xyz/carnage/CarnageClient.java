@@ -1,11 +1,9 @@
 package xyz.carnage;
 
 import net.fabricmc.api.ClientModInitializer;
-import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
-import org.slf4j.Logger;
 import xyz.carnage.itemmgmt.ModItems;
 
 import static xyz.carnage.Carnage.LOGGER;

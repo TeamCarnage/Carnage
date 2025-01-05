@@ -1,5 +1,10 @@
 package xyz.carnage.itemmgmt;
 
+import com.google.common.collect.ImmutableMultimap;
+import com.google.common.collect.Multimap;
+import net.minecraft.entity.attribute.EntityAttribute;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import xyz.carnage.Carnage;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -10,6 +15,8 @@ import xyz.carnage.itemmgmt.items.BlazerenderItem;
 import xyz.carnage.itemmgmt.items.BloodEssenceItem;
 import xyz.carnage.itemmgmt.items.BrinebreakerItem;
 import xyz.carnage.itemmgmt.items.PhantomsKissItem;
+
+import java.util.UUID;
 
 public final class ModItems {
     private ModItems() {
@@ -22,7 +29,8 @@ public final class ModItems {
     public static final Item PHANTOMS_KISS;
     public static final Item BLAZERENDER;
     public static final Item BRINEBREAKER;
-
+    private static final UUID ATTACK_DAMAGE_MODIFIER_ID = UUID.fromString("CB3F55D3-645C-4F38-A497-9C13A33DB5CF");
+    private static final UUID ATTACK_SPEED_MODIFIER_ID = UUID.fromString("FA233E1C-4180-4865-B01B-BCCE9785ACA3");
     static {
         BLOOD_ESSENCE = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "blood_essence"),
@@ -43,13 +51,14 @@ public final class ModItems {
                 new BlazerenderItem(ModToolMaterials.BLAZERENDER,
                         new Item.Settings().attributeModifiers(
                                 SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER, 3, -2.3f))));
-      
+
         BRINEBREAKER = Registry.register(Registries.ITEM,
-                Identifier.of(Carnage.MOD_ID, "brinebreaker"),                          // THIUS IS THE LOCAL TEMP CODE WORK WITH THIS :3
+                Identifier.of(Carnage.MOD_ID, "brinebreaker"),
                 new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,
-                        SwordItem.createAttributeModifiers(ModToolMaterials.BRINEBREAKER, 5, -2.0f)));
-                                SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER,3,-2.3f);
-      
+                        new Item.Settings().attributeModifiers(
+                                SwordItem.createAttributeModifiers(ModToolMaterials.BRINEBREAKER, 5, -2.0f))
+                )
+        );
 // start of origin:binebreaker
       
         //BRINEBREAKER = Registry.register(Registries.ITEM,
@@ -67,6 +76,7 @@ public final class ModItems {
       
 // end of origin:binebreaker
     }
+
 
     public static void initialize() {
         Carnage.LOGGER.info("Registering items for " + Carnage.MOD_ID);
