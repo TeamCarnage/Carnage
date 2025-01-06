@@ -1,4 +1,4 @@
-package xyz.carnage.entity;
+package xyz.carnage.entity.manager;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
