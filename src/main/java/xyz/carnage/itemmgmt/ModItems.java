@@ -6,10 +6,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 
-import xyz.carnage.itemmgmt.items.BlazerenderItem;
-import xyz.carnage.itemmgmt.items.BloodEssenceItem;
-import xyz.carnage.itemmgmt.items.BrinebreakerItem;
-import xyz.carnage.itemmgmt.items.PhantomsKissItem;
+import xyz.carnage.CustomSounds;
+import xyz.carnage.itemmgmt.items.*;
 
 public final class ModItems {
     private ModItems() {
@@ -22,6 +20,7 @@ public final class ModItems {
     public static final Item PHANTOMS_KISS;
     public static final Item BLAZERENDER;
     public static final Item BRINEBREAKER;
+    public static final Item THE_CARNAGE_DISC;
 
     static {
         BLOOD_ESSENCE = Registry.register(Registries.ITEM,
@@ -48,6 +47,10 @@ public final class ModItems {
                 Identifier.of(Carnage.MOD_ID, "brinebreaker"),                          // THIUS IS THE LOCAL TEMP CODE WORK WITH THIS :3
                 new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,
                         SwordItem.createAttributeModifiers(ModToolMaterials.BRINEBREAKER, 5, -2.0f)));
+
+        THE_CARNAGE_DISC = Registry.register(Registries.ITEM,
+                Identifier.of(Carnage.MOD_ID, "the_carnage_disc"),
+                new TheCarnageDiscItem(new Item.Settings().jukeboxPlayable(CustomSounds.THE_CARNAGE_KEY).maxCount(1)));
       
 // start of origin:binebreaker
       

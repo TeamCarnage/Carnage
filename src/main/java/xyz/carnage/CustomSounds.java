@@ -1,7 +1,10 @@
 package xyz.carnage;
 
+import net.minecraft.block.jukebox.JukeboxSong;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 
@@ -13,6 +16,10 @@ public class CustomSounds {
     // ITEM_METAL_WHISTLE is the name of the custom sound event
     // and is called in the mod to use the custom sound
     public static final SoundEvent PHANTOMS_KISS_HIT = registerSound("phantoms_kiss_hit");
+
+    public static final SoundEvent THE_CARNAGE = registerSound("the_carnage"); //registers sound
+    public static final RegistryKey<JukeboxSong> THE_CARNAGE_KEY = RegistryKey.of(
+            RegistryKeys.JUKEBOX_SONG, Identifier.of(Carnage.MOD_ID)); //make it uhhh jukebox song!!
 
     // actual registration of all the custom SoundEvents
     private static SoundEvent registerSound(String id) {
@@ -27,5 +34,6 @@ public class CustomSounds {
         // Technically this method can stay empty, but some developers like to notify
         // the console, that certain parts of the mod have been successfully initialized
                     // these are some amazing GPT comments, deamoz.  -DiaDuck
+                        // the fabric wiki is a place, dia - deamoz.
     }
 }
