@@ -9,11 +9,13 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.TridentEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.ServerWorldAccess;
+import xyz.carnage.entity.templates.ModTridentEntity;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -21,6 +23,8 @@ import java.util.List;
 public class BrineBreakerEntity extends TridentEntity {
     public BrineBreakerEntity(EntityType<? extends TridentEntity> entityType, World world) {
         super(entityType, world);
+    }
+    public void setTridentAttributes(ItemStack stack) {
     }
 
     public BrineBreakerEntity(World world, LivingEntity owner, ItemStack stack) {
