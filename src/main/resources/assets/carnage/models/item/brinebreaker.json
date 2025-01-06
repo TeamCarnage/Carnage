@@ -1,6 +1,42 @@
 {
-  "parent": "minecraft:item/generated",
+  "credit": "Made with Blockbench",
+  "parent": "item/handheld",
   "textures": {
-    "layer0": "minecraft:item/brinebreaker"
+    "0": "carnage:item/brinebreaker",
+    "layer0": "carnage:item/brinebreaker",
+    "particle": "carnage:item/brinebreaker"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "hotbar": 1
+      },
+      "model": "carnage:item/brinebreaker"
+    }
+  ],
+  "display": {
+    "thirdperson_righthand": {
+      "rotation": [11, -90, 55],
+      "translation": [0, 13, 2.75],
+      "scale": [2, 2, 2]
+    },
+    "thirdperson_lefthand": {
+      "rotation": [11, 90, -55],
+      "translation": [0, 13, 2.75],
+      "scale": [2, 2, 2]
+    },
+    "firstperson_righthand": {
+      "rotation": [0, -90, 25],
+      "translation": [1.13, 3.2, 1.13],
+      "scale": [2, 2, 2]
+    },
+    "firstperson_lefthand": {
+      "rotation": [0, 90, -25],
+      "translation": [1.13, 3.2, 1.13],
+      "scale": [2, 2, 2]
+    },
+    "ground": {
+      "translation": [0, 6.25, 0]
+    }
   }
 }

@@ -178,4 +178,7 @@ public class ModTridentItem extends Item implements ProjectileItem {
         return tridentEntity;
     }
 
+
+
 }
+
