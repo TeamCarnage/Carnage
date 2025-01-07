@@ -8,9 +8,8 @@ import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import xyz.carnage.Carnage;
-import xyz.carnage.Carnage.*;
 
-public class ModEntities {
+public class EntitiesRegistry {
     public static final EntityType<BrineBreakerEntity> BRINEBREAKER;
 
     static {

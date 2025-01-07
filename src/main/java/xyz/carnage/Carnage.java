@@ -1,6 +1,6 @@
 package xyz.carnage;
 
-import xyz.carnage.entity.ModEntities;
+import xyz.carnage.entity.EntitiesRegistry;
 import xyz.carnage.entity.templates.ModTridentEntity;
 import xyz.carnage.itemmgmt.ModItemGroups;
 import xyz.carnage.itemmgmt.ModItems;
@@ -22,7 +22,7 @@ public class Carnage implements ModInitializer {
 		ModItems.initialize();
 		ModItemGroups.registerItemGroups();
 		CustomSounds.initialize();
-		ModEntities.init(); // Wohooo mod entities :D
+		EntitiesRegistry.init(); // Wohooo mod entities :D
 		LOGGER.info("Initializing " + MOD_ID);
 
 
