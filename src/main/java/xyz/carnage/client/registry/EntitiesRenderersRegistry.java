@@ -1,12 +1,12 @@
-package xyz.carnage.entity.client;
+package xyz.carnage.client.registry;
 
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.util.Identifier;
 import xyz.carnage.entity.BrineBreakerEntity;
 
-public class BrinebreakerEntityRenderer extends EntityRenderer<BrineBreakerEntity> {
-    public BrinebreakerEntityRenderer(EntityRendererFactory.Context context) {
+public class EntitiesRenderersRegistry extends EntityRenderer<BrineBreakerEntity> {
+    public EntitiesRenderersRegistry(EntityRendererFactory.Context context) {
         super(context);
     }
 
