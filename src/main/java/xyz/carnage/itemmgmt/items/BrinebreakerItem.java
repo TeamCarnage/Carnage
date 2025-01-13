@@ -1,27 +1,22 @@
 package xyz.carnage.itemmgmt.items;
 
+import net.fabricmc.fabric.api.item.v1.FabricItem;
+import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.TridentItem;
+import net.minecraft.item.*;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import xyz.carnage.Carnage;
 import xyz.carnage.entity.BrineBreakerEntity;
 import xyz.carnage.itemmgmt.ModToolMaterials;
 
 public class BrinebreakerItem extends TridentItem {
-    private final ModToolMaterials material;
 
-    public BrinebreakerItem(ModToolMaterials material, Item.Settings settings) {
-        super(settings.maxDamage(material.getDurability()));
-        this.material = material;
-    }
+        public BrinebreakerItem( Item.Settings settings) {
+            super(settings); //apparantly trident item doesnt like it if you have tool materials
+        }
 
     @Override
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
@@ -36,18 +31,15 @@ public class BrinebreakerItem extends TridentItem {
 
         try {
             if (!world.isClient) {
-//                stack.damage(1, playerEntity);
 
                 BrineBreakerEntity tridentEntity = new BrineBreakerEntity(world, playerEntity, stack.copy());
 
-                // Calculate the position
                 tridentEntity.setPosition(
                         playerEntity.getX(),
                         playerEntity.getEyeY() - 0.1,
                         playerEntity.getZ()
                 );
 
-                // Set velocity with pitch and yaw
                 float power = Math.min(i / 20.0F, 1.0F);
                 float speed = 2.5F * power;
 
@@ -60,7 +52,6 @@ public class BrinebreakerItem extends TridentItem {
                         1.0F
                 );
 
-                // Add to world
                 if (world.spawnEntity(tridentEntity)) {
                     world.playSoundFromEntity(
                             null,

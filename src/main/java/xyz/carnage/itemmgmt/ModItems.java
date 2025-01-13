@@ -1,5 +1,6 @@
 package xyz.carnage.itemmgmt;
 
+import net.minecraft.util.Rarity;
 import xyz.carnage.Carnage;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -19,7 +20,6 @@ public final class ModItems {
     public static final Item PHANTOMS_KISS;
     public static final Item BLAZERENDER;
     public static final Item BRINEBREAKER;
-    public static final Item JUGGERNAUT;
 
     static {
         BLOOD_ESSENCE = Registry.register(Registries.ITEM,
@@ -44,13 +44,10 @@ public final class ModItems {
       
         BRINEBREAKER = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "brinebreaker"),                          // THIUS IS THE LOCAL TEMP CODE WORK WITH THIS :3
-                new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,
-                        SwordItem.createAttributeModifiers(ModToolMaterials.BRINEBREAKER, 5, -2.0f)));
+                new BrinebreakerItem(
+                        new Item.Settings().maxDamage(ModToolMaterials.BRINEBREAKER.getDurability())
+                                .rarity(Rarity.RARE)));
 
-      JUGGERNAUT = Registry.register(Registries.ITEM,
-              Identifier.of(Carnage.MOD_ID, "juggernaut"),
-              new JuggernautItem(ModToolMaterials.JUGGERNAUT,
-                      SwordItem.createAttributeModifiers(ModToolMaterials.JUGGERNAUT, 5, -3.3f)));
 // start of origin:binebreaker
       
         //BRINEBREAKER = Registry.register(Registries.ITEM,
