@@ -26,6 +26,7 @@ public class ModItemGroups {
                     entries.add(ModItems.PHANTOMS_KISS);
                     entries.add(ModItems.BLAZERENDER);
                     entries.add(ModItems.BRINEBREAKER);
+                    entries.add(ModItems.JUGGERNAUT);
                 //  entries.add(ModItems.ITEM);
                 //  Add other items here...
                 })
