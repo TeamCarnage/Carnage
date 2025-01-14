@@ -10,7 +10,7 @@ import net.minecraft.world.World;
 
 public class JuggernautItem extends SwordItem {
 
-    public JuggernautItem(ToolMaterial toolMaterial, AttributeModifiersComponent settings) {
+    public JuggernautItem(ToolMaterial toolMaterial, Settings settings) {
         super(toolMaterial, settings);
     }
 

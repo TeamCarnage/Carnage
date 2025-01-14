@@ -47,27 +47,12 @@ public final class ModItems {
                 new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,
                         SwordItem.createAttributeModifiers(ModToolMaterials.BRINEBREAKER, 5, -2.0f)));
 
-      JUGGERNAUT = Registry.register(Registries.ITEM,
-              Identifier.of(Carnage.MOD_ID, "juggernaut"),
-              new JuggernautItem(ModToolMaterials.JUGGERNAUT,
-                      SwordItem.createAttributeModifiers(ModToolMaterials.JUGGERNAUT, 5, -3.3f)));
-// start of origin:binebreaker
-      
-        //BRINEBREAKER = Registry.register(Registries.ITEM,
-                //Identifier.of(Carnage.MOD_ID, "brinebreaker"),            // this is mine and tmans bodged code! 
-                //new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,       // commenting to keep it if needed.
-                        //new Item.Settings().attributeModifiers(           //    -diaduck
-                                //TridentItem.createAttributeModifiers())));
-
-      
-      //BRINEBREAKER = Registry.register(Registries.ITEM,
-               //Identifier.of(Carnage.MOD_ID, "brinebreaker"),             // this is your original code!! uncomment to work on it :)
-                //new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,       //   -diaduck
-                        //SwordItem.createAttributeModifiers(ModToolMaterials.BRINEBREAKER, 5, -2.0f)));
-
-      
-// end of origin:binebreaker
-    }
+        JUGGERNAUT = Registry.register(Registries.ITEM,
+                Identifier.of(Carnage.MOD_ID, "juggernaut"),
+                new JuggernautItem(ModToolMaterials.JUGGERNAUT,
+                        new Item.Settings().attributeModifiers(
+                                SwordItem.createAttributeModifiers(ModToolMaterials.JUGGERNAUT, 5, -3.3f))));
+                            }
 
     public static void initialize() {
         Carnage.LOGGER.info("Registering items for " + Carnage.MOD_ID);
