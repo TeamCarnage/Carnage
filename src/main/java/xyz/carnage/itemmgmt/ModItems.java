@@ -51,7 +51,7 @@ public final class ModItems {
                 Identifier.of(Carnage.MOD_ID, "juggernaut"),
                 new JuggernautItem(ModToolMaterials.JUGGERNAUT,
                         new Item.Settings().attributeModifiers(
-                                SwordItem.createAttributeModifiers(ModToolMaterials.JUGGERNAUT, 5, -3.3f))));
+                                SwordItem.createAttributeModifiers(ModToolMaterials.JUGGERNAUT, 0, -1.9f))));
                             }
 
     public static void initialize() {
