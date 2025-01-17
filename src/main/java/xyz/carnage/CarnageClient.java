@@ -4,6 +4,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
+import xyz.carnage.entity.EntitiesRegistry;
 import xyz.carnage.itemmgmt.ModItems;
 
 import static xyz.carnage.Carnage.LOGGER;
@@ -12,6 +13,9 @@ public class CarnageClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         LOGGER.info("CarnageClient onInitialize triggered!");
+
+        EntitiesRegistry.init();
+
 
         // Model Predicate Registration
         try {
@@ -28,7 +32,9 @@ public class CarnageClient implements ClientModInitializer {
                     }
             );
 
-        } catch (Exception e) {
+
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
     }

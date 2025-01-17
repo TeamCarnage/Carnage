@@ -16,7 +16,7 @@ import xyz.carnage.Carnage;
 import xyz.carnage.entity.BrineBreakerEntity;
 
 public class BrineBreakerEntityRenderer extends EntityRenderer<BrineBreakerEntity> {
-    public static final Identifier TEXTURE = Identifier.of(Carnage.MOD_ID, "textures/entity/carnage:brinebreaker_thrown.png");
+    public static final Identifier TEXTURE = Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreaker_thrown.png");
     private final TridentEntityModel model;
 
     public BrineBreakerEntityRenderer(EntityRendererFactory.Context context) {
@@ -25,20 +25,12 @@ public class BrineBreakerEntityRenderer extends EntityRenderer<BrineBreakerEntit
     }
 
     @Override
-    public void render(BrineBreakerEntity entity, float yaw, float tickDelta, MatrixStack matrices,
-                       VertexConsumerProvider vertexConsumers, int light) {
-        matrices.push();
-        matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw()) - 90.0F));
-        matrices.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevPitch, entity.getPitch()) + 90.0F));
-
-        VertexConsumer vertexConsumer = vertexConsumers.getBuffer(this.model.getLayer(this.getTexture(entity)));
-
-        this.model.render(matrices, vertexConsumer, light, OverlayTexture.DEFAULT_UV);
-        matrices.pop();
-    }
-
-    @Override
     public Identifier getTexture(BrineBreakerEntity entity) {
         return TEXTURE;
     }
+    public static void init() {
+        Carnage.LOGGER.info("Initializing renderererererer");
+    }
+
 }
+
