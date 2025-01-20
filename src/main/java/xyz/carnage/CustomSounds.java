@@ -13,6 +13,7 @@ public class CustomSounds {
     // ITEM_METAL_WHISTLE is the name of the custom sound event
     // and is called in the mod to use the custom sound
     public static final SoundEvent PHANTOMS_KISS_HIT = registerSound("phantoms_kiss_hit");
+    public static final SoundEvent  JUGGERNAUT_DISCHARGE = registerSound("JuggernautDischarge");
 
     // actual registration of all the custom SoundEvents
     private static SoundEvent registerSound(String id) {

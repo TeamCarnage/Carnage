@@ -36,7 +36,7 @@ public class BloodEssenceItem extends Item {
 
         stack.decrement(1); // decrease blood by 1 every use
 
-        player.getItemCooldownManager().set(this, 100); // 100 TICKS, which is 5 seconds at 20tps
+        player.getItemCooldownManager().set(this, 200); // 200 TICKS, which is 10 seconds at 20tps
 
         return TypedActionResult.success(stack);
     }
