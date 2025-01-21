@@ -57,13 +57,6 @@ public class BrineBreakerEntity extends PersistentProjectileEntity {
         }
     }
 
-    protected void updateRotation() {
-        Vec3d vec3d = this.getVelocity();
-        double d = vec3d.horizontalLength();
-        this.setPitch(updateRotation(this.prevPitch, (float)(MathHelper.atan2(vec3d.y, d) * 180.0F / (float)Math.PI)));
-        this.setYaw(updateRotation(this.prevYaw, (float)(MathHelper.atan2(vec3d.x, vec3d.z) * 180.0F / (float)Math.PI)));
-    }
-
     @Override
     protected void onBlockHit(BlockHitResult result) {
         super.onBlockHit(result);
