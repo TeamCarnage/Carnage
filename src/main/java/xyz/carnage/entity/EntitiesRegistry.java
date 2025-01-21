@@ -10,19 +10,10 @@ import net.minecraft.util.Identifier;
 import xyz.carnage.Carnage;
 
 public class EntitiesRegistry {
-    public static final EntityType<BrineBreakerEntity> BRINEBREAKER;
-
-    static {
-        BRINEBREAKER = Registry.register(
-                Registries.ENTITY_TYPE,
-                Identifier.of("carnage", "brinebreaker"),
-                FabricEntityTypeBuilder.<BrineBreakerEntity>create(SpawnGroup.MISC, BrineBreakerEntity::new)
-                        .dimensions(EntityDimensions.fixed(0.5F, 0.5F))
-                        .trackRangeBlocks(4)
-                        .trackedUpdateRate(20)
-                        .build()
-        );
-    }
+    public static final EntityType<BrineBreakerEntity> BRINEBREAKER = Registry.register(Registries.ENTITY_TYPE,
+            Identifier.of(Carnage.MOD_ID, "brinebreaker"),
+            EntityType.Builder.<BrineBreakerEntity>create(BrineBreakerEntity::new, SpawnGroup.MISC)
+                    .dimensions(0.5f, 1.15f).build());
 
     public static void init() {
         Carnage.LOGGER.info("Initialising Entities!");

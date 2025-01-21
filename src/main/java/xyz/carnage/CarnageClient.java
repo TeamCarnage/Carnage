@@ -1,10 +1,14 @@
 package xyz.carnage;
 
 import net.fabricmc.api.ClientModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
+import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import xyz.carnage.entity.EntitiesRegistry;
+import xyz.carnage.entity.client.BrinebreakerEntityModel;
+import xyz.carnage.entity.client.BrinebreakerEntityRenderer;
 import xyz.carnage.itemmgmt.ModItems;
 
 import static xyz.carnage.Carnage.LOGGER;
@@ -15,6 +19,8 @@ public class CarnageClient implements ClientModInitializer {
         LOGGER.info("CarnageClient onInitialize triggered!");
 
         EntitiesRegistry.init();
+        EntityModelLayerRegistry.registerModelLayer(BrinebreakerEntityModel.BRINEBREAKER, BrinebreakerEntityModel::getTexturedModelData);
+        EntityRendererRegistry.register(EntitiesRegistry.BRINEBREAKER, BrinebreakerEntityRenderer::new);
 
 
         // Model Predicate Registration

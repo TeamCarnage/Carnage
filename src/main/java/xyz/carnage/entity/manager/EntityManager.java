@@ -8,6 +8,7 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import xyz.carnage.entity.BrineBreakerEntity;
 
 public class EntityManager {
     private final String MOD_ID;
