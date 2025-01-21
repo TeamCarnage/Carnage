@@ -1,5 +1,6 @@
 package xyz.carnage.itemmgmt;
 
+import net.minecraft.util.Rarity;
 import xyz.carnage.Carnage;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
@@ -19,7 +20,7 @@ public final class ModItems {
     public static final Item PHANTOMS_KISS;
     public static final Item BLAZERENDER;
     public static final Item BRINEBREAKER;
-    public static final Item JUGGERNAUT;
+    public static final Item SURGE;
 
     static {
         BLOOD_ESSENCE = Registry.register(Registries.ITEM,
@@ -35,24 +36,26 @@ public final class ModItems {
                 new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS,
                         new Item.Settings().attributeModifiers(
                                 SwordItem.createAttributeModifiers(ModToolMaterials.PHANTOMS_KISS, 5, -3.1f))));
+        new Item.Settings().rarity(Rarity.EPIC);
 
         BLAZERENDER = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "blazerender"),
                 new BlazerenderItem(ModToolMaterials.BLAZERENDER,
                         new Item.Settings().attributeModifiers(
                                 SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER, 3, -2.3f))));
+        new Item.Settings().rarity(Rarity.EPIC);
       
         BRINEBREAKER = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "brinebreaker"),                          // THIUS IS THE LOCAL TEMP CODE WORK WITH THIS :3
                 new BrinebreakerItem(ModToolMaterials.BRINEBREAKER,
                         SwordItem.createAttributeModifiers(ModToolMaterials.BRINEBREAKER, 5, -2.0f)));
 
-        JUGGERNAUT = Registry.register(Registries.ITEM,
-                Identifier.of(Carnage.MOD_ID, "juggernaut"),
-                new JuggernautItem(ModToolMaterials.JUGGERNAUT,
+        SURGE = Registry.register(Registries.ITEM,
+                Identifier.of(Carnage.MOD_ID, "surge"),
+                new SurgeItem(ModToolMaterials.SURGE,
                         new Item.Settings().attributeModifiers(
-                                SwordItem.createAttributeModifiers(ModToolMaterials.JUGGERNAUT, 0, -2.1f))));
-                            }
+                                SwordItem.createAttributeModifiers(ModToolMaterials.SURGE, 0, -2.1f))));
+    }
 
     public static void initialize() {
         Carnage.LOGGER.info("Registering items for " + Carnage.MOD_ID);
