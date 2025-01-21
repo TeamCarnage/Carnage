@@ -10,6 +10,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import org.joml.Vector2f;
 import xyz.carnage.itemmgmt.ModItems;
@@ -29,7 +31,6 @@ public class BrineBreakerEntity extends PersistentProjectileEntity {
 
     public static void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, int color) {
     }
-
 
     @Override
     protected ItemStack getDefaultItemStack() {
@@ -54,6 +55,13 @@ public class BrineBreakerEntity extends PersistentProjectileEntity {
             this.getWorld().sendEntityStatus(this, (byte)3);
             this.discard();
         }
+    }
+
+    protected void updateRotation() {
+        Vec3d vec3d = this.getVelocity();
+        double d = vec3d.horizontalLength();
+        this.setPitch(updateRotation(this.prevPitch, (float)(MathHelper.atan2(vec3d.y, d) * 180.0F / (float)Math.PI)));
+        this.setYaw(updateRotation(this.prevYaw, (float)(MathHelper.atan2(vec3d.x, vec3d.z) * 180.0F / (float)Math.PI)));
     }
 
     @Override

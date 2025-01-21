@@ -38,7 +38,7 @@ public class BrinebreakerEntityRenderer extends EntityRenderer<BrineBreakerEntit
         }
 
         VertexConsumer vertexConsumer1 = ItemRenderer.getDirectItemGlintConsumer(vertexConsumer, this.model.getLayer
-                (Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreaker_entity.png")), false, false);
+                (Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakernew.png")), false, false);
         this.model.render(matrices, vertexConsumer1, light, OverlayTexture.DEFAULT_UV);
 
         matrices.pop();
@@ -47,6 +47,6 @@ public class BrinebreakerEntityRenderer extends EntityRenderer<BrineBreakerEntit
 
     @Override
     public Identifier getTexture(BrineBreakerEntity entity) {
-        return Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreaker_entity.png");
+        return Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakernew.png");
     }
 }

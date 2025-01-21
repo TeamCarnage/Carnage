@@ -68,5 +68,6 @@ public class BrinebreakerItem extends TridentItem {
             Carnage.LOGGER.error("Brinebreaker FAILED to throw <3");
             e.printStackTrace();
         }
+        stack.decrementUnlessCreative(1, playerEntity);
     }
 }
