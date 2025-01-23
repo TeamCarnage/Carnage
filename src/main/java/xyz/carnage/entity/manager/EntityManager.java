@@ -1,4 +1,4 @@
-package xyz.carnage.entity;
+package xyz.carnage.entity.manager;
 
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricEntityTypeBuilder;
 import net.minecraft.entity.Entity;
@@ -8,6 +8,7 @@ import net.minecraft.entity.SpawnGroup;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
+import xyz.carnage.entity.BrineBreakerEntity;
 
 public class EntityManager {
     private final String MOD_ID;
@@ -48,3 +49,4 @@ public class EntityManager {
         );
     }
 }
+//tf does this class even do?

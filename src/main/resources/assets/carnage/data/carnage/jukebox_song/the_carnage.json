@@ -1,0 +1,8 @@
+{
+  "comparator_output": 15,
+  "description": {
+    "translate": "item.carnage.the_carnage_disc.desc"
+  },
+  "lenght_in_seconds": 27.0,
+  "sound_event": "carnage:the_carnage"
+}

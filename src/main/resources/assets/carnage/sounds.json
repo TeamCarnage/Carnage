@@ -4,5 +4,13 @@
     "sounds": [
       "carnage:phantoms_kiss_hit"
     ]
+  },
+  "the_carnage": {
+    "sounds": [
+      {
+        "name": "carnage:the_carnage",
+        "stream": true
+      }
+    ]
   }
 }
