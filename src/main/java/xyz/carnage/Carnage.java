@@ -23,9 +23,6 @@ public class Carnage implements ModInitializer {
 		EntitiesRegistry.init(); // Wohooo mod entities :D
 		LOGGER.info("Initializing " + MOD_ID);
 
-
-
-
 		// Register Combo Event Handlers
 		ComboEventHandler.registerEvents();
 	}
