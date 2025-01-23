@@ -32,7 +32,8 @@ public class BrinebreakerItem extends TridentItem {
         try {
             if (!world.isClient) {
 
-                BrineBreakerEntity tridentEntity = new BrineBreakerEntity(world, (PlayerEntity) user);
+                BrineBreakerEntity tridentEntity;
+                tridentEntity = new BrineBreakerEntity(world, (PlayerEntity) user);
 
                 tridentEntity.setPosition(
                         playerEntity.getX(),

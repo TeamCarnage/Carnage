@@ -17,7 +17,7 @@ import net.minecraft.world.World;
 import org.joml.Vector2f;
 import xyz.carnage.itemmgmt.ModItems;
 
-// I just followed a tutorial, most of this explains itself, I cant explain it if you dont udnerstand it
+// I just followed a tutorial, most of this explains itself, I cant explain it if you dont udnerstand it (might change)
 public class BrineBreakerEntity extends PersistentProjectileEntity {
     private float rotation;
     public Vector2f groundOffset;
@@ -91,5 +91,14 @@ public class BrineBreakerEntity extends PersistentProjectileEntity {
         return SoundEvents.ITEM_TRIDENT_HIT;
     }
 
-}
+    @Override
+    public boolean shouldRender(double cameraX, double cameraY, double cameraZ) {
+        return true;
+    }
 
+    private boolean enchanted = false;
+
+    public boolean isEnchanted() {
+        return enchanted;
+    }
+}

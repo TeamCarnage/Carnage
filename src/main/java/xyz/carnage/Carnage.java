@@ -1,7 +1,6 @@
 package xyz.carnage;
 
 import xyz.carnage.entity.EntitiesRegistry;
-import xyz.carnage.entity.templates.ModTridentEntity;
 import xyz.carnage.itemmgmt.ModItemGroups;
 import xyz.carnage.itemmgmt.ModItems;
 import net.fabricmc.api.ModInitializer;
@@ -17,7 +16,6 @@ public class Carnage implements ModInitializer {
 		System.out.println("Carnage onInitialize triggered!");
 		LOGGER.info("Carnage onInitialize triggered!");
 
-		ModTridentEntity.initialize();
 		CustomParticles.registerParticles();
 		ModItems.initialize();
 		ModItemGroups.registerItemGroups();

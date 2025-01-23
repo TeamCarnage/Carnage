@@ -1,7 +1,6 @@
 package xyz.carnage.entity.client;
 
 import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderPhase;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
@@ -22,31 +21,23 @@ public class BrinebreakerEntityRenderer extends EntityRenderer<BrineBreakerEntit
         this.model = new BrinebreakerEntityModel(ctx.getPart(BrinebreakerEntityModel.BRINEBREAKER));
     }
 
-    @Override
-    public void render(BrineBreakerEntity entity, float yaw, float tickDelta, MatrixStack matrices,
-                       VertexConsumerProvider vertexConsumer, int light) {
-        matrices.push();
-
-        if(!entity.isGrounded()) {
-            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(tickDelta, entity.prevYaw, entity.getYaw())));
-            matrices.multiply(RotationAxis.POSITIVE_X.rotationDegrees(entity.getRenderRotation() * 5f));
-            matrices.translate(0, -1.0f, 0);
-        } else {
-            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(entity.groundOffset.y()));
-            matrices.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(entity.groundOffset.x()));
-            matrices.translate(0, -1.0f, 0);
-        }
-
-        VertexConsumer vertexConsumer1 = ItemRenderer.getDirectItemGlintConsumer(vertexConsumer, this.model.getLayer
-                (Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakernew.png")), false, false);
-        this.model.render(matrices, vertexConsumer1, light, OverlayTexture.DEFAULT_UV);
-
-        matrices.pop();
-        super.render(entity, yaw, tickDelta, matrices, vertexConsumer, light);
+    public void render(BrineBreakerEntity BrineBreakerEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
+        matrixStack.push();
+        matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(g, BrineBreakerEntity.prevYaw, BrineBreakerEntity.getYaw()) - 90.0F));
+        matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.lerp(g, BrineBreakerEntity.prevPitch, BrineBreakerEntity.getPitch()) + 90.0F));
+        VertexConsumer vertexConsumer = ItemRenderer.getDirectItemGlintConsumer(
+                vertexConsumerProvider, this.model.getLayer(Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakernew.png")), false, BrineBreakerEntity.isEnchanted());
+        this.model.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV);
+        matrixStack.pop();
+        super.render(BrineBreakerEntity, f, g, matrixStack, vertexConsumerProvider, i);
     }
+
+
 
     @Override
     public Identifier getTexture(BrineBreakerEntity entity) {
         return Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakernew.png");
     }
 }
+
+
