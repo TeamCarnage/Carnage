@@ -9,6 +9,8 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import xyz.carnage.Carnage;
+import xyz.carnage.combos.ComboManager;
+import xyz.carnage.combos.ComboTracker;
 import xyz.carnage.entity.BrineBreakerEntity;
 import xyz.carnage.itemmgmt.ModToolMaterials;
 
@@ -70,5 +72,15 @@ public class BrinebreakerItem extends TridentItem {
             e.printStackTrace();
         }
         stack.decrementUnlessCreative(1, playerEntity);
+    }
+    @Override
+    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        ComboTracker tracker = ComboManager.getComboTracker((PlayerEntity) attacker);
+        if (tracker.getComboCount()/2 >= 5) {
+            //attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 0)); <- Example
+            tracker.reset();
+        }
+        tracker.clearHitFlag();
+        return super.postHit(stack, target, attacker);
     }
 }

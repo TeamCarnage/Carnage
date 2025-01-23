@@ -1,7 +1,10 @@
 package xyz.carnage.combos;
 
-import net.minecraft.entity.player.PlayerEntity;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
 import net.minecraft.text.Text;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
@@ -12,6 +15,7 @@ public class ComboTracker {
     long lastHitTime;
     private boolean canProcessHit;
     boolean canCombo;
+    private Map<Integer, Consumer<PlayerEntity>> comboActions;
 
     public ComboTracker(World world, PlayerEntity player) {
         this.world = world;
@@ -20,20 +24,34 @@ public class ComboTracker {
         this.lastHitTime = 0;
         this.canProcessHit = true;
         this.canCombo = true;
+        this.comboActions = new HashMap<>();
+    }
+
+    public void registerComboAction(int comboCount, Consumer<PlayerEntity> action) {
+        comboActions.put(comboCount, action);
     }
 
     public void hit() {
         long now = System.currentTimeMillis();
         if (canProcessHit) {
-            if (now - lastHitTime < 5000) comboCount++; else comboCount = 1;  // Start new combo at 1, not 2
+            if (now - lastHitTime < 1000) {
+                comboCount++;
+                // Check for and execute registered combo actions
+                Consumer<PlayerEntity> action = comboActions.get(comboCount);
+                if (action != null) {
+                    action.accept(player);
+                }
+            } else {
+                comboCount = 1;
+            }
 
-            // Display the combo count in the action bar
-            Text actionBarMessage = Text.literal(comboCount / 2 + "x Combo!").styled(style -> style.withColor(Formatting.BLUE));
+            Text actionBarMessage = Text.literal(comboCount/2 + "x Combo!")
+                    .styled(style -> style.withColor(Formatting.BLUE));
             player.sendMessage(actionBarMessage, true);
 
-            canProcessHit = false;  // Block further increments until next tick
+            canProcessHit = false;
         }
-        lastHitTime = now;  // Update the last hit time
+        lastHitTime = now;
     }
 
     public int getComboCount() {

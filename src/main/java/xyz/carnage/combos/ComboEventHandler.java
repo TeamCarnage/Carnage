@@ -17,12 +17,16 @@ public class ComboEventHandler {
             tracker.hit();  // Process the hit for combo counting
 
             // Reset combo after 10 hits
-            if (tracker.getComboCount() == 10) {
-                world.playSound(null, entity.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
-                tracker.reset();  // Reset after triggering
-            }
+//            if (tracker.getComboCount() == 10) {
+//                world.playSound(null, entity.getBlockPos(), SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, SoundCategory.PLAYERS, 1.0F, 1.0F);
+//                tracker.reset();  // Reset after triggering
+//            }
 
             // Ensure the hit flag is cleared after processing the hit
+//            tracker.clearHitFlag();
+
+            // TODO: ADD DEFAULT ACTIONS - TO HAPPEN WHEN THERE'S NO ITEMS IN THE PLAYER'S MAIN HAND (WHEN THEY'RE HITTING SOMETHING WITHOUT A CUSTOM WEAPON) - let me do it - colonel :D
+
             tracker.clearHitFlag();
 
             return ActionResult.PASS;

@@ -38,6 +38,13 @@ public class PhantomsKissItem extends SwordItem {
             player.sendMessage(Text.literal("You hit " + target.getName().getString() + " with the sword!"), true); // waffles about what you killed above your hotbar
         }
 
+        ComboTracker tracker = ComboManager.getComboTracker((PlayerEntity) attacker);
+        if (tracker.getComboCount()/2 >= 5) {
+            //attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 0)); <- Example
+            tracker.reset();
+        }
+        tracker.clearHitFlag();
+
         return super.postHit(stack, target, attacker);
     }
 
