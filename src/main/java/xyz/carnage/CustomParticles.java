@@ -2,9 +2,7 @@ package xyz.carnage;
 
 import net.fabricmc.fabric.api.client.particle.v1.ParticleFactoryRegistry;
 import net.fabricmc.fabric.api.particle.v1.FabricParticleTypes;
-import net.minecraft.client.particle.BillboardParticle;
 import net.minecraft.client.particle.CampfireSmokeParticle;
-import net.minecraft.client.particle.Particle;
 import net.minecraft.particle.SimpleParticleType;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
