@@ -27,10 +27,6 @@ public final class ModItems {
                 Identifier.of(Carnage.MOD_ID, "blood_essence"),
                 new BloodEssenceItem(new Item.Settings()));
 
-//        PHANTOMS_KISS = Registry.register(Registries.ITEM,
-//                Identifier.of(Carnage.MOD_ID, "phantoms_kiss"),
-//                new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS, new Item.Settings()));
-
         PHANTOMS_KISS = Registry.register(Registries.ITEM,
                 Identifier.of(Carnage.MOD_ID, "phantoms_kiss"),
                 new PhantomsKissItem(ModToolMaterials.PHANTOMS_KISS,
@@ -55,6 +51,7 @@ public final class ModItems {
                 new SurgeItem(ModToolMaterials.SURGE,
                         new Item.Settings().attributeModifiers(
                                 SwordItem.createAttributeModifiers(ModToolMaterials.SURGE, 0, -2.1f))));
+//        new Item.Settings().rarity(Rarity.EPIC); <- Sets rarity to EPIC (Like the ender dragon egg)
     }
 
     public static void initialize() {
