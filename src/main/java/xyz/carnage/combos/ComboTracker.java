@@ -11,6 +11,7 @@ public class ComboTracker {
     private int comboCount;
     long lastHitTime;
     private boolean canProcessHit;
+    boolean canCombo;
 
     public ComboTracker(World world, PlayerEntity player) {
         this.world = world;
@@ -18,17 +19,13 @@ public class ComboTracker {
         this.comboCount = 0;
         this.lastHitTime = 0;
         this.canProcessHit = true;
+        this.canCombo = true;
     }
 
     public void hit() {
         long now = System.currentTimeMillis();
-
         if (canProcessHit) {
-            if (now - lastHitTime < 1000) { // 1-second window for combo hits
-                comboCount++;  // Increment combo count
-            } else {
-                comboCount = 1;  // Start new combo at 1, not 2
-            }
+            if (now - lastHitTime < 5000) comboCount++; else comboCount = 1;  // Start new combo at 1, not 2
 
             // Display the combo count in the action bar
             Text actionBarMessage = Text.literal(comboCount / 2 + "x Combo!").styled(style -> style.withColor(Formatting.BLUE));

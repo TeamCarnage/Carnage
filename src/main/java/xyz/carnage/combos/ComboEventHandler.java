@@ -39,4 +39,14 @@ public class ComboEventHandler {
             });
         });
     }
+//    public static void registerEvents() {
+//        AttackEntityCallback.EVENT.register(((playerEntity, world, hand, entity, entityHitResult) -> {
+//            if(!(playerEntity instanceof PlayerEntity)) return ActionResult.PASS;
+//
+//            final ComboTracker tracker = new ComboTracker(world, playerEntity);
+//            tracker.hit();
+//
+//
+//        }));
+//    }
 }
