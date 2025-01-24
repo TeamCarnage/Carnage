@@ -43,7 +43,7 @@ public class SurgeItem extends SwordItem {
             if (tracker.getComboCount()/2 >= 15) {
                 target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 150, 1));
                 target.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 150, 0)); // this knife can and will zap, maybe cap if you will :3 - tman
-                //soundthing here
+                CustomSounds.playSound(null,player,"surge_discharge",SoundCategory.PLAYERS,1.0F,1.0F);
                 tracker.reset();
             }
             tracker.clearHitFlag();
