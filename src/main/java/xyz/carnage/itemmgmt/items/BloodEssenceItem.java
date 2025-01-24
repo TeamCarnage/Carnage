@@ -1,5 +1,6 @@
 package xyz.carnage.itemmgmt.items;
 
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -10,6 +11,8 @@ import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import xyz.carnage.combos.ComboManager;
+import xyz.carnage.combos.ComboTracker;
 
 public class BloodEssenceItem extends Item {
     public BloodEssenceItem(Settings settings) {
@@ -24,9 +27,8 @@ public class BloodEssenceItem extends Item {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 150, 0));
         }
 
-        //
         world.playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, // hypixel ding sound effect!
+                SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,
                 SoundCategory.PLAYERS,
                 0.5f,
                 1.0f
@@ -39,5 +41,16 @@ public class BloodEssenceItem extends Item {
         player.getItemCooldownManager().set(this, 100); // 100 TICKS, which is 5 seconds at 20tps
 
         return TypedActionResult.success(stack);
+    }
+
+    @Override
+    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        ComboTracker tracker = ComboManager.getComboTracker((PlayerEntity) attacker);
+        if (tracker.getComboCount()/2 >= 5) {
+            //attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 0)); <- Example
+            tracker.reset();
+        }
+        tracker.clearHitFlag();
+        return super.postHit(stack, target, attacker);
     }
 }
