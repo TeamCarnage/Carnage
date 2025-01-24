@@ -58,8 +58,6 @@ public class CustomSounds {
             playItemSound("hit", stack, attacker.getWorld(), (PlayerEntity) attacker);
         }
     }
-    public static final SoundEvent JUGGERNAUT_DISCHARGE = registerSound("JuggernautDischarge");
-
 
     public static void registerSounds(String modId) {
         // Register Sounds (not for the events).
