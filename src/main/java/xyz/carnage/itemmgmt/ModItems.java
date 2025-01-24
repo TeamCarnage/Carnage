@@ -18,6 +18,7 @@ public final class ModItems {
     public static final Item PHANTOMS_KISS;
     public static final Item BLAZERENDER;
     public static final Item BRINEBREAKER;
+    public static final Item SURGE;
 
     static {
         BLOOD_ESSENCE = Registry.register(Registries.ITEM,
@@ -41,6 +42,12 @@ public final class ModItems {
                 new BrinebreakerItem(
                         new Item.Settings().maxDamage(ModToolMaterials.BRINEBREAKER.getDurability())
                                 .rarity(Rarity.RARE)));
+
+        SURGE = Registry.register(Registries.ITEM,
+                Identifier.of(MOD_ID, "surge"),
+                new SurgeItem(ModToolMaterials.BLAZERENDER,
+                        new Item.Settings().attributeModifiers(
+                                SwordItem.createAttributeModifiers(ModToolMaterials.SURGE, 3, -2.3f))));
     }
 
     public static void initialize() {

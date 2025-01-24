@@ -16,8 +16,8 @@ import java.util.Map;
 import static xyz.carnage.Carnage.MOD_ID;
 
 public class CustomSounds {
-    private static final Map<Identifier, SoundEvent> SOUND_EVENTS = new HashMap<>();
-    private static final Map<String, Map<String, Identifier>> ITEM_SOUNDS = new HashMap<>();
+    public static final Map<Identifier, SoundEvent> SOUND_EVENTS = new HashMap<>();
+    public static final Map<String, Map<String, Identifier>> ITEM_SOUNDS = new HashMap<>();
 
     public static void registerSound(String modId, String soundId) {
         SoundEvent soundEvent = SoundEvent.of(Identifier.of(modId, soundId));
@@ -62,9 +62,11 @@ public class CustomSounds {
     public static void registerSounds(String modId) {
         // Register Sounds (not for the events).
         registerSound(modId, "phantoms_kiss_hit");
+        registerSound(modId, "surge_discharge");
 
         // Register sound events (theres two types of event - hit and break - they're pretty self-explanitory) - dont use "break" eventType, it does nothing atm.
         registerItemSound("carnage:phantoms_kiss", "hit", "phantoms_kiss_hit", modId);
+        registerItemSound("carnage:surge", "hit", "surge_discharge", modId);
     }
 
     public static void initialise() {
