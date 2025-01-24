@@ -24,8 +24,6 @@ public class Carnage implements ModInitializer {
 		LOGGER.info("Initializing " + MOD_ID);
 
 
-
-
 		// Register Combo Event Handlers
 		ComboEventHandler.registerEvents();
 	}
