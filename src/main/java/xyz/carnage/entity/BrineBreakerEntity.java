@@ -7,6 +7,7 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -18,16 +19,16 @@ import org.joml.Vector2f;
 import xyz.carnage.itemmgmt.ModItems;
 
 // I just followed a tutorial, most of this explains itself, I cant explain it if you dont udnerstand it (might change)
-public class BrineBreakerEntity extends PersistentProjectileEntity {
+public class BrineBreakerEntity extends TridentEntity {
     private float rotation;
     public Vector2f groundOffset;
 
-    public BrineBreakerEntity(EntityType<? extends PersistentProjectileEntity> entityType, World world) {
+    public BrineBreakerEntity(EntityType<? extends TridentEntity> entityType, World world) {
         super(entityType, world);
     }
 
-    public BrineBreakerEntity(World world, PlayerEntity player) {
-        super(EntitiesRegistry.BRINEBREAKER, player, world, new ItemStack(ModItems.BRINEBREAKER), null);
+    public BrineBreakerEntity(World world, LivingEntity owner, ItemStack stack) {
+        super(world, owner, stack);
     }
 
     public static void render(MatrixStack matrices, VertexConsumer vertexConsumer, int light, int overlay, int color) {

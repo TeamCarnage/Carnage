@@ -32,10 +32,10 @@ public class BrinebreakerItem extends TridentItem {
         try {
             if (!world.isClient) {
 
-                BrineBreakerEntity tridentEntity;
-                tridentEntity = new BrineBreakerEntity(world, (PlayerEntity) user);
+                BrineBreakerEntity brineBreakerEntity;
+                brineBreakerEntity = new BrineBreakerEntity(world, playerEntity, stack);
 
-                tridentEntity.setPosition(
+                brineBreakerEntity.setPosition(
                         playerEntity.getX(),
                         playerEntity.getEyeY() - 0.1,
                         playerEntity.getZ()
@@ -44,7 +44,7 @@ public class BrinebreakerItem extends TridentItem {
                 float power = Math.min(i / 20.0F, 1.0F);
                 float speed = 2.5F * power;
 
-                tridentEntity.setVelocity(
+                brineBreakerEntity.setVelocity(
                         playerEntity,
                         playerEntity.getPitch(),
                         playerEntity.getYaw(),
@@ -53,10 +53,10 @@ public class BrinebreakerItem extends TridentItem {
                         1.0F
                 );
 
-                if (world.spawnEntity(tridentEntity)) {
+                if (world.spawnEntity(brineBreakerEntity)) {
                     world.playSoundFromEntity(
                             null,
-                            tridentEntity,
+                            brineBreakerEntity,
                             SoundEvents.ITEM_TRIDENT_THROW.value(),
                             SoundCategory.PLAYERS,
                             1.0F,
