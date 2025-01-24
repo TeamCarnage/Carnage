@@ -1,6 +1,6 @@
 {
 	"parent": "item/handheld",
 	"textures": {
-		"layer0": "carnage:item/juggernaut"
+		"layer0": "carnage:item/surge"
 	}
 }
