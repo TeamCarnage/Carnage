@@ -1,9 +1,9 @@
 {
   "itemgroup.carnage": "Carnage Items",
-  "item.carnage.phantoms_kiss": "§6Phantom's Kiss",
-  "item.carnage.blood_essence": "§6Blood Essence",
-  "item.carnage.blazerender": "§6Blazerender",
-  "item.carnage.brinebreaker": "§6Brinebreaker",
-  "item.carnage.juggernaut" :  "§6J.U.G.G.E.R.N.A.U.T"
+  "item.carnage.phantoms_kiss": "Phantom's Kiss",
+  "item.carnage.blood_essence": "Blood Essence",
+  "item.carnage.blazerender": "Blazerender",
+  "item.carnage.brinebreaker": "Brinebreaker",
+  "item.carnage.surge" :  "S.U.R.G.E"
 
 }
