@@ -1,16 +1,6 @@
 {
-  "phantom_kiss_hit": {
-    "subtitle": "sounds.carnage.phantoms_kiss_hit",
-    "sounds": [
-      "carnage:phantoms_kiss_hit"
-    ]
-  },
-  "the_carnage": {
-    "sounds": [
-      {
-        "name": "carnage:the_carnage",
-        "stream": true
-      }
-    ]
+  "phantoms_kiss_hit": {
+    "subtitle": "sounds.item.carnage.phantoms_kiss_hit",
+    "sounds": ["carnage:item/phantoms_kiss_hit"]
   }
 }

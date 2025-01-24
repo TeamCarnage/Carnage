@@ -19,8 +19,8 @@ public class Carnage implements ModInitializer {
 		CustomParticles.registerParticles();
 		ModItems.initialize();
 		ModItemGroups.registerItemGroups();
-		CustomSounds.initialize();
 		EntitiesRegistry.init(); // Wohooo mod entities :D
+		CustomSounds.initialise();
 		LOGGER.info("Initializing " + MOD_ID);
 
 
