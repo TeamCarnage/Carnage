@@ -1,42 +1,54 @@
 package xyz.carnage.combos;
 
-import net.minecraft.entity.player.PlayerEntity;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Consumer;
 import net.minecraft.text.Text;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
 public class ComboTracker {
-    private final World world;
+
     private final PlayerEntity player;
     private int comboCount;
     long lastHitTime;
     private boolean canProcessHit;
+    private Map<Integer, Consumer<PlayerEntity>> comboActions;
 
     public ComboTracker(World world, PlayerEntity player) {
-        this.world = world;
         this.player = player;
         this.comboCount = 0;
         this.lastHitTime = 0;
         this.canProcessHit = true;
+        this.comboActions = new HashMap<>();
+    }
+
+    public void registerComboAction(int comboCount, Consumer<PlayerEntity> action) {
+        comboActions.put(comboCount, action);
     }
 
     public void hit() {
         long now = System.currentTimeMillis();
-
         if (canProcessHit) {
-            if (now - lastHitTime < 1000) { // 1-second window for combo hits
-                comboCount++;  // Increment combo count
+            if (now - lastHitTime < 1000) {
+                comboCount++;
+                // Check for and execute registered combo actions
+                Consumer<PlayerEntity> action = comboActions.get(comboCount);
+                if (action != null) {
+                    action.accept(player);
+                }
             } else {
-                comboCount = 1;  // Start new combo at 1, not 2
+                comboCount = 1;
             }
 
-            // Display the combo count in the action bar
-            Text actionBarMessage = Text.literal(comboCount / 2 + "x Combo!").styled(style -> style.withColor(Formatting.BLUE));
+            Text actionBarMessage = Text.literal(comboCount/2 + "x Combo!")
+                    .styled(style -> style.withColor(Formatting.BLUE));
             player.sendMessage(actionBarMessage, true);
 
-            canProcessHit = false;  // Block further increments until next tick
+            canProcessHit = false;
         }
-        lastHitTime = now;  // Update the last hit time
+        lastHitTime = now;
     }
 
     public int getComboCount() {

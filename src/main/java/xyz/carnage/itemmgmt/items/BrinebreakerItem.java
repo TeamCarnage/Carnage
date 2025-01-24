@@ -1,7 +1,5 @@
 package xyz.carnage.itemmgmt.items;
 
-import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.minecraft.component.type.AttributeModifiersComponent;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.*;
@@ -9,12 +7,14 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
 import xyz.carnage.Carnage;
+import xyz.carnage.combos.ComboManager;
+import xyz.carnage.combos.ComboTracker;
 import xyz.carnage.entity.BrineBreakerEntity;
-import xyz.carnage.itemmgmt.ModToolMaterials;
+import xyz.carnage.entity.EntitiesRegistry;
 
 public class BrinebreakerItem extends TridentItem {
 
-        public BrinebreakerItem( Item.Settings settings) {
+        public BrinebreakerItem(Item.Settings settings) {
             super(settings); //apparantly trident item doesnt like it if you have tool materials
         }
 
@@ -33,7 +33,7 @@ public class BrinebreakerItem extends TridentItem {
             if (!world.isClient) {
 
                 BrineBreakerEntity tridentEntity;
-                tridentEntity = new BrineBreakerEntity(world, (PlayerEntity) user);
+                tridentEntity = new BrineBreakerEntity(EntitiesRegistry.BRINEBREAKER, world);
 
                 tridentEntity.setPosition(
                         playerEntity.getX(),
@@ -71,4 +71,15 @@ public class BrinebreakerItem extends TridentItem {
         }
         stack.decrementUnlessCreative(1, playerEntity);
     }
+    @Override
+    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+        ComboTracker tracker = ComboManager.getComboTracker((PlayerEntity) attacker);
+        if (tracker.getComboCount()/2 >= 5) {
+            //attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 0)); <- Example
+            tracker.reset();
+        }
+        tracker.clearHitFlag();
+        return super.postHit(stack, target, attacker);
+    }
+
 }
