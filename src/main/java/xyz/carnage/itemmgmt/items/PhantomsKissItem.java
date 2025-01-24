@@ -1,20 +1,14 @@
 package xyz.carnage.itemmgmt.items;
 
-import net.minecraft.block.entity.VaultBlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
-import net.minecraft.item.tooltip.TooltipType;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
-import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
-import xyz.carnage.CustomSounds;
-import xyz.carnage.itemmgmt.ModItems;
-import xyz.carnage.combos.ComboEventHandler;
 import xyz.carnage.combos.ComboManager;
 import xyz.carnage.combos.ComboTracker;
 

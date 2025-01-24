@@ -9,21 +9,18 @@ import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
 
 public class ComboTracker {
-    private final World world;
+
     private final PlayerEntity player;
     private int comboCount;
     long lastHitTime;
     private boolean canProcessHit;
-    boolean canCombo;
     private Map<Integer, Consumer<PlayerEntity>> comboActions;
 
     public ComboTracker(World world, PlayerEntity player) {
-        this.world = world;
         this.player = player;
         this.comboCount = 0;
         this.lastHitTime = 0;
         this.canProcessHit = true;
-        this.canCombo = true;
         this.comboActions = new HashMap<>();
     }
 

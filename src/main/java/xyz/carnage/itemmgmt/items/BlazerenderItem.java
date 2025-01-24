@@ -24,7 +24,6 @@ public class BlazerenderItem extends PushSwordItem {
                 .setPushRadius(10.0)
         );
         this.material = ModToolMaterials.BLAZERENDER;
-        initializeComboActions();
     }
 
     public BlazerenderItem(ToolMaterial toolMaterial, Settings settings) {
@@ -40,15 +39,6 @@ public class BlazerenderItem extends PushSwordItem {
                 .setSoundPitch(1.2f)
         );
         this.material = toolMaterial;
-        initializeComboActions();
-    }
-    // COMBO STUFF :D
-    private void initializeComboActions() {
-        ComboManager.comboTrackers.forEach((uuid, tracker) -> {
-            tracker.registerComboAction(5, player -> {
-                player.addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH, 200, 1));
-            });
-        });
     }
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {

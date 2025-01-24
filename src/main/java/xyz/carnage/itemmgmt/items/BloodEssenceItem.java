@@ -27,9 +27,8 @@ public class BloodEssenceItem extends Item {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 150, 0));
         }
 
-        //
         world.playSound(null, player.getX(), player.getY(), player.getZ(),
-                SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP, // hypixel ding sound effect!
+                SoundEvents.ENTITY_EXPERIENCE_ORB_PICKUP,
                 SoundCategory.PLAYERS,
                 0.5f,
                 1.0f
