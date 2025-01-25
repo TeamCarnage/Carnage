@@ -1,22 +1,46 @@
 package xyz.carnage.itemmgmt.items;
 
+import net.minecraft.component.ComponentMap;
+import net.minecraft.component.DataComponentTypes;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
+import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.*;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtElement;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
+import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import xyz.carnage.Carnage;
 import xyz.carnage.combos.ComboManager;
 import xyz.carnage.combos.ComboTracker;
 import xyz.carnage.entity.BrineBreakerEntity;
 import xyz.carnage.entity.EntitiesRegistry;
+import xyz.carnage.itemmgmt.ModItems;
+
+import static net.minecraft.datafixer.TypeReferences.ITEM_STACK;
 
 public class BrinebreakerItem extends TridentItem {
 
-        public BrinebreakerItem(Item.Settings settings) {
-            super(settings); //apparantly trident item doesnt like it if you have tool materials
-        }
+    public BrinebreakerItem(Item.Settings settings) {
+        super(settings);
+    }
+
+
+    public ItemStack createBrinebreakerStack() {
+        ItemStack stack = new ItemStack(ModItems.BRINEBREAKER);
+
+        stack.set(DataComponentTypes.DAMAGE, 5);
+        stack.set(DataComponentTypes.CUSTOM_NAME, Text.literal("Brinebreaker"));
+        return stack;
+    }
+
 
     @Override
     public void onStoppedUsing(ItemStack stack, World world, LivingEntity user, int remainingUseTicks) {
@@ -31,9 +55,12 @@ public class BrinebreakerItem extends TridentItem {
 
         try {
             if (!world.isClient) {
+                BrineBreakerEntity tridentEntity = new BrineBreakerEntity(EntitiesRegistry.BRINEBREAKER, world);
+                tridentEntity.setOwner(user);
 
-                BrineBreakerEntity tridentEntity;
-                tridentEntity = new BrineBreakerEntity(EntitiesRegistry.BRINEBREAKER, world);
+                tridentEntity.setPreservedStack(new ItemStack(ModItems.BRINEBREAKER.asItem(), stack.getComponents().size()));
+
+
 
                 tridentEntity.setPosition(
                         playerEntity.getX(),
@@ -65,21 +92,21 @@ public class BrinebreakerItem extends TridentItem {
                 }
             }
         } catch (Exception e) {
-            // Log the actual error
             Carnage.LOGGER.error("Brinebreaker FAILED to throw <3");
             e.printStackTrace();
         }
         stack.decrementUnlessCreative(1, playerEntity);
     }
+
+
+
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         ComboTracker tracker = ComboManager.getComboTracker((PlayerEntity) attacker);
         if (tracker.getComboCount()/2 >= 5) {
-            //attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 0)); <- Example
             tracker.reset();
         }
         tracker.clearHitFlag();
         return super.postHit(stack, target, attacker);
     }
-
 }

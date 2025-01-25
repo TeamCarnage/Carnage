@@ -1,27 +1,51 @@
 package xyz.carnage.entity;
 
+import net.minecraft.component.Component;
+import net.minecraft.component.ComponentMap;
+import net.minecraft.component.DataComponentTypes;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.entity.projectile.TridentEntity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.nbt.NbtList;
+import net.minecraft.text.Text;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.Vec2f;
 import net.minecraft.world.World;
 import org.joml.Vector2f;
+import xyz.carnage.itemmgmt.items.BrinebreakerItem;
+import xyz.carnage.combos.ComboTracker;
 import xyz.carnage.itemmgmt.ModItems;
 
+
 public class BrineBreakerEntity extends TridentEntity {
+
+
     public Vector2f groundOffset;
+    private boolean dealtDamage;
 
     public BrineBreakerEntity(EntityType<? extends BrineBreakerEntity> entityType, World world) {
         super(entityType, world);
+        this.setStack(new ItemStack(ModItems.BRINEBREAKER));
+
     }
 
-    @Override
-    protected ItemStack getDefaultItemStack() {
-        return new ItemStack(ModItems.BRINEBREAKER);
+    public ItemStack getComponents() {
+        return this.getItemStack(); // Returns the current ItemStack of the entity
     }
+
+
 
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
@@ -33,6 +57,10 @@ public class BrineBreakerEntity extends TridentEntity {
             this.getWorld().sendEntityStatus(this, (byte) 3);
         }
     }
+
+
+
+
 
     @Override
     protected void onBlockHit(BlockHitResult result) {
@@ -57,5 +85,8 @@ public class BrineBreakerEntity extends TridentEntity {
         if (result.getSide() == Direction.UP) {
             groundOffset = new Vector2f(285f, 180f);
         }
+    }
+
+    public void setPreservedStack(ItemStack itemStack) {
     }
 }
