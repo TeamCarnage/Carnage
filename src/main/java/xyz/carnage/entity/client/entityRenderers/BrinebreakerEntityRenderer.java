@@ -1,4 +1,4 @@
-package xyz.carnage.entity.client.entityModels.entityRenderers;
+package xyz.carnage.entity.client.entityRenderers;
 
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumer;

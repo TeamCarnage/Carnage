@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import xyz.carnage.entity.EntitiesRegistry;
 import xyz.carnage.entity.client.entityModels.BrinebreakerEntityModel;
-import xyz.carnage.entity.client.entityModels.entityRenderers.BrinebreakerEntityRenderer;
+import xyz.carnage.entity.client.entityRenderers.BrinebreakerEntityRenderer;
 import xyz.carnage.itemmgmt.ModItems;
 
 import static xyz.carnage.Carnage.LOGGER;
