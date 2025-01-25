@@ -20,7 +20,9 @@ public enum ModToolMaterials implements ToolMaterial {
             () -> Ingredient.ofItems(Items.NETHERITE_INGOT)),
             //() -> Ingredient.ofItems(Items.BLAZE_ROD));
     SURGE(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 2031, 10.0F, 4.0F, 20,
-            () -> Ingredient.ofItems(Items.NETHERITE_INGOT));
+            () -> Ingredient.ofItems(Items.NETHERITE_INGOT)),
+    ECHOING_TWINBLADE(BlockTags.INCORRECT_FOR_NETHERITE_TOOL, 2031, 10.0F, 4.0F, 20,
+            () -> Ingredient.ofItems(Items.ECHO_SHARD));
 
 
 

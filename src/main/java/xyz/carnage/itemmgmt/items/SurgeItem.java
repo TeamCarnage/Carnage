@@ -14,6 +14,7 @@ import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.stat.Stat;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
@@ -61,8 +62,9 @@ public class SurgeItem extends SwordItem {
             player.getItemCooldownManager().set(this, 50); // Cooldown: 400 ticks (20 seconds)
 
             // Add effects to the player
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 200, 0)); // Glowing for 10 seconds
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 2)); // Speed for 10 seconds
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 300, 0));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 2));
+            player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 300, 0));
             world.playSound(null,player.getX(),player.getY(),player.getZ(),SOUND_EVENTS.get(Identifier.of(MOD_ID, "surge_discharge")),SoundCategory.PLAYERS,1.0F,1.0F);
 
             // Create and spawn a LightningEntity at the player's position

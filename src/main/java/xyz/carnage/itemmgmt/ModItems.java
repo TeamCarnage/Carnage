@@ -19,6 +19,7 @@ public final class ModItems {
     public static final Item BLAZERENDER;
     public static final Item BRINEBREAKER;
     public static final Item SURGE;
+    public static final Item ECHOING_TWINBLADE;
 
     static {
         BLOOD_ESSENCE = Registry.register(Registries.ITEM,
@@ -48,6 +49,12 @@ public final class ModItems {
                 new SurgeItem(ModToolMaterials.SURGE,
                         new Item.Settings().attributeModifiers(
                                 SwordItem.createAttributeModifiers(ModToolMaterials.SURGE, 1, -1.8f))));
+
+        ECHOING_TWINBLADE = Registry.register(Registries.ITEM,
+                Identifier.of(MOD_ID, "echoing_twinblade"),
+                new EchoingTwinbladeItem(ModToolMaterials.ECHOING_TWINBLADE,
+                        new Item.Settings().attributeModifiers(
+                                SwordItem.createAttributeModifiers(ModToolMaterials.ECHOING_TWINBLADE, 3, -2.4f))));
     }
 
     public static void initialize() {
