@@ -23,8 +23,6 @@ import xyz.carnage.CustomSounds;
 import xyz.carnage.combos.ComboManager;
 import xyz.carnage.combos.ComboTracker;
 
-import static xyz.carnage.Carnage.MOD_ID;
-import static xyz.carnage.CustomSounds.SOUND_EVENTS;
 
 
 public class SurgeItem extends SwordItem {
@@ -36,7 +34,6 @@ public class SurgeItem extends SwordItem {
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (!attacker.getWorld().isClient && attacker instanceof PlayerEntity player) {
-            // Generate a random float between 0.0 and 1.0
             World world = attacker.getWorld();
             }
 
@@ -45,7 +42,7 @@ public class SurgeItem extends SwordItem {
         if (tracker.getComboCount()/2 >= 15) {
             target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 150, 1));
             target.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 150, 0)); // this knife can and will zap, maybe cap if you will :3 - tman
-            CustomSounds.playCustomSound(stack, player); // Plays a sound after 15 crits
+            CustomSounds.playCustomSound("carnage:surge_crit", player); // Plays a sound after 15 crits
             tracker.reset();
         }
         tracker.clearHitFlag();
@@ -63,7 +60,7 @@ public class SurgeItem extends SwordItem {
             // Add effects to the player
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 200, 0)); // Glowing for 10 seconds
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 2)); // Speed for 10 seconds
-            world.playSound(null,player.getX(),player.getY(),player.getZ(),SOUND_EVENTS.get(Identifier.of(MOD_ID, "surge_discharge")),SoundCategory.PLAYERS,1.0F,1.0F);
+            CustomSounds.playCustomSound("carnage:surge_use", player);
 
             // Create and spawn a LightningEntity at the player's position
             LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(world); // Create a lightning entity
