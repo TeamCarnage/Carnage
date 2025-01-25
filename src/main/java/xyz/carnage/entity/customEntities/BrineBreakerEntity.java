@@ -1,4 +1,4 @@
-package xyz.carnage.entity;
+package xyz.carnage.entity.customEntities;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
