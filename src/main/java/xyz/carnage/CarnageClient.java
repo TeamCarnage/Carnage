@@ -14,6 +14,7 @@ import xyz.carnage.entity.client.entityRenderers.WardlingEntityRenderer;
 import xyz.carnage.itemmgmt.ModItems;
 
 import static xyz.carnage.Carnage.LOGGER;
+import static xyz.carnage.Carnage.MOD_ID;
 
 public class CarnageClient implements ClientModInitializer {
     @Override
