@@ -39,17 +39,17 @@ public class SurgeItem extends SwordItem {
         if (!attacker.getWorld().isClient && attacker instanceof PlayerEntity player) {
             // Generate a random float between 0.0 and 1.0
             World world = attacker.getWorld();
-
-            ComboTracker tracker = ComboManager.getComboTracker((PlayerEntity) attacker);
-            if (tracker.getComboCount()/2 >= 15) {
-                target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 150, 1));
-                target.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 150, 0)); // this knife can and will zap, maybe cap if you will :3 - tman
-                CustomSounds.playSound(null,player,"surge_discharge",SoundCategory.PLAYERS,1.0F,1.0F);
-                tracker.reset();
-            }
-            tracker.clearHitFlag();
             }
 
+        ComboTracker tracker = ComboManager.getComboTracker((PlayerEntity) attacker);
+        PlayerEntity player = (PlayerEntity) attacker;
+        if (tracker.getComboCount()/2 >= 15) {
+            target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 150, 1));
+            target.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 150, 0)); // this knife can and will zap, maybe cap if you will :3 - tman
+            CustomSounds.playCustomSound(stack, player); // Plays a sound after 15 crits
+            tracker.reset();
+        }
+        tracker.clearHitFlag();
         return super.postHit(stack, target, attacker);
     }
 

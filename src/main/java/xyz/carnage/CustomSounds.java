@@ -61,45 +61,39 @@ public class CustomSounds {
             playItemSound("hit", stack, attacker.getWorld(), (PlayerEntity) attacker);
         }
     }
+    public static void playCustomSound(ItemStack stack, PlayerEntity player) {
+            playItemSound("custom_sound", stack, player.getWorld(), player);
+    }
 
-    public static void playSound(Entity source, @NotNull PlayerEntity player, String soundName, SoundCategory soundCategory, Float volume, Float pitch) {
+    public static void playSound(String eventType, ItemStack stack, World world, PlayerEntity player) {
 
         /*
-        *   USAGE:
-        *   source - is usually null.
-        *   player - sets the location that the sound comes from, use the player entity that you want to hear the sound.
-        *   soundName - is the file name of the sound. Use the name of the sound file e.g "phantoms_kiss_hit".
-        *   soundCategory - is the sound category you want the sound to play, adjustable by the players in the settings menu. e.g SoundCategory.PLAYER
-        *   volume - is how loud the sound is, usually set to 1.
-        *   pitch - is the pitch of the sound (duh) usually set to 1.
-        *
-        *   Example: playSound(null, player, "soundName", SoundCategory.PLAYER, 1.0F, 1.0F);
-        *
-        * */
+         *   USAGE:
+         *   eventType - the type of event played (defined when registering items).
+         *   stack - the itemstack of the item in the player's current hand.
+         *   world - the world to play the sound in.
+         *   player - the player to play the sound from the location of.
+         *
+         *   Example: playSound(null, player, "soundName", SoundCategory.PLAYER, 1.0F, 1.0F);
+         *
+         * */
 
-        SoundEvent soundEvent = SOUND_EVENTS.get(Identifier.of(MOD_ID, soundName));
-        player.getWorld().playSound(
-                source,
-                player.getBlockPos(),
-                soundEvent,
-                soundCategory,
-                volume,
-                pitch
-        );
+        playItemSound(eventType, stack, player.getWorld(), player);
+
     }
 
     public static void registerSounds(String modId) {
         // Register Sounds (not for the events).
 
         // Usage: registerSound(modId, "item ID - same as in ModItems")
-        registerSound(modId, "phantoms_kiss_hit");
         registerSound(modId, "surge_discharge");
+        registerSound(modId, "phantoms_kiss_hit");
 
-        // Register sound events (theres two types of event - hit and break - they're pretty self-explanitory) - dont use "break" eventType, it does nothing atm.
+        // Register sound events (theres three types of event - hit, break and custom_sound - they're pretty self-explanitory) - dont use "break" eventType, it does nothing atm.
 
         // USAGE: registerItemSound("mod_id:item_name", "eventType", "sound file name", modId);
         registerItemSound("carnage:phantoms_kiss", "hit", "phantoms_kiss_hit", modId);
-        registerItemSound("carnage:surge", "hit", "surge_discharge", modId);
+        registerItemSound("carnage:surge", "custom_sound", "surge_discharge", modId);
     }
 
     public static void initialise() {
