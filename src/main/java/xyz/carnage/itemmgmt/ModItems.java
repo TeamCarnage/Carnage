@@ -38,7 +38,7 @@ public final class ModItems {
                                 SwordItem.createAttributeModifiers(ModToolMaterials.BLAZERENDER, 3, -2.3f))));
       
         BRINEBREAKER = Registry.register(Registries.ITEM,
-                Identifier.of(MOD_ID, "brinebreaker"),                          // THIUS IS THE LOCAL TEMP CODE WORK WITH THIS :3
+                Identifier.of(MOD_ID, "brinebreaker"),
                 new BrinebreakerItem(
                         new Item.Settings().maxDamage(ModToolMaterials.BRINEBREAKER.getDurability())
                                 .rarity(Rarity.RARE)));
