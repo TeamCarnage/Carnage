@@ -43,10 +43,6 @@ public class WardlingEntity extends WolfEntity {
         return Objects.equals(this.getOwner(), other);
     }
 
-    @Override
-    public boolean canWalkOnWater() {
-        return  true;
-    }
 
     @Override
     public boolean isGlowing() {
