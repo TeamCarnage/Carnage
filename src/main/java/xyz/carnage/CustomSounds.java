@@ -16,7 +16,7 @@ import java.util.Map;
 import static xyz.carnage.Carnage.MOD_ID;
 
 public class CustomSounds {
-    private static final Map<Identifier, SoundEvent> SOUND_EVENTS = new HashMap<>();
+    public static final Map<Identifier, SoundEvent> SOUND_EVENTS = new HashMap<>();
     private static final Map<String, Map<String, Identifier>> ITEM_SOUNDS = new HashMap<>();
 
     // Registers the sound (used in registerSounds)
