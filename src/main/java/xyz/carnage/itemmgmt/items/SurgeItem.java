@@ -24,6 +24,8 @@ import xyz.carnage.CustomSounds;
 import xyz.carnage.combos.ComboManager;
 import xyz.carnage.combos.ComboTracker;
 
+import static xyz.carnage.Carnage.MOD_ID;
+import static xyz.carnage.CustomSounds.SOUND_EVENTS;
 
 
 public class SurgeItem extends SwordItem {
