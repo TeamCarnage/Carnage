@@ -51,3 +51,8 @@ To sync your fork later, you can fetch and merge the changes by going to **Git >
 - After submitting your PR, we will review your changes. We could ask you to make adjustments or changes.
 - If we request changes, make the updates and commit them in IntelliJ IDEA. Then, push the changes to the same branch, and they will automatically update the PR.
 - If we dont request changes, i'll merge it with the project!! Thanks for helping us out :heart:
+
+---
+
+This work is protected by Creative Commons Attribution-ShareAlike 4.0 International,\
+read more at https://creativecommons.org/licenses/by-sa/4.0/
