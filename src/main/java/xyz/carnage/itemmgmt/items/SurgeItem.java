@@ -15,9 +15,16 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import xyz.carnage.CustomParticles;
+import xyz.carnage.CustomSounds;
+import xyz.carnage.combos.ComboManager;
+import xyz.carnage.combos.ComboTracker;
+
+import static xyz.carnage.Carnage.MOD_ID;
+import static xyz.carnage.CustomSounds.SOUND_EVENTS;
 
 
 public class SurgeItem extends SwordItem {
@@ -30,18 +37,18 @@ public class SurgeItem extends SwordItem {
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         if (!attacker.getWorld().isClient && attacker instanceof PlayerEntity player) {
             // Generate a random float between 0.0 and 1.0
-            if (ThreadLocalRandom.current().nextDouble() <= 0.05) { // 5% chance
-                // Play the sound effect
-                World world = attacker.getWorld();
-                world.playSound(null, player.getX(), player.getY(), player.getZ(),
-                        SoundEvents.ITEM_TRIDENT_THUNDER, SoundCategory.PLAYERS, // Custom sound effect!
-                        0.5f, 1.0f);
-                target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 150, 1));
-                target.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 150, 0)); // this knife can and will zap, maybe cap if you will :3 - tman
-
+            World world = attacker.getWorld();
             }
-        }
 
+        ComboTracker tracker = ComboManager.getComboTracker((PlayerEntity) attacker);
+        PlayerEntity player = (PlayerEntity) attacker;
+        if (tracker.getComboCount()/2 >= 15) {
+            target.addStatusEffect(new StatusEffectInstance(StatusEffects.SLOWNESS, 150, 1));
+            target.addStatusEffect(new StatusEffectInstance(StatusEffects.MINING_FATIGUE, 150, 0)); // this knife can and will zap, maybe cap if you will :3 - tman
+            CustomSounds.playCustomSound(stack, player); // Plays a sound after 15 crits
+            tracker.reset();
+        }
+        tracker.clearHitFlag();
         return super.postHit(stack, target, attacker);
     }
 
@@ -56,6 +63,7 @@ public class SurgeItem extends SwordItem {
             // Add effects to the player
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 200, 0)); // Glowing for 10 seconds
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 2)); // Speed for 10 seconds
+            world.playSound(null,player.getX(),player.getY(),player.getZ(),SOUND_EVENTS.get(Identifier.of(MOD_ID, "surge_discharge")),SoundCategory.PLAYERS,1.0F,1.0F);
 
             // Create and spawn a LightningEntity at the player's position
             LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(world); // Create a lightning entity
