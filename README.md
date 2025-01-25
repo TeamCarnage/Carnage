@@ -1,5 +1,5 @@
 # Carnage
-Carnage (formally Blood Is Fuel) is a Minecraft Mod developed by Deamoz, tmanlmao, and DiaDuck; bringing a more fast-paced and skillful style of PvP to Minecraft Java.\
+Carnage (formally Blood Is Fuel) is a Minecraft Mod developed by Colonel, Deamoz, DiaDuck, and tman; bringing a more fast-paced and skillful style of PvP to Minecraft Java.\
 It is still in wildly early development! The project was started in late December 2024.\
 Will it ever be finished? Who knows!
 
@@ -51,3 +51,8 @@ To sync your fork later, you can fetch and merge the changes by going to **Git >
 - After submitting your PR, we will review your changes. We could ask you to make adjustments or changes.
 - If we request changes, make the updates and commit them in IntelliJ IDEA. Then, push the changes to the same branch, and they will automatically update the PR.
 - If we dont request changes, i'll merge it with the project!! Thanks for helping us out :heart:
+
+---
+
+Carnage © 2025 by TeamCarnage is licensed under Creative Commons Attribution-ShareAlike 4.0 International.\
+To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
