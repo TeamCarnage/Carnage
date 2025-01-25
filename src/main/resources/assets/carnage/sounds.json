@@ -1,6 +1,10 @@
 {
   "phantoms_kiss_hit": {
-    "subtitle": "sounds.item.carnage.phantoms_kiss_hit",
+    "subtitle": "carnage.sounds.item.phantoms_kiss_hit",
     "sounds": ["carnage:item/phantoms_kiss_hit"]
+  },
+  "surge_discharge": {
+    "subtitle": "carnage.sounds.item.surge_discharge",
+    "sounds": ["carnage:item/surge_discharge"]
   }
 }

@@ -7,11 +7,14 @@ import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Identifier;
 import xyz.carnage.entity.EntitiesRegistry;
-import xyz.carnage.entity.client.BrinebreakerEntityModel;
-import xyz.carnage.entity.client.BrinebreakerEntityRenderer;
+import xyz.carnage.entity.client.entityModels.BrinebreakerEntityModel;
+import xyz.carnage.entity.client.entityModels.WardlingEntityModel;
+import xyz.carnage.entity.client.entityRenderers.BrinebreakerEntityRenderer;
+import xyz.carnage.entity.client.entityRenderers.WardlingEntityRenderer;
 import xyz.carnage.itemmgmt.ModItems;
 
 import static xyz.carnage.Carnage.LOGGER;
+import static xyz.carnage.Carnage.MOD_ID;
 
 public class CarnageClient implements ClientModInitializer {
     @Override
@@ -19,8 +22,11 @@ public class CarnageClient implements ClientModInitializer {
         LOGGER.info("CarnageClient onInitialize triggered!");
 
         EntitiesRegistry.init();
-        EntityModelLayerRegistry.registerModelLayer(BrinebreakerEntityModel.BRINEBREAKER, BrinebreakerEntityModel::getTexturedModelData);
+        EntityModelLayerRegistry.registerModelLayer(BrinebreakerEntityModel.BRINEBREAKER, BrinebreakerEntityModel::getTexturedModelData);;
         EntityRendererRegistry.register(EntitiesRegistry.BRINEBREAKER, BrinebreakerEntityRenderer::new);
+
+        EntityModelLayerRegistry.registerModelLayer(WardlingEntityModel.WARDLING, WardlingEntityModel::getTexturedModelData);
+        EntityRendererRegistry.register(EntitiesRegistry.WARDLING, WardlingEntityRenderer::new);
 
 
         // Model Predicate Registration
