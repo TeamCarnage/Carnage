@@ -54,5 +54,5 @@ To sync your fork later, you can fetch and merge the changes by going to **Git >
 
 ---
 
-Carnage © 2025 by DiaDuck is licensed under Creative Commons Attribution-ShareAlike 4.0 International.\ 
+Carnage © 2025 by DiaDuck is licensed under Creative Commons Attribution-ShareAlike 4.0 International.\
 To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
