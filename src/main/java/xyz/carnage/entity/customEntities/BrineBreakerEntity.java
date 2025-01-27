@@ -1,4 +1,4 @@
-package xyz.carnage.entity;
+package xyz.carnage.entity.customEntities;
 
 import xyz.carnage.entity.EntitiesRegistry;
 import xyz.carnage.itemmgmt.ModItems;

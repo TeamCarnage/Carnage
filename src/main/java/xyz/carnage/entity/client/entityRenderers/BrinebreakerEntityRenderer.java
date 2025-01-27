@@ -1,4 +1,4 @@
-package xyz.carnage.entity.client;
+package xyz.carnage.entity.client.entityRenderers;
 
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumer;
@@ -11,7 +11,8 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RotationAxis;
 import xyz.carnage.Carnage;
-import xyz.carnage.entity.BrineBreakerEntity;
+import xyz.carnage.entity.customEntities.BrineBreakerEntity;
+import xyz.carnage.entity.client.entityModels.BrinebreakerEntityModel;
 
 public class BrinebreakerEntityRenderer extends EntityRenderer<BrineBreakerEntity> {
     protected BrinebreakerEntityModel model;

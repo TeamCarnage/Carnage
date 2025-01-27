@@ -24,7 +24,7 @@ public class ComboEventHandler {
                 tracker.clearHitFlag();
                 return ActionResult.PASS;
             }
-            else return ActionResult.FAIL;
+            else return ActionResult.PASS;
 
         });
 

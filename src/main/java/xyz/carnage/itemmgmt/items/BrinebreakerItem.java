@@ -20,7 +20,7 @@ import net.minecraft.world.World;
 import xyz.carnage.Carnage;
 import xyz.carnage.combos.ComboManager;
 import xyz.carnage.combos.ComboTracker;
-import xyz.carnage.entity.BrineBreakerEntity;
+import xyz.carnage.entity.customEntities.BrineBreakerEntity;
 import xyz.carnage.entity.EntitiesRegistry;
 import xyz.carnage.itemmgmt.ModItems;
 import net.minecraft.world.World;
