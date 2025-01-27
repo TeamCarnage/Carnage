@@ -1,5 +1,6 @@
 package xyz.carnage.entity.customEntities;
 
+import net.minecraft.client.model.ModelPart;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -11,19 +12,27 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.util.math.Box;
 import net.minecraft.world.World;
+import xyz.carnage.entity.client.entityAnimations.wardling.WardlingAnimationController;
 
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class WardlingEntity extends WolfEntity {
     private static final int HOSTILE_RADIUS = 10;
+    private final WardlingAnimationController animationController;
 
     public WardlingEntity(EntityType<? extends WardlingEntity> entityType, World world) {
         super(entityType, world);
-        this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED.value().getDefaultValue() * 2);
+//        this.getAttributeInstance(EntityAttributes.GENERIC_MOVEMENT_SPEED).setBaseValue(EntityAttributes.GENERIC_MOVEMENT_SPEED.value().getDefaultValue());
         this.setPathfindingPenalty(PathNodeType.DANGER_OTHER, 0.0F);
         this.setPathfindingPenalty(PathNodeType.DAMAGE_OTHER, 0.0F);
+        this.animationController = new WardlingAnimationController(this);
+        if (world.isClient) {
+            this.animationController.startSpawnAnimation();
+            this.animationController.updateAnimations();
+        }
     }
 
     @Override
@@ -34,23 +43,24 @@ public class WardlingEntity extends WolfEntity {
     }
 
     @Override
-    public void setCustomNameVisible(boolean visible) {
-        visible = false;
-    }
+    public void setCustomNameVisible(boolean visible) {visible = false;}
 
     @Override
     public boolean isTeammate(Entity other) {
         return Objects.equals(this.getOwner(), other);
     }
 
-    @Override
-    public boolean canWalkOnWater() {
-        return  true;
-    }
 
     @Override
-    public boolean isGlowing() {
-        return true;
+    public void tick() {
+        super.tick();
+        if (this.getWorld().isClient()) {
+            animationController.updateAnimations();
+        }
+    }
+
+    public WardlingAnimationController getAnimationController() {
+        return animationController;
     }
 
     private class WardlingTargetGoal extends Goal {

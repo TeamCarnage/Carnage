@@ -27,6 +27,7 @@ public class ModItemGroups {
                     entries.add(ModItems.BLAZERENDER);
                     entries.add(ModItems.BRINEBREAKER);
                     entries.add(ModItems.SURGE);
+                    entries.add(ModItems.ECHOING_TWINBLADE);
                 //  entries.add(ModItems.ITEM);
                 //  Add other items here...
                 })
