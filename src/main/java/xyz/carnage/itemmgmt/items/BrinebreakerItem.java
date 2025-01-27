@@ -23,6 +23,7 @@ import xyz.carnage.combos.ComboTracker;
 import xyz.carnage.entity.BrineBreakerEntity;
 import xyz.carnage.entity.EntitiesRegistry;
 import xyz.carnage.itemmgmt.ModItems;
+import net.minecraft.world.World;
 
 import static net.minecraft.datafixer.TypeReferences.ITEM_STACK;
 
@@ -32,13 +33,11 @@ public class BrinebreakerItem extends TridentItem {
         super(settings);
     }
 
-
-    public ItemStack createBrinebreakerStack() {
-        ItemStack stack = new ItemStack(ModItems.BRINEBREAKER);
-
-        stack.set(DataComponentTypes.DAMAGE, 5);
-        stack.set(DataComponentTypes.CUSTOM_NAME, Text.literal("Brinebreaker"));
-        return stack;
+    @Override
+    public ProjectileEntity createEntity(World world, Position pos, ItemStack stack, Direction direction) {
+        var brrineTridentEntity = new BrineBreakerEntity(world, pos.getX(), pos.getY(), pos.getZ(), stack.copyWithCount(1));
+        brrineTridentEntity.pickupType = PersistentProjectileEntity.PickupPermission.ALLOWED;
+        return brrineTridentEntity;
     }
 
 
@@ -57,37 +56,14 @@ public class BrinebreakerItem extends TridentItem {
             if (!world.isClient) {
                 BrineBreakerEntity tridentEntity = new BrineBreakerEntity(EntitiesRegistry.BRINEBREAKER, world);
                 tridentEntity.setOwner(user);
-
-                tridentEntity.setPreservedStack(new ItemStack(ModItems.BRINEBREAKER.asItem(), stack.getComponents().size()));
-
-
-
-                tridentEntity.setPosition(
-                        playerEntity.getX(),
-                        playerEntity.getEyeY() - 0.1,
-                        playerEntity.getZ()
-                );
-
+                tridentEntity.setPreservedStack(stack);
+                tridentEntity.setPosition(playerEntity.getX(), playerEntity.getEyeY() - 0.1, playerEntity.getZ());
                 float power = Math.min(i / 20.0F, 1.0F);
                 float speed = 2.5F * power;
-
-                tridentEntity.setVelocity(
-                        playerEntity,
-                        playerEntity.getPitch(),
-                        playerEntity.getYaw(),
-                        0.0F,
-                        speed,
-                        1.0F
-                );
-
+                tridentEntity.setVelocity(playerEntity, playerEntity.getPitch(), playerEntity.getYaw(), 0.0F, speed, 1.0F);
                 if (world.spawnEntity(tridentEntity)) {
-                    world.playSoundFromEntity(
-                            null,
-                            tridentEntity,
-                            SoundEvents.ITEM_TRIDENT_THROW.value(),
-                            SoundCategory.PLAYERS,
-                            1.0F,
-                            1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.4F
+                    world.playSoundFromEntity(null, tridentEntity, SoundEvents.ITEM_TRIDENT_THROW.value(), SoundCategory.PLAYERS,
+                            1.0F, 1.0F + (world.random.nextFloat() - world.random.nextFloat()) * 0.4F
                     );
                 }
             }
@@ -97,7 +73,6 @@ public class BrinebreakerItem extends TridentItem {
         }
         stack.decrementUnlessCreative(1, playerEntity);
     }
-
 
 
     @Override
