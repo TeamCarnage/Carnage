@@ -8,6 +8,8 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 import xyz.carnage.Carnage;
 import xyz.carnage.entity.customEntities.BrineBreakerEntity;
@@ -19,8 +21,8 @@ import static xyz.carnage.Carnage.MOD_ID;
 
 public class EntitiesRegistry {
     public static final EntityType<BrineBreakerEntity> BRINEBREAKER = Registry.register(Registries.ENTITY_TYPE,
-            Identifier.of(MOD_ID, "brinebreaker"),
-            EntityType.Builder.create(BrineBreakerEntity::new, SpawnGroup.MISC)
+            Identifier.of(Carnage.MOD_ID, "brinebreaker"),
+            EntityType.Builder.<BrineBreakerEntity>create(BrineBreakerEntity::new, SpawnGroup.MISC)
                     .dimensions(0.5f, 1.15f).build());
 
     public static final EntityType<WardlingEntity> WARDLING = Registry.register(Registries.ENTITY_TYPE,
