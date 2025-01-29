@@ -21,6 +21,7 @@ public class CarnageClient implements ClientModInitializer {
     public void onInitializeClient() {
         LOGGER.info("CarnageClient onInitialize triggered!");
 
+
         EntitiesRegistry.init();
         EntityModelLayerRegistry.registerModelLayer(BrinebreakerEntityModel.BRINEBREAKER, BrinebreakerEntityModel::getTexturedModelData);;
         EntityRendererRegistry.register(EntitiesRegistry.BRINEBREAKER, BrinebreakerEntityRenderer::new);
