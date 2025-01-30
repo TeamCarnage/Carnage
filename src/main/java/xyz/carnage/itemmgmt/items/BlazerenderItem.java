@@ -17,13 +17,11 @@ import xyz.carnage.itemmgmt.ModToolMaterials;
 import xyz.carnage.itemmgmt.templates.PushSwordItem;
 
 public class BlazerenderItem extends PushSwordItem {
-    private final ToolMaterial material;
     private static PlayerEntity comboPlayer;
     public boolean Polar;
 
     public BlazerenderItem(ToolMaterial toolMaterial, Settings settings) {
-        super(toolMaterial, settings, createAttributeModifiers(ToolMaterial material,-3.3));
-        this.material = toolMaterial;
+        super(toolMaterial, settings);
     }
 
     private PushableItemSettings createPushableItemSettings() {
@@ -53,33 +51,3 @@ public class BlazerenderItem extends PushSwordItem {
 
         return settings;
     }
-
-
-
-    @Override
-    public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
-        World world = attacker.getWorld();
-        onPushEffectUsed(world, (PlayerEntity) attacker);
-
-        ComboTracker tracker = ComboManager.getComboTracker((PlayerEntity) attacker);
-        if (tracker.getComboCount()/2 >= 15) {
-            attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 0));
-            tracker.reset();
-        }
-        tracker.clearHitFlag();
-
-        return super.postHit(stack, target, attacker);
-    }
-
-    public ToolMaterial getMaterial() {
-        return material;
-    }
-
-    public boolean isPolar() {
-        return Polar;
-    }
-
-    public void setPolar(boolean polar) {
-        Polar = polar;
-    }
-}
