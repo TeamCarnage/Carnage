@@ -4,6 +4,7 @@ import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
 import net.minecraft.util.Identifier;
 import xyz.carnage.entity.customEntities.WardlingEntity;
+import xyz.carnage.entity.client.entityModels.WardlingEntityModel;
 
 import static xyz.carnage.Carnage.MOD_ID;
 
