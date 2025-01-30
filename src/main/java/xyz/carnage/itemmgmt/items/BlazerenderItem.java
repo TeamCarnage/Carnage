@@ -27,7 +27,7 @@ public class BlazerenderItem extends PushSwordItem {
     private PushableItemSettings createPushableItemSettings() {
         PushableItemSettings settings = new PushableItemSettings();
 
-        if (Polar == true) {
+        if (Polar) {
             settings.setCooldownTicks(10)
                     .setPushRadius(10.0)
                     .setPushStrength(-1.5)
@@ -69,9 +69,6 @@ public class BlazerenderItem extends PushSwordItem {
         return super.postHit(stack, target, attacker);
     }
 
-    public ToolMaterial getMaterial() {
-        return getMaterial();
-    }
 
     public boolean isPolar() {
         return Polar;
