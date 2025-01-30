@@ -16,6 +16,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import xyz.carnage.CustomParticles;
 
 import java.util.List;
 
@@ -132,7 +133,7 @@ public abstract class PushItem extends Item {
         private double upwardForce = 0.5;
         private int cooldownTicks = 400;
         private int particleCount = 50;
-        private ParticleEffect particleType = ParticleTypes.FLAME;
+        private ParticleEffect particleType = CustomParticles.HELLFIRE;
         private SoundEvent useSound = SoundEvents.ENTITY_BLAZE_SHOOT;
         private float soundVolume = 0.5f;
         private float soundPitch = 1.2f;
