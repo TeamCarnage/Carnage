@@ -1,7 +1,6 @@
 package xyz.carnage.itemmgmt.templates;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -16,7 +15,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import xyz.carnage.itemmgmt.items.BlazerenderItem;
+
 import java.util.List;
 
 public abstract class PushSwordItem extends SwordItem {
@@ -29,11 +28,11 @@ public abstract class PushSwordItem extends SwordItem {
     public final SoundEvent useSound;
     public final float soundVolume;
     public final float soundPitch;
-    public boolean Polar;
 
     // The constructor now accepts a ToolMaterial to allow enchantments
-    protected PushSwordItem(ToolMaterial material, Settings settings, PushableItemSettings pushSettings) {
+    public PushSwordItem(ToolMaterial material, Settings settings) {
         super(material, settings);  // Only pass ToolMaterial and Settings
+        PushableItemSettings pushSettings = new PushableItemSettings();
         this.pushRadius = pushSettings.pushRadius;
         this.pushStrength = pushSettings.pushStrength;
         this.upwardForce = pushSettings.upwardForce;
@@ -47,13 +46,6 @@ public abstract class PushSwordItem extends SwordItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
-        if(player.isSneaking()) if (Polar) {
-            boolean Polar = false;
-        } else {
-            boolean Polar = true;
-        }
-        else {
-        }
         ItemStack stack = player.getStackInHand(hand);
         // Client-side particle effects
         if (world.isClient) {

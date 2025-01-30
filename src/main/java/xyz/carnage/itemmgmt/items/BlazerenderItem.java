@@ -17,13 +17,11 @@ import xyz.carnage.itemmgmt.ModToolMaterials;
 import xyz.carnage.itemmgmt.templates.PushSwordItem;
 
 public class BlazerenderItem extends PushSwordItem {
-    private final ToolMaterial material;
     private static PlayerEntity comboPlayer;
     public boolean Polar;
 
     public BlazerenderItem(ToolMaterial toolMaterial, Settings settings) {
-        super(toolMaterial, settings, createAttributeModifiers(ToolMaterial material,-3.3));
-        this.material = toolMaterial;
+        super(toolMaterial, settings);
     }
 
     private PushableItemSettings createPushableItemSettings() {
@@ -72,7 +70,7 @@ public class BlazerenderItem extends PushSwordItem {
     }
 
     public ToolMaterial getMaterial() {
-        return material;
+        return getMaterial();
     }
 
     public boolean isPolar() {
