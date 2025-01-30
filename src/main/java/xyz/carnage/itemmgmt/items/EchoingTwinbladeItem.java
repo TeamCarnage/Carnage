@@ -3,6 +3,7 @@ package xyz.carnage.itemmgmt.items;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTypes;
 import net.minecraft.block.SculkBlock;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -22,8 +23,11 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import xyz.carnage.Carnage;
 import xyz.carnage.combos.ComboManager;
 import xyz.carnage.combos.ComboTracker;
+import xyz.carnage.entity.EntitiesRegistry;
+import xyz.carnage.entity.customEntities.WardlingEntity;
 
 import java.util.Random;
 
@@ -66,9 +70,9 @@ public class EchoingTwinbladeItem extends SwordItem {
         );
 
 
-        ZombieEntity zombie = new ZombieEntity(EntityType.ZOMBIE, world);
-        zombie.refreshPositionAndAngles(spawnPos, 0, 0);
-        world.spawnEntity(zombie);
+        WardlingEntity wardling = new WardlingEntity(EntitiesRegistry.WARDLING, world);
+        wardling.refreshPositionAndAngles(spawnPos, 0, 0);
+        world.spawnEntity(wardling);
     }
 
     @Override

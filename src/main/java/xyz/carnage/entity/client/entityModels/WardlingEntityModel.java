@@ -27,7 +27,6 @@ public class WardlingEntityModel extends SinglePartEntityModel<WardlingEntity> {
     private final ModelPart leftkeg;
     private final ModelPart rightleg;
     private final ModelPart head;
-    private final ModelPart ear;
 
     public WardlingEntityModel(ModelPart root) {
         this.root = root;
@@ -38,22 +37,25 @@ public class WardlingEntityModel extends SinglePartEntityModel<WardlingEntity> {
         this.leftkeg = this.body2.getChild("leftkeg");
         this.rightleg = this.body2.getChild("rightleg");
         this.head = this.body2.getChild("head");
-        this.ear = this.head.getChild("ear");
     }
 
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
+        ModelPartData body2 = modelPartData.addChild("body2", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, -2.0F, 0.0F));
 
-        ModelPartData body2 = modelPartData.addChild("body2", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        ModelPartData rightarm = body2.addChild("rightarm", ModelPartBuilder.create().uv(32, 0).cuboid(-1.0F, -3.0F, -2.0F, 2.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(-6.0F, 10.0F, 0.0F));
-        ModelPartData leftarm = body2.addChild("leftarm", ModelPartBuilder.create().uv(44, 0).cuboid(-1.0F, -3.0F, -2.0F, 2.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(6.0F, 10.0F, 0.0F));
-        ModelPartData body = body2.addChild("body", ModelPartBuilder.create().uv(0, 0).cuboid(-5.0F, 3.0F, -3.0F, 10.0F, 12.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        ModelPartData leftkeg = body2.addChild("leftkeg", ModelPartBuilder.create().uv(28, 18).cuboid(1.0F, 0.0F, -2.0F, 4.0F, 3.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
-        ModelPartData rightleg = body2.addChild("rightleg", ModelPartBuilder.create().uv(28, 18).cuboid(-2.0F, -1.5F, 5.0F, 4.0F, 3.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(-3.0F, 1.5F, -7.0F));
-        ModelPartData head = body2.addChild("head", ModelPartBuilder.create().uv(0, 27).cuboid(-4.0F, -4.5F, -1.5F, 8.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 19.5F, -0.5F));
-        ModelPartData ear = head.addChild("ear", ModelPartBuilder.create().uv(0, 52).cuboid(-9.0F, -6.0F, 0.0F, 18.0F, 12.0F, 0.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 1.5F, -0.5F));
+        ModelPartData rightarm = body2.addChild("rightarm", ModelPartBuilder.create().uv(32, 0).cuboid(-1.0F, -26.0F, -2.0F, 2.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.of(-6.0F, 10.0F, 0.0F, 0.0F, 0.0F, -3.1416F));
 
+        ModelPartData leftarm = body2.addChild("leftarm", ModelPartBuilder.create().uv(44, 0).cuboid(5.0F, -16.0F, -2.0F, 2.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+
+        ModelPartData body = body2.addChild("body", ModelPartBuilder.create().uv(0, 0).cuboid(-5.0F, -18.0F, -3.0F, 10.0F, 12.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+
+        ModelPartData leftkeg = body2.addChild("leftkeg", ModelPartBuilder.create().uv(28, 18).cuboid(1.0F, -6.0F, -2.0F, 4.0F, 3.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+
+        ModelPartData rightleg = body2.addChild("rightleg", ModelPartBuilder.create().uv(28, 18).cuboid(-8.0F, -6.0F, -2.0F, 4.0F, 3.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(3.0F, 0.0F, 0.0F));
+
+        ModelPartData head = body2.addChild("head", ModelPartBuilder.create().uv(0, 52).cuboid(-9.0F, -27.0F, -1.0F, 18.0F, 12.0F, 0.0F, new Dilation(0.0F))
+                .uv(0, 27).cuboid(-4.0F, -24.0F, -2.0F, 8.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
         return TexturedModelData.of(modelData, 64, 64);
     }
 
@@ -97,7 +99,6 @@ public class WardlingEntityModel extends SinglePartEntityModel<WardlingEntity> {
             case "leftkeg" -> Optional.of(leftkeg);
             case "rightleg" -> Optional.of(rightleg);
             case "head" -> Optional.of(head);
-            case "ear" -> Optional.of(ear);
             default -> Optional.empty();
         };
     }
