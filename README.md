@@ -54,5 +54,5 @@ To sync your fork later, you can fetch and merge the changes by going to **Git >
 
 ---
 
-Carnage © 2025 by TeamCarnage is licensed under Creative Commons Attribution-ShareAlike 4.0 International.\
-To view a copy of this license, visit https://creativecommons.org/licenses/by-sa/4.0/
+ Carnage © 2025, by TeamCarnage, is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International.\
+ To view a copy of this license, visit https://creativecommons.org/licenses/by-nc-sa/4.0/
