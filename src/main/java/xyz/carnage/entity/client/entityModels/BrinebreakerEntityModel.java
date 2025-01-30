@@ -48,4 +48,7 @@ public class BrinebreakerEntityModel extends EntityModel<BrineBreakerEntity> {
         middle_spike.render(matrices, vertexConsumer, light, overlay, color);
         right_spike.render(matrices, vertexConsumer, light, overlay, color);
     }
+
+    public void render(MatrixStack matrixStack, VertexConsumer vertexConsumer, int i, int defaultUv, float v, float v1, float v2, float transparency) {
+    }
 }

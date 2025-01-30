@@ -1,15 +1,12 @@
 package xyz.carnage.entity.client.entityRenderers;
 
-import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.render.OverlayTexture;
-import net.minecraft.client.render.RenderPhase;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.item.ItemRenderer;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -28,31 +25,19 @@ public class BrinebreakerEntityRenderer extends EntityRenderer<BrineBreakerEntit
 
     public void render(BrineBreakerEntity BrineBreakerEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
         matrixStack.push();
-
-        RenderSystem.enableBlend();
-        RenderSystem.defaultBlendFunc();
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.3F); //adjusts transparency
-
         matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(g, BrineBreakerEntity.prevYaw, BrineBreakerEntity.getYaw()) - 90.0F));
         matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.lerp(g, BrineBreakerEntity.prevPitch, BrineBreakerEntity.getPitch()) + 90.0F));
-
-        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(
-                RenderLayer.getEntityTranslucent(
-                        Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakertest3.png")
-                )
-        );
-
+        VertexConsumer vertexConsumer = ItemRenderer.getDirectItemGlintConsumer(
+                vertexConsumerProvider, this.model.getLayer(Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakertest3.png")), false, BrineBreakerEntity.isEnchanted());
         this.model.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV);
-
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 0.3F); //adjusts transparency too i think
-        RenderSystem.disableBlend();
-
         matrixStack.pop();
         super.render(BrineBreakerEntity, f, g, matrixStack, vertexConsumerProvider, i);
     }
 
+
+
     @Override
     public Identifier getTexture(BrineBreakerEntity entity) {
-        return Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakernew.png");
+        return Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakertest3.png");
     }
 }

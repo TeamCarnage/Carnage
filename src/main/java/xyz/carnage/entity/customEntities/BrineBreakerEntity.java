@@ -1,38 +1,25 @@
 package xyz.carnage.entity.customEntities;
 
-import net.minecraft.component.Component;
-import net.minecraft.component.ComponentMap;
-import net.minecraft.component.ComponentType;
-import net.minecraft.component.DataComponentTypes;
+
+import net.minecraft.block.entity.BeaconBlockEntity;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.data.DataTracker;
-import net.minecraft.entity.data.TrackedData;
-import net.minecraft.entity.data.TrackedDataHandlerRegistry;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.entity.projectile.PersistentProjectileEntity;
-import net.minecraft.entity.projectile.ProjectileEntity;
+
 import net.minecraft.entity.projectile.TridentEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtList;
-import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.text.Text;
+
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Direction;
-import net.minecraft.util.math.Position;
-import net.minecraft.util.math.Vec2f;
+
 import net.minecraft.world.World;
 import org.joml.Vector2f;
 import xyz.carnage.Carnage;
-import xyz.carnage.itemmgmt.items.BrinebreakerItem;
-import xyz.carnage.combos.ComboTracker;
-import xyz.carnage.itemmgmt.ModItems;
 
 
 public class BrineBreakerEntity extends TridentEntity {
@@ -40,6 +27,7 @@ public class BrineBreakerEntity extends TridentEntity {
 
     public Vector2f groundOffset;
     private boolean dealtDamage;
+    private World level;
 
     public BrineBreakerEntity(EntityType<? extends BrineBreakerEntity> entityType, World world) {
         super(entityType, world);
@@ -64,6 +52,7 @@ public class BrineBreakerEntity extends TridentEntity {
             age = age + 1;
             if (age > 20) { // 20 ticks are 20 sec i think
                 this.kill();
+
             }
         Carnage.LOGGER.info("Age value currently reflects {}", age);
         }
