@@ -5,7 +5,7 @@
 	"name": "Carnage",
 	"description": "Carnage: A more fast-paced and skillful style of PvP to Minecraft Java.",
 	"authors": [
-		"Tman, Deamoz, DiaDuckk"
+		"Tman, Deamoz, DiaDuckk, ColonelNeon"
 	],
 	"contact": {
 		"homepage": "https://github.com/TeamCarnage/Carnage",
@@ -20,9 +20,6 @@
 		],
 		"client": [
 			"xyz.carnage.CarnageClient"
-		],
-		"fabric-datagen": [
-			"xyz.carnage.CarnageDataGenerator"
 		]
 	},
 	"mixins": [
