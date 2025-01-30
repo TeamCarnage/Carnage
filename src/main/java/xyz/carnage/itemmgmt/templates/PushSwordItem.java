@@ -1,8 +1,8 @@
 package xyz.carnage.itemmgmt.templates;
 
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.PlayerAbilities;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
 import net.minecraft.item.ToolMaterial;
@@ -16,19 +16,20 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-
+import xyz.carnage.itemmgmt.items.BlazerenderItem;
 import java.util.List;
 
 public abstract class PushSwordItem extends SwordItem {
-    private final double pushRadius;
-    private final double pushStrength;
-    private final double upwardForce;
-    private final int cooldownTicks;
-    private final int particleCount;
-    private final ParticleEffect particleType;
-    private final SoundEvent useSound;
-    private final float soundVolume;
-    private final float soundPitch;
+    public final double pushRadius;
+    public final double pushStrength;
+    public final double upwardForce;
+    public final int cooldownTicks;
+    public final int particleCount;
+    public final ParticleEffect particleType;
+    public final SoundEvent useSound;
+    public final float soundVolume;
+    public final float soundPitch;
+    public boolean Polar;
 
     // The constructor now accepts a ToolMaterial to allow enchantments
     protected PushSwordItem(ToolMaterial material, Settings settings, PushableItemSettings pushSettings) {
@@ -46,8 +47,14 @@ public abstract class PushSwordItem extends SwordItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
+        if(player.isSneaking()) if (Polar) {
+            boolean Polar = false;
+        } else {
+            boolean Polar = true;
+        }
+        else {
+        }
         ItemStack stack = player.getStackInHand(hand);
-
         // Client-side particle effects
         if (world.isClient) {
             spawnRadiusParticles(world, player);
@@ -71,6 +78,7 @@ public abstract class PushSwordItem extends SwordItem {
 
         return TypedActionResult.success(stack);
     }
+
 
     protected void onPushEffectUsed(World world, PlayerEntity player) {
         // Default implementation does nothing
@@ -126,10 +134,10 @@ public abstract class PushSwordItem extends SwordItem {
     public static class PushableItemSettings {
         private double pushRadius = 5.0;
         private double pushStrength = 1.5;
-        private double upwardForce = 0.5;
+        private double upwardForce = 0.25;
         private int cooldownTicks = 400;
         private int particleCount = 50;
-        private ParticleEffect particleType = ParticleTypes.FLAME;
+        private ParticleEffect particleType = ParticleTypes.LARGE_SMOKE;
         private SoundEvent useSound = SoundEvents.ENTITY_BLAZE_SHOOT;
         private float soundVolume = 0.5f;
         private float soundPitch = 1.2f;
