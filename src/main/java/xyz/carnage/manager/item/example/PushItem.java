@@ -14,7 +14,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import xyz.carnage.CustomParticles;
+import xyz.carnage.manager.particle.CustomParticles; //xyz/carnage/manager/particle/CustomParticles.java
 
 import java.util.List;
 
