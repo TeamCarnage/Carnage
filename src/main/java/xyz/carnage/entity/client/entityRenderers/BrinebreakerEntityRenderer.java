@@ -1,5 +1,6 @@
 package xyz.carnage.entity.client.entityRenderers;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
@@ -27,7 +28,7 @@ public class BrinebreakerEntityRenderer extends EntityRenderer<BrineBreakerEntit
         matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(g, BrineBreakerEntity.prevYaw, BrineBreakerEntity.getYaw()) - 90.0F));
         matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.lerp(g, BrineBreakerEntity.prevPitch, BrineBreakerEntity.getPitch()) + 90.0F));
         VertexConsumer vertexConsumer = ItemRenderer.getDirectItemGlintConsumer(
-                vertexConsumerProvider, this.model.getLayer(Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakernew.png")), false, BrineBreakerEntity.isEnchanted());
+                vertexConsumerProvider, this.model.getLayer(Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakertest3.png")), false, BrineBreakerEntity.isEnchanted());
         this.model.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV);
         matrixStack.pop();
         super.render(BrineBreakerEntity, f, g, matrixStack, vertexConsumerProvider, i);
@@ -37,8 +38,6 @@ public class BrinebreakerEntityRenderer extends EntityRenderer<BrineBreakerEntit
 
     @Override
     public Identifier getTexture(BrineBreakerEntity entity) {
-        return Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakernew.png");
+        return Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakertest3.png");
     }
 }
-
-
