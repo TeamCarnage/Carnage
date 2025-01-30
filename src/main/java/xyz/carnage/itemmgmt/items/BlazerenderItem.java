@@ -53,7 +53,6 @@ public class BlazerenderItem extends PushSwordItem {
     }
 
 
-
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         World world = attacker.getWorld();
