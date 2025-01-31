@@ -18,6 +18,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import xyz.carnage.manager.combo.ComboManager;
 import xyz.carnage.manager.combo.ComboTracker;
+import xyz.carnage.manager.entity.EntitiesRegistry;
+import xyz.carnage.manager.entity.wardling.WardlingEntity;
 
 import java.util.Random;
 
@@ -60,9 +62,10 @@ public class EchoingTwinbladeItem extends SwordItem {
         );
 
 
-        ZombieEntity zombie = new ZombieEntity(EntityType.ZOMBIE, world);
-        zombie.refreshPositionAndAngles(spawnPos, 0, 0);
-        world.spawnEntity(zombie);
+        WardlingEntity wardling = new WardlingEntity(EntitiesRegistry.WARDLING, world);
+        int spawnNum = (int) (Math.random() * 3) ;
+        wardling.refreshPositionAndAngles(spawnPos, 0, 0);
+        world.spawnEntity(wardling);
     }
 
     @Override

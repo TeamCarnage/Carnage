@@ -1,5 +1,6 @@
 package xyz.carnage.manager.item.example;
 
+import foundry.veil.api.quasar.data.module.force.PointAttractorForceData;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -48,7 +49,6 @@ public abstract class PushSwordItem extends SwordItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
-
 
         if (world.isClient) spawnRadiusParticles(world, player);
         if (!world.isClient) handlePushEffect(world, player);
@@ -165,5 +165,7 @@ public abstract class PushSwordItem extends SwordItem {
             this.soundPitch = pitch;
             return this;
         }
+
+
     }
 }
