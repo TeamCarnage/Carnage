@@ -1,11 +1,11 @@
 package xyz.carnage.manager.entity.brinebreaker.entityRenderers;
 
 import net.minecraft.client.render.OverlayTexture;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.item.ItemRenderer;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
@@ -22,12 +22,18 @@ public class BrinebreakerEntityRenderer extends EntityRenderer<BrinebreakerEntit
         this.model = new BrinebreakerEntityModel(ctx.getPart(BrinebreakerEntityModel.BRINEBREAKER));
     }
 
+
+
     public void render(BrinebreakerEntity BrinebreakerEntity, float f, float g, MatrixStack matrixStack, VertexConsumerProvider vertexConsumerProvider, int i) {
         matrixStack.push();
         matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(g, BrinebreakerEntity.prevYaw, BrinebreakerEntity.getYaw()) - 90.0F));
         matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.lerp(g, BrinebreakerEntity.prevPitch, BrinebreakerEntity.getPitch()) + 90.0F));
-        VertexConsumer vertexConsumer = ItemRenderer.getDirectItemGlintConsumer(
-                vertexConsumerProvider, this.model.getLayer(Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakertest3.png")), false, BrinebreakerEntity.isEnchanted());
+
+        // this does  veil transparency stuff yay
+        VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(
+                RenderLayer.getEntityTranslucent(Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakertest3.png"))
+        );
+
         this.model.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV);
         matrixStack.pop();
         super.render(BrinebreakerEntity, f, g, matrixStack, vertexConsumerProvider, i);

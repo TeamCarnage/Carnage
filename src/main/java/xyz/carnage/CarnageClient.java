@@ -1,5 +1,6 @@
 package xyz.carnage;
 
+
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityModelLayerRegistry;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
@@ -18,6 +19,7 @@ public class CarnageClient implements ClientModInitializer {
         EntitiesRegistry.initialize();
         EntityModelLayerRegistry.registerModelLayer(BrinebreakerEntityModel.BRINEBREAKER, BrinebreakerEntityModel::getTexturedModelData);
         EntityRendererRegistry.register(EntitiesRegistry.BRINEBREAKER, BrinebreakerEntityRenderer::new);
+
 
         EntityModelLayerRegistry.registerModelLayer(WardlingEntityModel.WARDLING, WardlingEntityModel::getTexturedModelData);
         EntityRendererRegistry.register(EntitiesRegistry.WARDLING, WardlingEntityRenderer::new);
