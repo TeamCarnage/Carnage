@@ -63,10 +63,7 @@ public class SurgeItem extends SwordItem {
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 2));
             player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 300, 0));
             world.playSound(null,player.getX(),player.getY(),player.getZ(),SOUND_EVENTS.get(Identifier.of(MOD_ID, "surge_discharge")),SoundCategory.PLAYERS,1.0F,1.0F);
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 200, 0)); // Glowing for 10 seconds
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 200, 2)); // Speed for 10 seconds
             SoundManager.playCustomSound("carnage:surge_use", player);
-
             // Create and spawn a LightningEntity at the player's position
             LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(world); // Create a lightning entity
             if (lightning != null) {
