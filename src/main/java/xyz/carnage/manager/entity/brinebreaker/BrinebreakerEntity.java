@@ -73,11 +73,11 @@ public class BrinebreakerEntity extends TridentEntity {
                 double offsetZ = (random.nextDouble() - 1.0);
 
                 this.getWorld().addParticle(
-                        ParticleTypes.EXPLOSION,
+                        ParticleTypes.CAMPFIRE_COSY_SMOKE,
                         this.getX() + offsetX,
                         this.getY() + offsetY,
                         this.getZ() + offsetZ,
-                        0, 0.1, 0
+                        0.1, 0.1, 0.1
                 );
             }
         }

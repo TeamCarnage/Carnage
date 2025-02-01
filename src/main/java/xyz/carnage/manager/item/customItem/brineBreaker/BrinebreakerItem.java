@@ -59,6 +59,7 @@ public class BrinebreakerItem extends TridentItem {
             }
         } catch (Exception e) {
             Carnage.LOGGER.error("Brinebreaker FAILED to throw <3");
+            // this will stay forever
         }
         playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
     }
