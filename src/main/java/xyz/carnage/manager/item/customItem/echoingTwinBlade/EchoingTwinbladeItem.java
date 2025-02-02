@@ -1,10 +1,8 @@
 package xyz.carnage.manager.item.customItem.echoingTwinBlade;
 
-import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.mob.ZombieEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.SwordItem;
@@ -36,7 +34,7 @@ public class EchoingTwinbladeItem extends SwordItem {
 
             ComboTracker tracker = ComboManager.getComboTracker(player);
             if (tracker.getComboCount() / 2 >= 4) { //SET COMBO TO 15 IN FINAL
-                spawnZombieNearAttacker(world, attacker.getPos());
+                spawnZombieNearAttacker(world, attacker.getPos(), player);
 
                 tracker.reset();
             }
@@ -47,13 +45,12 @@ public class EchoingTwinbladeItem extends SwordItem {
     }
 
 
-    private void spawnZombieNearAttacker(World world, Vec3d attackerPos) {
+    private void spawnZombieNearAttacker(World world, Vec3d attackerPos, PlayerEntity player) {
         Random random = new Random();
 
-
         double offsetX = random.nextInt(7) - 5;
-        double offsetY = 0;
         double offsetZ = random.nextInt(7) - 5;
+        double offsetY = 0;
 
         BlockPos spawnPos = new BlockPos(
                 (int) (attackerPos.x + offsetX),
@@ -61,12 +58,14 @@ public class EchoingTwinbladeItem extends SwordItem {
                 (int) (attackerPos.z + offsetZ)
         );
 
-
+        // Creating and spawning the wardling entity
         WardlingEntity wardling = new WardlingEntity(EntitiesRegistry.WARDLING, world);
-        int spawnNum = (int) (Math.random() * 3) ;
         wardling.refreshPositionAndAngles(spawnPos, 0, 0);
+        wardling.setOwner(player); // Correct way to set the owner
         world.spawnEntity(wardling);
     }
+
+
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
@@ -101,4 +100,3 @@ public class EchoingTwinbladeItem extends SwordItem {
         return TypedActionResult.success(stack);
     }
 }
-//note to self (and others) - i need to sort out particle effects on this
