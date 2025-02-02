@@ -68,9 +68,9 @@ public class BrinebreakerEntity extends TridentEntity {
 
             // particles
             for (int i = 0; i < 20; i++) {
-                double offsetX = (random.nextDouble() - 1.0);
-                double offsetY = (random.nextDouble() - 1.0);
-                double offsetZ = (random.nextDouble() - 1.0);
+                double offsetX = (random.nextDouble() * 2.0 - 1.0);
+                double offsetY = (random.nextDouble() * 2.0 - 1.0);
+                double offsetZ = (random.nextDouble() * 2.0 - 1.0);
 
                 this.getWorld().addParticle(
                         ParticleTypes.CAMPFIRE_COSY_SMOKE,

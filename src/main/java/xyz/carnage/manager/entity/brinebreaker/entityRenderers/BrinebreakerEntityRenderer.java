@@ -31,7 +31,7 @@ public class BrinebreakerEntityRenderer extends EntityRenderer<BrinebreakerEntit
 
         // this does  veil transparency stuff yay
         VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(
-                RenderLayer.getEntityTranslucent(Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakertest3.png"))
+                RenderLayer.getEntityTranslucent(Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakerentity.png"))
         );
 
         this.model.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV);
@@ -41,6 +41,6 @@ public class BrinebreakerEntityRenderer extends EntityRenderer<BrinebreakerEntit
 
     @Override
     public Identifier getTexture(BrinebreakerEntity entity) {
-        return Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakertest3.png");
+        return Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakerentity.png");
     }
 }
