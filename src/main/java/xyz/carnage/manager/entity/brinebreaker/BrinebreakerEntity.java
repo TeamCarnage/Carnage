@@ -5,20 +5,19 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.joml.Vector2f;
-import xyz.carnage.Carnage;
 
 
 public class BrinebreakerEntity extends TridentEntity {
 
-
     public Vector2f groundOffset;
-    private boolean dealtDamage;
-    private World level;
 
     public BrinebreakerEntity(EntityType<? extends BrinebreakerEntity> entityType, World world) {
         super(entityType, world);
@@ -41,13 +40,43 @@ public class BrinebreakerEntity extends TridentEntity {
         super.tick();
         if (this.inGround) {
             age = age + 1;
-            if (age > 20) { // 20 ticks are 20 sec i think
+            if (age > 20) {
                 this.kill();
 
             }
-            Carnage.LOGGER.info("Age value currently reflects {}", age);
         }
     }
+
+    @Override
+    public void remove(RemovalReason reason) {
+        super.remove(reason);
+
+        if (!this.getWorld().isClient) {
+            // sound
+            this.getWorld().playSound(
+                    null,
+                    this.getBlockPos(),
+                    SoundEvents.ENTITY_ENDER_EYE_DEATH,
+                    net.minecraft.sound.SoundCategory.PLAYERS,
+                    1.0F,
+                    1.0F
+            );
+
+            // particles
+            ((ServerWorld)this.getWorld()).spawnParticles(
+                    ParticleTypes.TRIAL_SPAWNER_DETECTION_OMINOUS,
+                    this.getX(),
+                    this.getY(),
+                    this.getZ(),
+                    20,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.1
+            );
+        }
+    }
+
 
 
 
