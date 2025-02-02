@@ -6,21 +6,18 @@ import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.joml.Vector2f;
-import xyz.carnage.Carnage;
 
 
 public class BrinebreakerEntity extends TridentEntity {
 
-
     public Vector2f groundOffset;
-    private boolean dealtDamage;
-    private World level;
 
     public BrinebreakerEntity(EntityType<? extends BrinebreakerEntity> entityType, World world) {
         super(entityType, world);
@@ -47,7 +44,6 @@ public class BrinebreakerEntity extends TridentEntity {
                 this.kill();
 
             }
-            Carnage.LOGGER.info("Age value currently reflects {}", age);
         }
     }
 
@@ -67,19 +63,17 @@ public class BrinebreakerEntity extends TridentEntity {
             );
 
             // particles
-            for (int i = 0; i < 20; i++) {
-                double offsetX = (random.nextDouble() * 2.0 - 1.0);
-                double offsetY = (random.nextDouble() * 2.0 - 1.0);
-                double offsetZ = (random.nextDouble() * 2.0 - 1.0);
-
-                this.getWorld().addParticle(
-                        ParticleTypes.CAMPFIRE_COSY_SMOKE,
-                        this.getX() + offsetX,
-                        this.getY() + offsetY,
-                        this.getZ() + offsetZ,
-                        0.1, 0.1, 0.1
-                );
-            }
+            ((ServerWorld)this.getWorld()).spawnParticles(
+                    ParticleTypes.TRIAL_SPAWNER_DETECTION_OMINOUS,
+                    this.getX(),
+                    this.getY(),
+                    this.getZ(),
+                    20,
+                    0.5,
+                    0.5,
+                    0.5,
+                    0.1
+            );
         }
     }
 
