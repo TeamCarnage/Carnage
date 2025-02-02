@@ -64,7 +64,17 @@ public class WardlingEntityModel extends SinglePartEntityModel<WardlingEntity> {
         // Reset transformations first
         this.root.traverse().forEach(ModelPart::resetTransform);
 
-/*          What is the point of this? -Dia
+        // Get animation controller
+        WardlingEntityAnimationController controller = entity.getAnimationController();
+        Vector3f tempVec = new Vector3f();
+
+        // Check and apply animations using animation time in seconds
+        if (controller.SPAWN.isRunning()) {
+            float timeInSeconds = controller.SPAWN.getTimeRunning() / 20.0f;
+        //    AnimationHelper.animate(this, WardlingEntityAnimation.SPAWN, (long)(timeInSeconds * 1000), 1.0f, tempVec);
+        }
+
+        /*          Prior system if needed. -Dia
 
         // Get animation controller
         WardlingEntityAnimationController controller = entity.getAnimationController();
