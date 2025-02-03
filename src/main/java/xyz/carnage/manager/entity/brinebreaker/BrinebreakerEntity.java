@@ -86,13 +86,12 @@ public class BrinebreakerEntity extends TridentEntity {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
 
-        // Apply damage
+        // combo guh
         entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 6);
 
-        // Handle combo tracking if the owner is a player
         if (this.getOwner() instanceof PlayerEntity playerEntity) {
             ComboTracker tracker = ComboManager.getComboTracker(playerEntity);
-            tracker.hit();  // This is the key line we were missing!
+            tracker.hit();
 
             if (tracker.getComboCount() / 2 >= 5) {
                 tracker.reset();
