@@ -46,7 +46,7 @@ public final class CarnageItems {
         BRINEBREAKER = Registry.register(Registries.ITEM,
                 Identifier.of(MOD_ID, "brinebreaker"),
                 new BrinebreakerItem(
-                        new Item.Settings()
+                        new Item.Settings().maxDamage(CarnageToolMaterials.BRINEBREAKER.getDurability())
                                 .rarity(Rarity.RARE)));
 
         SURGE = Registry.register(Registries.ITEM,
