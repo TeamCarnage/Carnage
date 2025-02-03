@@ -15,6 +15,7 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.joml.Vector2f;
+import xyz.carnage.Carnage;
 import xyz.carnage.manager.combo.ComboManager;
 import xyz.carnage.manager.combo.ComboTracker;
 
@@ -81,8 +82,11 @@ public class BrinebreakerEntity extends TridentEntity {
         }
     }
 
+    public int brineBreakerShields = 0;
+
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
+
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
 
@@ -92,9 +96,12 @@ public class BrinebreakerEntity extends TridentEntity {
         if (this.getOwner() instanceof PlayerEntity playerEntity) {
             ComboTracker tracker = ComboManager.getComboTracker(playerEntity);
             tracker.hit();
-
             if (tracker.getComboCount() / 2 >= 5) {
+
+                brineBreakerShields = brineBreakerShields +1;
+
                 tracker.reset();
+                brineBreakerShields = brineBreakerShields -1;
             }
             tracker.clearHitFlag();
         }
