@@ -29,10 +29,10 @@ public class BrinebreakerEntityRenderer extends EntityRenderer<BrinebreakerEntit
         matrixStack.multiply(RotationAxis.POSITIVE_Y.rotationDegrees(MathHelper.lerp(g, BrinebreakerEntity.prevYaw, BrinebreakerEntity.getYaw()) - 90.0F));
         matrixStack.multiply(RotationAxis.POSITIVE_Z.rotationDegrees(MathHelper.lerp(g, BrinebreakerEntity.prevPitch, BrinebreakerEntity.getPitch()) + 90.0F));
 
-        // this does  veil transparency stuff yay
+        // this does  veil transparency AND emmisive stuff yay
         VertexConsumer vertexConsumer = vertexConsumerProvider.getBuffer(
-                RenderLayer.getEntityTranslucent(Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakerentity.png"))
-        );
+                RenderLayer.getEntityTranslucentEmissive(Identifier.of(Carnage.MOD_ID, "textures/entity/brinebreakerentity.png")));
+
 
         this.model.render(matrixStack, vertexConsumer, i, OverlayTexture.DEFAULT_UV);
         matrixStack.pop();
