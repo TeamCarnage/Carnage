@@ -2,6 +2,8 @@ package xyz.carnage.manager.entity.brinebreaker;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
@@ -13,6 +15,8 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.joml.Vector2f;
+import xyz.carnage.manager.combo.ComboManager;
+import xyz.carnage.manager.combo.ComboTracker;
 
 
 public class BrinebreakerEntity extends TridentEntity {
@@ -77,14 +81,24 @@ public class BrinebreakerEntity extends TridentEntity {
         }
     }
 
-
-
-
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
         super.onEntityHit(entityHitResult);
         Entity entity = entityHitResult.getEntity();
-        entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 4);
+
+        // Apply damage
+        entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 6);
+
+        // Handle combo tracking if the owner is a player
+        if (this.getOwner() instanceof PlayerEntity playerEntity) {
+            ComboTracker tracker = ComboManager.getComboTracker(playerEntity);
+            tracker.hit();  // This is the key line we were missing!
+
+            if (tracker.getComboCount() / 2 >= 5) {
+                tracker.reset();
+            }
+            tracker.clearHitFlag();
+        }
 
         if (!this.getWorld().isClient()) {
             this.getWorld().sendEntityStatus(this, (byte) 3);
