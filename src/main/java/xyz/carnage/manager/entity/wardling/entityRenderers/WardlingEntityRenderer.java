@@ -17,6 +17,4 @@ public class WardlingEntityRenderer extends LivingEntityRenderer<WardlingEntity,
     public Identifier getTexture(WardlingEntity entity) {
         return Identifier.of(MOD_ID, "textures/entity/wardling.png");
     }
-
-
 }
