@@ -18,6 +18,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 import xyz.carnage.manager.entity.wardling.entityAnimations.WardlingEntityAnimationController;
 
@@ -50,7 +51,6 @@ public class WardlingEntity extends WolfEntity {
         this.goalSelector.add(3, new MeleeAttackGoal(this, 1.5D, true));
         this.targetSelector.add(1, new WardlingTargetGoal(this));
     }
-
     @Override
     public boolean isTeammate(Entity other) {
         return Objects.equals(this.getOwner(), other);
@@ -153,8 +153,6 @@ public class WardlingEntity extends WolfEntity {
     public boolean isSitting() {
         return false;
     }
-
-
 
 
 

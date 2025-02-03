@@ -33,7 +33,7 @@ public class EchoingTwinbladeItem extends SwordItem {
             World world = attacker.getWorld();
 
             ComboTracker tracker = ComboManager.getComboTracker(player);
-            if (tracker.getComboCount() / 2 >= 4) { //SET COMBO TO 15 IN FINAL
+            if (tracker.getComboCount() / 2 >= 1) { //SET COMBO TO 15 IN FINAL
                 spawnZombieNearAttacker(world, attacker.getPos(), player);
 
                 tracker.reset();
