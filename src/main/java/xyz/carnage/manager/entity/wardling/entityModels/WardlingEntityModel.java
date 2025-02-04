@@ -69,9 +69,9 @@ public class WardlingEntityModel extends SinglePartEntityModel<WardlingEntity> {
         Vector3f tempVec = new Vector3f();
 
         // Check and apply animations using animation time in seconds
-        if (controller.spawnState.isRunning()) {
-            float timeInSeconds = controller.spawnState.getTimeRunning() / 20.0f;
-            AnimationHelper.animate(this, WardlingEntityAnimation.SPAWN, (long)(timeInSeconds * 1000), 1.0f, tempVec);
+        if (controller.SPAWN.isRunning()) {
+            float timeInSeconds = controller.SPAWN.getTimeRunning() / 20.0f;
+        //    AnimationHelper.animate(this, WardlingEntityAnimation.SPAWN, (long)(timeInSeconds * 1000), 1.0f, tempVec);
         }
 
         // Apply head rotations last
