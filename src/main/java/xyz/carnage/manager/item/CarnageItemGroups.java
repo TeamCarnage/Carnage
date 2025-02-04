@@ -36,7 +36,7 @@ public class CarnageItemGroups {
         );
     }
 
-    public static void initialize() {
+    public void initialize() {
         registerItemGroups();
     }
 }

@@ -109,7 +109,7 @@ public class SoundManager {
         registerItemSound("carnage:surge_use", "custom_sound", "surge_discharge", modId);
     }
 
-    public static void initialize() {
+    public void initialize() {
         Carnage.LOGGER.info("Initialising Carnage Sounds.");
         registerSounds(MOD_ID);
     }

@@ -23,7 +23,7 @@ public class CustomParticles {
 
     }
 
-    public static void initialize() {
+    public void initialize() {
         registerParticles();
     }
 }

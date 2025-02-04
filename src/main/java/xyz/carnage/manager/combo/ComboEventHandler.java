@@ -32,7 +32,7 @@ public class ComboEventHandler {
         });
     }
 
-    public static void initialize() {
+    public void initialize() {
         registerEvents();
     }
 }

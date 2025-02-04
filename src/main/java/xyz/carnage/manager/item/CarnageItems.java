@@ -62,7 +62,7 @@ public final class CarnageItems {
                                 SwordItem.createAttributeModifiers(CarnageToolMaterials.ECHOING_TWINBLADE, 3, -2.4f))));
     }
 
-    public static void initialize() {
+    public void initialize() {
         Carnage.LOGGER.info("Registering items for " + MOD_ID);
     }
 }
