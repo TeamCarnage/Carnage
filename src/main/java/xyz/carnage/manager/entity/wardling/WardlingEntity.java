@@ -1,5 +1,6 @@
 package xyz.carnage.manager.entity.wardling;
 
+import net.minecraft.component.type.NbtComponent;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -7,12 +8,17 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.Goal;
 import net.minecraft.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.entity.ai.pathing.PathNodeType;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.passive.WolfEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
+import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.Box;
@@ -20,6 +26,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
+import xyz.carnage.manager.entity.EntitiesRegistry;
 import xyz.carnage.manager.entity.wardling.entityAnimations.WardlingEntityAnimationController;
 
 import java.util.EnumSet;
@@ -37,12 +44,12 @@ public class WardlingEntity extends WolfEntity {
         super(entityType, world);
         this.setPathfindingPenalty(PathNodeType.DANGER_OTHER, 0.0F);
         this.setPathfindingPenalty(PathNodeType.DAMAGE_OTHER, 0.0F);
-        this.setCustomNameVisible(false);
         this.animationController = new WardlingEntityAnimationController(this);
         if (world.isClient) {
             this.animationController.startSpawnAnimation();
             this.animationController.updateAnimations();
         }
+
     }
 
     @Override
@@ -114,11 +121,6 @@ public class WardlingEntity extends WolfEntity {
     @Override
     public void setBegging(boolean begging) {}
 
-
-    public boolean showNameTags(){
-        return false;
-    }
-
     @Override
     public void lovePlayer(@Nullable PlayerEntity player) {
     }
@@ -145,17 +147,9 @@ public class WardlingEntity extends WolfEntity {
     }
 
     @Override
-    public boolean isCustomNameVisible() {
-        return false;
-    }
-
-    @Override
     public boolean isSitting() {
         return false;
     }
-
-
-
 
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
@@ -166,6 +160,16 @@ public class WardlingEntity extends WolfEntity {
         }
 
         return super.interactMob(player, hand);
+    }
+
+    @Override
+    public boolean shouldRenderName() {
+        return false;
+    }
+
+    @Override
+    public boolean hasCustomName() {
+        return false;
     }
 
     private static class WardlingTargetGoal extends Goal {
@@ -222,4 +226,7 @@ public class WardlingEntity extends WolfEntity {
                     entity.squaredDistanceTo(wardling.getOwner()) <= HOSTILE_RADIUS * HOSTILE_RADIUS;
         }
     }
+
+
+
 }
