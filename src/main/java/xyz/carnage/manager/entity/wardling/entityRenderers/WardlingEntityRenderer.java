@@ -1,7 +1,10 @@
 package xyz.carnage.manager.entity.wardling.entityRenderers;
 
+import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.entity.LivingEntityRenderer;
+import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import xyz.carnage.manager.entity.wardling.WardlingEntity;
 import xyz.carnage.manager.entity.wardling.entityModels.WardlingEntityModel;
@@ -18,5 +21,8 @@ public class WardlingEntityRenderer extends LivingEntityRenderer<WardlingEntity,
         return Identifier.of(MOD_ID, "textures/entity/wardling.png");
     }
 
-
+    @Override
+    protected boolean hasLabel(WardlingEntity entity) {
+        return false;
+    }
 }

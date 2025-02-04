@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.TridentItem;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.stat.Stats;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
@@ -59,8 +58,8 @@ public class BrinebreakerItem extends TridentItem {
             }
         } catch (Exception e) {
             Carnage.LOGGER.error("Brinebreaker FAILED to throw <3");
+            // this will stay forever
         }
-        playerEntity.incrementStat(Stats.USED.getOrCreateStat(this));
     }
 
     @Override
@@ -69,6 +68,7 @@ public class BrinebreakerItem extends TridentItem {
         if (tracker.getComboCount() / 2 >= 5) {
             tracker.reset();
         }
+
         tracker.clearHitFlag();
         return super.postHit(stack, target, attacker);
     }

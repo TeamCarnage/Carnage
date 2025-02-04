@@ -12,7 +12,6 @@ import xyz.carnage.manager.entity.wardling.WardlingEntity;
 import xyz.carnage.manager.entity.wardling.entityAnimations.WardlingEntityAnimation;
 import xyz.carnage.manager.entity.wardling.entityAnimations.WardlingEntityAnimationController;
 
-
 import java.util.Optional;
 
 import static xyz.carnage.Carnage.MOD_ID;
@@ -43,29 +42,38 @@ public class WardlingEntityModel extends SinglePartEntityModel<WardlingEntity> {
     public static TexturedModelData getTexturedModelData() {
         ModelData modelData = new ModelData();
         ModelPartData modelPartData = modelData.getRoot();
-        ModelPartData body2 = modelPartData.addChild("body2", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 24.0F, 0.0F));
+        ModelPartData body2 = modelPartData.addChild("body2", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, -2.0F, 0.0F));
 
-        ModelPartData rightarm = body2.addChild("rightarm", ModelPartBuilder.create().uv(32, 0).cuboid(-7.0F, 7.0F, -2.0F, 2.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -20.0F, 0.0F));
+        ModelPartData rightarm = body2.addChild("rightarm", ModelPartBuilder.create().uv(32, 0).cuboid(-1.0F, -26.0F, -2.0F, 2.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.of(-6.0F, 10.0F, 0.0F, 0.0F, 0.0F, -3.1416F));
 
-        ModelPartData leftarm = body2.addChild("leftarm", ModelPartBuilder.create().uv(44, 0).cuboid(5.0F, -13.0F, -2.0F, 2.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+        ModelPartData leftarm = body2.addChild("leftarm", ModelPartBuilder.create().uv(44, 0).cuboid(5.0F, -16.0F, -2.0F, 2.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
-        ModelPartData body = body2.addChild("body", ModelPartBuilder.create().uv(0, 0).cuboid(-5.0F, -15.0F, -3.0F, 10.0F, 12.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+        ModelPartData body = body2.addChild("body", ModelPartBuilder.create().uv(0, 0).cuboid(-5.0F, -18.0F, -3.0F, 10.0F, 12.0F, 6.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
-        ModelPartData leftkeg = body2.addChild("leftkeg", ModelPartBuilder.create().uv(28, 18).cuboid(1.0F, -3.0F, -2.0F, 4.0F, 3.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+        ModelPartData leftkeg = body2.addChild("leftkeg", ModelPartBuilder.create().uv(28, 18).cuboid(1.0F, -6.0F, -2.0F, 4.0F, 3.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
-        ModelPartData rightleg = body2.addChild("rightleg", ModelPartBuilder.create().uv(28, 18).cuboid(-8.0F, -3.0F, -2.0F, 4.0F, 3.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(3.0F, 0.0F, 0.0F));
+        ModelPartData rightleg = body2.addChild("rightleg", ModelPartBuilder.create().uv(28, 18).cuboid(-8.0F, -6.0F, -2.0F, 4.0F, 3.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(3.0F, 0.0F, 0.0F));
 
         ModelPartData head = body2.addChild("head", ModelPartBuilder.create().uv(0, 52).cuboid(-9.0F, -27.0F, -1.0F, 18.0F, 12.0F, 0.0F, new Dilation(0.0F))
-                .uv(0, 27).cuboid(-4.0F, -21.0F, -2.0F, 8.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
+                .uv(0, 27).cuboid(-4.0F, -24.0F, -2.0F, 8.0F, 6.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
         return TexturedModelData.of(modelData, 64, 64);
-
-
     }
 
     @Override
     public void setAngles(WardlingEntity entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         // Reset transformations first
         this.root.traverse().forEach(ModelPart::resetTransform);
+
+        // Get animation controller
+        WardlingEntityAnimationController controller = entity.getAnimationController();
+        Vector3f tempVec = new Vector3f();
+
+        // Check and apply animations using animation time in seconds
+        if (controller.SPAWN.isRunning()) {
+            float timeInSeconds = controller.SPAWN.getTimeRunning() / 20.0f;
+        //    AnimationHelper.animate(this, WardlingEntityAnimation.SPAWN, (long)(timeInSeconds * 1000), 1.0f, tempVec);
+        }
+
         // Apply head rotations last
         this.head.pitch = headPitch * ((float) Math.PI / 180F);
         this.head.yaw = netHeadYaw * ((float) Math.PI / 180F);

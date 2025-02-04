@@ -1,7 +1,5 @@
 package xyz.carnage.manager.item.customItem.blazeRender;
 
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -9,13 +7,15 @@ import net.minecraft.item.ToolMaterial;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.world.World;
+import org.slf4j.Logger;
+import xyz.carnage.Carnage;
 import xyz.carnage.manager.item.example.PushSwordItem;
 import xyz.carnage.manager.combo.ComboManager;
 import xyz.carnage.manager.combo.ComboTracker;
 
 public class BlazerenderItem extends PushSwordItem {
     private static PlayerEntity comboPlayer;
-    public static boolean Polar;
+    static boolean Polar;
     private static final PushableItemSettings pushableItemSettings = createPushableItemSettings();
 
     public BlazerenderItem(ToolMaterial toolMaterial, Settings settings) {
@@ -57,19 +57,17 @@ public class BlazerenderItem extends PushSwordItem {
         World world = attacker.getWorld();
 
         ComboTracker tracker = ComboManager.getComboTracker((PlayerEntity) attacker);
-        if (tracker.getComboCount()/2 >= 15) {
-            attacker.addStatusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 200, 0));
+        if (tracker.getComboCount()/2 >= 5) {
+            if (!Polar) {
+                boolean Polar = true;
+            }
+
+            if (Polar) {
+                boolean Polar = false;}
             tracker.reset();
         }
         tracker.clearHitFlag();
         return super.postHit(stack, target, attacker);
     }
 
-    public boolean isPolar() {
-        return Polar;
-    }
-
-    public void setPolar(boolean newValue) {
-        Polar = newValue;
-    }
 }

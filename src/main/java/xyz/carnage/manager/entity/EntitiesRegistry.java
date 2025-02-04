@@ -20,7 +20,7 @@ public class EntitiesRegistry {
 
     public static final EntityType<WardlingEntity> WARDLING = Registry.register(Registries.ENTITY_TYPE,
             Identifier.of(MOD_ID, "wardling"),
-            EntityType.Builder.create(WardlingEntity::new, SpawnGroup.MISC)
+            EntityType.Builder.create(WardlingEntity::new, SpawnGroup.MONSTER)
                     .dimensions(0.5f, 1.15f).build());
 
     private static void registerEntityAttributes() {
