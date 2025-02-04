@@ -33,6 +33,8 @@ import java.util.EnumSet;
 import java.util.List;
 import java.util.Objects;
 
+
+
 public class WardlingEntity extends WolfEntity {
     private final float HEALTH = 50.0F;
     private static final int HOSTILE_RADIUS = 10;
@@ -82,6 +84,10 @@ public class WardlingEntity extends WolfEntity {
         LivingEntity target = this.getTarget();
         if (target == null) return;
 
+
+        boolean isSonicBoomActive = true; // Mark as active for animation
+        animationController.updateAnimations(); // Update animation before the boom
+
         Vec3d wardlingPos = this.getPos();
         Vec3d targetPos = target.getPos();
         Vec3d direction = targetPos.subtract(wardlingPos).normalize();
@@ -101,6 +107,8 @@ public class WardlingEntity extends WolfEntity {
         }
 
         this.playSound(SoundEvents.ENTITY_WARDEN_SONIC_BOOM, 1.0F, 1.0F);
+        isSonicBoomActive = false;
+
     }
 
     public WardlingEntityAnimationController getAnimationController() {
@@ -221,12 +229,19 @@ public class WardlingEntity extends WolfEntity {
             wardling.setTarget(null);
         }
 
+
+
         private boolean isWithinRadius(Entity entity) {
             return wardling.getOwner() != null &&
                     entity.squaredDistanceTo(wardling.getOwner()) <= HOSTILE_RADIUS * HOSTILE_RADIUS;
         }
     }
 
+    private boolean isSonicBoomActive = false;
+
+    public boolean isSonicBoomActive() {
+        return isSonicBoomActive;
+    }
 
 
 }
