@@ -2,6 +2,8 @@ package xyz.carnage.manager.entity.brinebreaker;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
@@ -23,6 +25,7 @@ import xyz.carnage.manager.entity.entityCombos.BrinebreakerEntityCombos;
 
 public class BrinebreakerEntity extends TridentEntity {
 
+    public static int shieldHealth = 0;
     public Vector2f groundOffset;
 
     public BrinebreakerEntity(EntityType<? extends BrinebreakerEntity> entityType, World world) {
@@ -50,7 +53,6 @@ public class BrinebreakerEntity extends TridentEntity {
         super.readCustomDataFromNbt(nbt);
         brineBreakerShields = nbt.getInt("BrinebreakerShields");
     }
-
 
     private int age = 0;
 
@@ -104,6 +106,9 @@ public class BrinebreakerEntity extends TridentEntity {
             super.onEntityHit(entityHitResult);
             Entity entity = entityHitResult.getEntity();
 
+            DamageSource damageSource = this.getDamageSources().thrown(this, this.getOwner());
+            entity.damage(damageSource, 6);
+
             entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 6);
             if (this.getOwner() instanceof PlayerEntity playerEntity) {
                 ComboTracker tracker = ComboManager.getComboTracker(playerEntity);
@@ -117,13 +122,12 @@ public class BrinebreakerEntity extends TridentEntity {
             }
 
             BrinebreakerEntityCombos.checkShields(this);
+
         }
         if (!this.getWorld().isClient()) {
             this.getWorld().sendEntityStatus(this, (byte) 3);
         }
     }
-
-
 
     @Override
     protected void onBlockHit(BlockHitResult result) {
