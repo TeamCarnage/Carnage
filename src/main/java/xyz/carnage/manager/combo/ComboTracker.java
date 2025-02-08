@@ -31,7 +31,7 @@ public class ComboTracker {
     public void hit() {
         long currentTimeMillis = System.currentTimeMillis();
         if (canProcessHit) {
-            if (currentTimeMillis - lastHitTime < 1000) {
+            if (currentTimeMillis - lastHitTime < 2000) {
                 comboCount++;
                 // Check for and execute registered combo actions
                 Consumer<PlayerEntity> action = comboActions.get(comboCount);
