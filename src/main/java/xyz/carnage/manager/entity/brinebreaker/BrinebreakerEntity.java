@@ -2,11 +2,11 @@ package xyz.carnage.manager.entity.brinebreaker;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundEvents;
@@ -18,6 +18,7 @@ import org.joml.Vector2f;
 import xyz.carnage.Carnage;
 import xyz.carnage.manager.combo.ComboManager;
 import xyz.carnage.manager.combo.ComboTracker;
+import xyz.carnage.manager.entity.entityCombos.BrinebreakerEntityCombos;
 
 
 public class BrinebreakerEntity extends TridentEntity {
@@ -37,6 +38,19 @@ public class BrinebreakerEntity extends TridentEntity {
     protected ItemStack getDefaultItemStack() {
         return new ItemStack(Items.AIR);
     }
+
+    @Override
+    public void writeCustomDataToNbt(NbtCompound nbt) {
+        super.writeCustomDataToNbt(nbt);
+        nbt.putInt("BrinebreakerShields", brineBreakerShields);
+    }
+
+    @Override
+    public void readCustomDataFromNbt(NbtCompound nbt) {
+        super.readCustomDataFromNbt(nbt);
+        brineBreakerShields = nbt.getInt("BrinebreakerShields");
+    }
+
 
     private int age = 0;
 
@@ -82,36 +96,32 @@ public class BrinebreakerEntity extends TridentEntity {
         }
     }
 
-    public int brineBreakerShields = 0;
+    private int brineBreakerShields = 0;
 
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
+        if (!this.getWorld().isClient()) {
+            super.onEntityHit(entityHitResult);
+            Entity entity = entityHitResult.getEntity();
 
-        super.onEntityHit(entityHitResult);
-        Entity entity = entityHitResult.getEntity();
-
-        // combo guh
-        entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 6);
-
-        if (this.getOwner() instanceof PlayerEntity playerEntity) {
-            ComboTracker tracker = ComboManager.getComboTracker(playerEntity);
-            tracker.hit();
-            if (tracker.getComboCount() / 2 >= 5) {
-
-                brineBreakerShields = brineBreakerShields +1;
-
-                tracker.reset();
-                brineBreakerShields = brineBreakerShields -1;
+            entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 6);
+            if (this.getOwner() instanceof PlayerEntity playerEntity) {
+                ComboTracker tracker = ComboManager.getComboTracker(playerEntity);
+                tracker.hit();
+                if (tracker.getComboCount() / 2 >= 5) {
+                    brineBreakerShields = brineBreakerShields + 1;
+                    Carnage.LOGGER.info("Shields incremented to: " + brineBreakerShields);
+                    tracker.reset();
+                }
+                tracker.clearHitFlag();
             }
-            tracker.clearHitFlag();
-        }
 
+            BrinebreakerEntityCombos.checkShields(this);
+        }
         if (!this.getWorld().isClient()) {
             this.getWorld().sendEntityStatus(this, (byte) 3);
         }
     }
-
-
 
 
 
@@ -138,5 +148,10 @@ public class BrinebreakerEntity extends TridentEntity {
         if (result.getSide() == Direction.UP) {
             groundOffset = new Vector2f(285f, 180f);
         }
+    }
+
+    public int getBrineBreakerShields() {
+
+        return brineBreakerShields;
     }
 }

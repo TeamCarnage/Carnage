@@ -1,5 +1,6 @@
 package xyz.carnage;
 
+import net.minecraft.entity.EntityType;
 import xyz.carnage.manager.combo.ComboEventHandler;
 import xyz.carnage.manager.combo.ComboManager;
 import xyz.carnage.manager.item.CarnageItemGroups;
@@ -50,8 +51,8 @@ public class CarnageManager {
     public ComboEventHandler getComboEventHandler() {
         return comboEventHandler;
     }
-    public UIManager getUiManager() {
-        return uiManager;
-    }
-    
+//    public UIManager getUiManager() {
+//        return uiManager;
+//    }
+
 }
