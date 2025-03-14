@@ -33,7 +33,8 @@ public class CarnageManager {
         carnageItemGroups.initialize();
         soundManager.initialize();
         comboEventHandler.initialize();
-        uiManager.initialize();
+//        uiManager.initialize();
+//        BrinebreakerEntityCombos.initialize();
     }
 
     public CustomParticles getCustomParticles() {

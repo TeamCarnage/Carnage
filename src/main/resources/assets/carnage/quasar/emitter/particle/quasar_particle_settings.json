@@ -1,0 +1,18 @@
+{
+  "lifetime": {
+    "min": 40,
+    "max": 60
+  },
+  "size": {
+    "min": 0.05,
+    "max": 0.15
+  },
+  "speed": {
+    "min": 0.01,
+    "max": 0.03
+  },
+  "initial_rotation": {
+    "min": 0,
+    "max": 360
+  }
+}
