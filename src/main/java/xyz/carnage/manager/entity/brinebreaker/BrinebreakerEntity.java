@@ -1,17 +1,22 @@
 package xyz.carnage.manager.entity.brinebreaker;
 
+import foundry.veil.api.client.render.rendertype.VeilRenderType;
+import foundry.veil.api.quasar.particle.ParticleEmitter;
+import foundry.veil.api.resource.VeilResource;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Direction;
@@ -20,7 +25,6 @@ import org.joml.Vector2f;
 import xyz.carnage.Carnage;
 import xyz.carnage.manager.combo.ComboManager;
 import xyz.carnage.manager.combo.ComboTracker;
-import xyz.carnage.manager.entity.entityCombos.BrinebreakerEntityCombos;
 
 
 public class BrinebreakerEntity extends TridentEntity {
@@ -42,17 +46,6 @@ public class BrinebreakerEntity extends TridentEntity {
         return new ItemStack(Items.AIR);
     }
 
-    @Override
-    public void writeCustomDataToNbt(NbtCompound nbt) {
-        super.writeCustomDataToNbt(nbt);
-        nbt.putInt("BrinebreakerShields", brineBreakerShields);
-    }
-
-    @Override
-    public void readCustomDataFromNbt(NbtCompound nbt) {
-        super.readCustomDataFromNbt(nbt);
-        brineBreakerShields = nbt.getInt("BrinebreakerShields");
-    }
 
     private int age = 0;
 
@@ -78,7 +71,7 @@ public class BrinebreakerEntity extends TridentEntity {
                     null,
                     this.getBlockPos(),
                     SoundEvents.ENTITY_ENDER_EYE_DEATH,
-                    net.minecraft.sound.SoundCategory.PLAYERS,
+                    SoundCategory.PLAYERS,
                     1.0F,
                     1.0F
             );
@@ -98,7 +91,7 @@ public class BrinebreakerEntity extends TridentEntity {
         }
     }
 
-    private int brineBreakerShields = 0;
+
 
     @Override
     protected void onEntityHit(EntityHitResult entityHitResult) {
@@ -114,19 +107,28 @@ public class BrinebreakerEntity extends TridentEntity {
                 ComboTracker tracker = ComboManager.getComboTracker(playerEntity);
                 tracker.hit();
                 if (tracker.getComboCount() / 2 >= 5) {
-                    brineBreakerShields = brineBreakerShields + 1;
-                    Carnage.LOGGER.info("Shields incremented to: " + brineBreakerShields);
+                    PlayerEntity player = (PlayerEntity) this.getOwner();
+                    player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 255));
+
                     tracker.reset();
                 }
                 tracker.clearHitFlag();
             }
 
-            BrinebreakerEntityCombos.checkShields(this);
-
         }
         if (!this.getWorld().isClient()) {
             this.getWorld().sendEntityStatus(this, (byte) 3);
         }
+    }
+
+    @Override
+    public void setOwner(Entity owner) {
+        super.setOwner(owner);
+    }
+
+    @Override
+    public Entity getOwner() {
+        return super.getOwner();
     }
 
     @Override
@@ -152,10 +154,5 @@ public class BrinebreakerEntity extends TridentEntity {
         if (result.getSide() == Direction.UP) {
             groundOffset = new Vector2f(285f, 180f);
         }
-    }
-
-    public int getBrineBreakerShields() {
-
-        return brineBreakerShields;
     }
 }

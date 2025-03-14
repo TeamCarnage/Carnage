@@ -1,0 +1,6 @@
+{
+  "lifetime": 20,
+  "emission_rate": 50,
+  "particle_data": "carnage:quasar_particle",
+  "shape": "carnage:quasar_shape"
+}
