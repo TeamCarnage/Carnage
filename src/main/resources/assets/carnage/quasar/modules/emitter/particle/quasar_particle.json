@@ -1,6 +1,6 @@
 {
   "render_style": "BILLBOARD",
-  "texture": "carnage:textures/particle/hellfire",
+  "texture": "minecraft/textures/block/diamond_block",
   "collision": false,
   "modules": [
     "carnage:color_gradient",
