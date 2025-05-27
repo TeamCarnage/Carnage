@@ -1,6 +1,5 @@
 package xyz.carnage;
 
-import net.minecraft.entity.EntityType;
 import xyz.carnage.manager.combo.ComboEventHandler;
 import xyz.carnage.manager.combo.ComboManager;
 import xyz.carnage.manager.item.CarnageItemGroups;
@@ -33,8 +32,7 @@ public class CarnageManager {
         carnageItemGroups.initialize();
         soundManager.initialize();
         comboEventHandler.initialize();
-//        uiManager.initialize();
-//        BrinebreakerEntityCombos.initialize();
+        uiManager.initialize();
     }
 
     public CustomParticles getCustomParticles() {
@@ -52,8 +50,8 @@ public class CarnageManager {
     public ComboEventHandler getComboEventHandler() {
         return comboEventHandler;
     }
-//    public UIManager getUiManager() {
-//        return uiManager;
-//    }
+    public UIManager getUiManager() {
+        return uiManager;
+    }
 
 }

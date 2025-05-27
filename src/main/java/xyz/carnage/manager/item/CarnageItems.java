@@ -16,7 +16,7 @@ import xyz.carnage.manager.item.customItem.brineBreaker.BrinebreakerItem;
 import static xyz.carnage.Carnage.MOD_ID;
 
 public final class CarnageItems {
-    private CarnageItems() {
+    public CarnageItems() {
         // Prevent instantiation
     }
     public static final Item BLOOD_ESSENCE;
