@@ -41,6 +41,7 @@ public class WardlingEntity extends WolfEntity {
     private static final int SONIC_BOOM_COOLDOWN = 200; // 15 seconds (20 ticks per second)
     private final WardlingEntityAnimationController animationController;
     private int sonicBoomCooldown = SONIC_BOOM_COOLDOWN;
+    private boolean isSonicBoomActive = false;
 
     public WardlingEntity(EntityType<? extends WardlingEntity> entityType, World world) {
         super(entityType, world);
@@ -84,31 +85,29 @@ public class WardlingEntity extends WolfEntity {
         LivingEntity target = this.getTarget();
         if (target == null) return;
 
+        // Set flag before animation
+        this.isSonicBoomActive = true;
 
-        boolean isSonicBoomActive = true; // Mark as active for animation
-        animationController.updateAnimations(); // Update animation before the boom
+        // Only update animations on client side
+        if (this.getWorld().isClient()) {
+            animationController.updateAnimations();
+        }
 
+        // Sonic boom logic...
         Vec3d wardlingPos = this.getPos();
         Vec3d targetPos = target.getPos();
         Vec3d direction = targetPos.subtract(wardlingPos).normalize();
 
         double range = 10.0;
-
-        List<LivingEntity> entitiesHit = this.getWorld().getEntitiesByClass(LivingEntity.class,
-                new Box(wardlingPos.add(-range, -range, -range), wardlingPos.add(range, range, range)),
-                entity -> entity != this && entity.squaredDistanceTo(wardlingPos) <= range * range);
-
-        for (LivingEntity entity : entitiesHit) {
-            Vec3d toEntity = entity.getPos().subtract(wardlingPos).normalize();
-            if (toEntity.dotProduct(direction) > 0.9) {
-                entity.damage(this.getDamageSources().magic(), 6.0F);
-                entity.takeKnockback(1.0, -direction.x, -direction.z);
-            }
-        }
-
-        this.playSound(SoundEvents.ENTITY_WARDEN_SONIC_BOOM, 1.0F, 1.0F);
-        isSonicBoomActive = false;
-
+        List<LivingEntity> entitiesHit = this.getWorld().getEntitiesByClass(
+                  LivingEntity.class, new Box(
+                          wardlingPos.add(-range, -range, -range),
+                          wardlingPos.add(range, range, range)
+                ),
+                entity -> entity != this &&
+                        entity.squaredDistanceTo(wardlingPos) <= range*range
+        );
+        this.isSonicBoomActive = false;
     }
 
     public WardlingEntityAnimationController getAnimationController() {
@@ -236,8 +235,6 @@ public class WardlingEntity extends WolfEntity {
                     entity.squaredDistanceTo(wardling.getOwner()) <= HOSTILE_RADIUS * HOSTILE_RADIUS;
         }
     }
-
-    private boolean isSonicBoomActive = false;
 
     public boolean isSonicBoomActive() {
         return isSonicBoomActive;
