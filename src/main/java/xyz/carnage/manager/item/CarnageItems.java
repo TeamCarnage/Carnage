@@ -16,7 +16,7 @@ import xyz.carnage.manager.item.customItem.brineBreaker.BrinebreakerItem;
 import static xyz.carnage.Carnage.MOD_ID;
 
 public final class CarnageItems {
-    private CarnageItems() {
+    public CarnageItems() {
         // Prevent instantiation
     }
     public static final Item BLOOD_ESSENCE;
@@ -46,7 +46,7 @@ public final class CarnageItems {
         BRINEBREAKER = Registry.register(Registries.ITEM,
                 Identifier.of(MOD_ID, "brinebreaker"),
                 new BrinebreakerItem(
-                        new Item.Settings()
+                        new Item.Settings().maxDamage(CarnageToolMaterials.BRINEBREAKER.getDurability())
                                 .rarity(Rarity.RARE)));
 
         SURGE = Registry.register(Registries.ITEM,

@@ -53,5 +53,5 @@ public class CarnageManager {
     public UIManager getUiManager() {
         return uiManager;
     }
-    
+
 }

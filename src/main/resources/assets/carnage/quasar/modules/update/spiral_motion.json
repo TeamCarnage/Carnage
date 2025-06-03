@@ -1,0 +1,5 @@
+{
+  "module": "orbit",
+  "speed": 0.1,
+  "radius_change": 0.02
+}

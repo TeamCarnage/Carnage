@@ -74,6 +74,20 @@ public class WardlingEntityModel extends SinglePartEntityModel<WardlingEntity> {
         //    AnimationHelper.animate(this, WardlingEntityAnimation.SPAWN, (long)(timeInSeconds * 1000), 1.0f, tempVec);
         }
 
+        /*          Prior system if needed. -Dia
+
+        // Get animation controller
+        WardlingEntityAnimationController controller = entity.getAnimationController();
+        Vector3f tempVec = new Vector3f();
+
+        // Check and apply animations using animation time in seconds
+        if (controller.SPAWN.isRunning()) {
+            float timeInSeconds = controller.SPAWN.getTimeRunning() / 20.0f;
+            AnimationHelper.animate(this, WardlingEntityAnimation.SPAWN, (long)(timeInSeconds * 1000), 1.0f, tempVec);
+        }
+        // on each SPAWN, previously was spawnState
+*/
+
         // Apply head rotations last
         this.head.pitch = headPitch * ((float) Math.PI / 180F);
         this.head.yaw = netHeadYaw * ((float) Math.PI / 180F);

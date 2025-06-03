@@ -1,0 +1,11 @@
+{
+  "render_style": "BILLBOARD",
+  "texture": "minecraft/textures/block/diamond_block",
+  "collision": false,
+  "modules": [
+    "carnage:color_gradient",
+    "carnage:spiral_motion",
+    "carnage:light_emission"
+  ],
+  "settings": "carnage:quasar_particle_settings"
+}

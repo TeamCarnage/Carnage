@@ -1,0 +1,11 @@
+{
+  "render_style": "BILLBOARD",
+  "texture": "carnage:textures/particle/hellfire",
+  "collision": false,
+  "modules": [
+    "carnage:color_gradient",
+    "carnage:spiral_motion",
+    "carnage:light_emission"
+  ],
+  "settings": "carnage:quasar_particle_settings"
+}
