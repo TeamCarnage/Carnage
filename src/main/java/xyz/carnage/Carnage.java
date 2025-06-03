@@ -28,7 +28,7 @@ public class Carnage implements ModInitializer {
 
 		// Create all dependencies needed for CarnageManager:
 		ActionBarUIManager actionBarUIManager = new ActionBarUIManager();
-		UIManager uiManager = new UIManager(actionBarUIManager, carnageManager);
+		UIManager uiManager = new UIManager();
 		CustomParticles customParticles = new CustomParticles();
 		CarnageItems carnageItems = new CarnageItems();
 		CarnageItemGroups carnageItemGroups = new CarnageItemGroups();
