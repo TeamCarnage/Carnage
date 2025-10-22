@@ -11,7 +11,6 @@ import xyz.carnage.manager.item.CarnageItemGroups;
 import xyz.carnage.manager.sound.SoundManager;
 import xyz.carnage.manager.combo.ComboEventHandler;
 import xyz.carnage.manager.ui.ComboUIOverlay;
-import xyz.carnage.manager.ui.UIManager;
 
 public class Carnage implements ModInitializer {
 	public static final String MOD_ID = "carnage";
@@ -33,13 +32,11 @@ public class Carnage implements ModInitializer {
 		CarnageItemGroups carnageItemGroups = new CarnageItemGroups();
 		SoundManager soundManager = new SoundManager();
 		ComboEventHandler comboEventHandler = new ComboEventHandler();
-        UIManager uiManager = new UIManager();
         HudRenderCallback.EVENT.register(new ComboUIOverlay());
 
 
         // Pass them to CarnageManager constructor
 		carnageManager = new CarnageManager(
-                uiManager,
 				customParticles,
 				carnageItems,
 				carnageItemGroups,

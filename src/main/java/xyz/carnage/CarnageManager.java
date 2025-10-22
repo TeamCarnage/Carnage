@@ -13,16 +13,14 @@ public class CarnageManager {
     private final CarnageItemGroups carnageItemGroups;
     private final SoundManager soundManager;
     private final ComboEventHandler comboEventHandler;
-    private final UIManager uiManager;
 
 
-    public CarnageManager(UIManager uiManager, CustomParticles customParticles, CarnageItems carnageItems, CarnageItemGroups carnageItemGroups, SoundManager soundManager, ComboEventHandler comboEventHandler) {
+    public CarnageManager(CustomParticles customParticles, CarnageItems carnageItems, CarnageItemGroups carnageItemGroups, SoundManager soundManager, ComboEventHandler comboEventHandler) {
         this.customParticles = customParticles;
         this.carnageItems = carnageItems;
         this.carnageItemGroups = carnageItemGroups;
         this.soundManager = soundManager;
         this.comboEventHandler = comboEventHandler;
-        this.uiManager = uiManager;
     }
 
     public void initialize() {
@@ -31,7 +29,6 @@ public class CarnageManager {
         carnageItemGroups.initialize();
         soundManager.initialize();
         comboEventHandler.initialize();
-        uiManager.initialize();
     }
 
     public CustomParticles getCustomParticles() {
@@ -49,6 +46,5 @@ public class CarnageManager {
     public ComboEventHandler getComboEventHandler() {
         return comboEventHandler;
     }
-
 
 }
