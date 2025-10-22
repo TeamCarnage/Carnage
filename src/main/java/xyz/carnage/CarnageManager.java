@@ -5,7 +5,6 @@ import xyz.carnage.manager.item.CarnageItemGroups;
 import xyz.carnage.manager.item.CarnageItems;
 import xyz.carnage.manager.particle.CustomParticles;
 import xyz.carnage.manager.sound.SoundManager;
-import xyz.carnage.manager.ui.UIManager;
 
 public class CarnageManager {
     private final CustomParticles customParticles;
