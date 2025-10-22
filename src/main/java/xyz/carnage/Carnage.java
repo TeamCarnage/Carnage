@@ -1,16 +1,17 @@
 package xyz.carnage;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import xyz.carnage.manager.ui.UIManager;
 import xyz.carnage.manager.particle.CustomParticles;
 import xyz.carnage.manager.item.CarnageItems;
 import xyz.carnage.manager.item.CarnageItemGroups;
 import xyz.carnage.manager.sound.SoundManager;
 import xyz.carnage.manager.combo.ComboEventHandler;
-import xyz.carnage.manager.ui.actionbar.ActionBarUIManager;
+import xyz.carnage.manager.ui.ComboUIOverlay;
+import xyz.carnage.manager.ui.UIManager;
 
 public class Carnage implements ModInitializer {
 	public static final String MOD_ID = "carnage";
@@ -26,18 +27,19 @@ public class Carnage implements ModInitializer {
 	public void onInitialize() {
 		LOGGER.info("Carnage onInitialize triggered!");
 
-		// Create all dependencies needed for CarnageManager:
-		ActionBarUIManager actionBarUIManager = new ActionBarUIManager();
-		UIManager uiManager = new UIManager();
+		// Initialise all required classes
 		CustomParticles customParticles = new CustomParticles();
 		CarnageItems carnageItems = new CarnageItems();
 		CarnageItemGroups carnageItemGroups = new CarnageItemGroups();
 		SoundManager soundManager = new SoundManager();
 		ComboEventHandler comboEventHandler = new ComboEventHandler();
+        UIManager uiManager = new UIManager();
+        HudRenderCallback.EVENT.register(new ComboUIOverlay());
 
-		// Pass them to CarnageManager constructor
+
+        // Pass them to CarnageManager constructor
 		carnageManager = new CarnageManager(
-				uiManager,
+                uiManager,
 				customParticles,
 				carnageItems,
 				carnageItemGroups,

@@ -3,24 +3,35 @@ package xyz.carnage.manager.combo;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
+
+import net.minecraft.entity.Entity;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvent;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.util.Formatting;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import xyz.carnage.manager.ui.ComboUIOverlay;
+
+import static xyz.carnage.manager.combo.ComboEventHandler.comboMaxTime;
 
 public class ComboTracker {
 
     private final PlayerEntity player;
+    private final World world;
     private int comboCount;
     public long lastHitTime;
-    private boolean canProcessHit;
+    public boolean canProcessHit;
     private final Map<Integer, Consumer<PlayerEntity>> comboActions;
 
     public ComboTracker(World world, PlayerEntity player) {
         this.player = player;
+        this.world = world;
         this.comboCount = 0;
         this.lastHitTime = 0;
-        this.canProcessHit = true;
+        canProcessHit = true;
         this.comboActions = new HashMap<>();
     }
 
@@ -31,7 +42,8 @@ public class ComboTracker {
     public void hit() {
         long currentTimeMillis = System.currentTimeMillis();
         if (canProcessHit) {
-            if (currentTimeMillis - lastHitTime < 2000) {
+            canProcessHit = false;
+            if (currentTimeMillis - lastHitTime < comboMaxTime) {
                 comboCount++;
                 // Check for and execute registered combo actions
                 Consumer<PlayerEntity> action = comboActions.get(comboCount);
@@ -41,13 +53,14 @@ public class ComboTracker {
             } else {
                 comboCount = 1;
             }
-
-            Text actionBarMessage = Text.literal(comboCount/2 + "x Combo!")
-                    .styled(style -> style.withColor(Formatting.BLUE));
-            player.sendMessage(actionBarMessage, true);
-            canProcessHit = false;
+            ComboUIOverlay.setComboCount(comboCount);
+            ComboUIOverlay.show();
+            lastHitTime = currentTimeMillis;
         }
-        lastHitTime = currentTimeMillis;
+        else {
+            return;
+        }
+
     }
 
     public int getComboCount() {
@@ -57,6 +70,7 @@ public class ComboTracker {
     public void reset() {
         comboCount = 0;
         canProcessHit = true;
+        ComboUIOverlay.hide();
     }
 
     public void clearHitFlag() {
