@@ -18,33 +18,37 @@ public class WardlingEntityAnimationController {
     }
 
     public void updateAnimations() {
-      //  if (wardling.age < 10) {
-       //    SPAWN.startIfNotRunning(wardling.age * 50);
-       //    return; // Prioritize spawn animation first
-       // }
+        // Re-enable spawn animation
+        if (wardling.age < 10) {
+            SPAWN.startIfNotRunning(wardling.age);
+            return; // Prioritize spawn animation first
+        }
+
         Vec3d velocity = wardling.getVelocity();
 
-        // RUN animation: Triggers when moving
+        // Changed RUN to WALK to match the animation name
         if (velocity.lengthSquared() > 0.01 && wardling.getTarget() == null) {
             RUN.startIfNotRunning(wardling.age);
         } else {
-            RUN.stop(); // Stop running animation when not moving
+            RUN.stop();
         }
 
-        // ATTACK animation: Uses handSwinging field to detect melee attacks
         if (wardling.handSwinging) {
             ATTACK.startIfNotRunning(wardling.age);
         } else {
-            ATTACK.stop(); // Stop attack animation after swinging ends
+            ATTACK.stop();
         }
 
-        // BOOM animation: Uses a new cooldown check to ensure it stops
         if (wardling.isSonicBoomActive()) {
             BOOM.startIfNotRunning(wardling.age);
         } else {
-            BOOM.stop(); // Ensure BOOM stops when the ability ends
+            BOOM.stop();
         }
     }
+
+// In WardlingEntity.java
+
+
 
     public void startSpawnAnimation() {
         SPAWN.startIfNotRunning((int) System.currentTimeMillis());

@@ -16,9 +16,10 @@ public class ComboEventHandler {
             if(player.getAttackCooldownProgress(1f) == 1.0f) {
                 ComboTracker tracker = ComboManager.getComboTracker(player);
                 if(player.getStackInHand(hand).getItem().toString().contains(MOD_ID)) {
-                    tracker.hit();
+                    if (entity.isAlive()) {
+                        tracker.hit();
+                    }
                 }
-                tracker.clearHitFlag();
             }
             return ActionResult.PASS;
         });
