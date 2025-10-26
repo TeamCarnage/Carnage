@@ -41,7 +41,10 @@ public class ComboTracker {
 
     public void hit() {
         long currentTimeMillis = System.currentTimeMillis();
-        if (canProcessHit) {
+        if (!canProcessHit) {
+            return;
+        }
+        else {
             canProcessHit = false;
             if (currentTimeMillis - lastHitTime < comboMaxTime) {
                 comboCount++;
