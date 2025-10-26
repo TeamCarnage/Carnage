@@ -60,6 +60,9 @@ public class ComboTracker {
             ComboUIOverlay.show();
             lastHitTime = currentTimeMillis;
         }
+        else {
+            return;
+        }
 
     }
 
