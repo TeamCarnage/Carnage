@@ -1,8 +1,3 @@
-# Automatically build the project and run any configured tests for every push
-# and submitted pull request. This can help catch issues that only occur on
-# certain platforms or Java versions, and provides a first line of defence
-# against bad commits.
-
 name: build
 on: [pull_request, push]
 
@@ -44,13 +39,21 @@ jobs:
           org.gradle.daemon=false
           EOF
 
-      - name: build with retry
-        uses: nick-fields/retry@v3
-        with:
-          timeout_minutes: 15
-          max_attempts: 3
-          retry_wait_seconds: 30
-          command: ./gradlew build --stacktrace --no-daemon
+      - name: build
+        run: |
+          for attempt in {1..3}; do
+            echo "Build attempt $attempt of 3"
+            if ./gradlew build --stacktrace --no-daemon --refresh-dependencies; then
+              echo "Build succeeded on attempt $attempt"
+              exit 0
+            fi
+            if [ $attempt -lt 3 ]; then
+              echo "Build failed, waiting 30 seconds before retry..."
+              sleep 30
+            fi
+          done
+          echo "Build failed after 3 attempts"
+          exit 1
 
       - name: capture build artifacts
         if: ${{ matrix.java == '21' }}
