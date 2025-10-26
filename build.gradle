@@ -11,6 +11,12 @@ base {
 }
 
 repositories {
+    mavenCentral()
+    maven {
+        name = "Fabric"
+        url = "https://maven.fabricmc.net/"
+    }
+
 	// FoundryMC/Veil
 	maven {
 		name = 'BlameJared Maven (CrT / Bookshelf)'
