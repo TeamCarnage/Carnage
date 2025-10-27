@@ -4,6 +4,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 
 import static xyz.carnage.Carnage.MOD_ID;
@@ -18,8 +20,8 @@ public class ComboUIOverlay implements HudRenderCallback {
     private static boolean appearing = false;
     private static boolean disappearing = false;
     
-    private static final float appearSpeed = 0.05f;
-    private static final float disappearSpeed = 0.04f;
+    private static final float appearSpeed = 0.03f;
+    private static final float disappearSpeed = 0.02f;
 
     public static void setComboCount(int value) {
         comboCount = value;
@@ -58,30 +60,29 @@ public class ComboUIOverlay implements HudRenderCallback {
 
         if (!visible && animationProgress <= 0.0f) return;
 
-        int screenWidth = context.getScaledWindowWidth();
-        int counterImgWidth = 100;
-        int counterImgHeight = 22;
-        int x = (screenWidth / 2) - (counterImgWidth / 2);
-        int y = 10;
-        
         float alpha = animationProgress;
-        float scale = 0.8f + (0.2f * animationProgress);
+        int comboCountColour = ((int)(alpha * 255) << 24) | 0xFFFFFF;
+        int comboTextColour = ((int)(alpha * 255) << 24) | 0x00FA64;
+
+        String countText = "x" + comboCount;
+        Text comboText = Text.literal("Combo").formatted(Formatting.BOLD);
+
+        int countTextX = 6;
+        int countTextY = 6;
+        int comboTextX = (client.textRenderer.getWidth(countText) + countTextX);
+        int comboTextY = (client.textRenderer.fontHeight * 2);
+
+        float scale = 1.5f;
 
         context.getMatrices().push();
-        context.getMatrices().translate(screenWidth / 2.0, y + counterImgHeight / 2.0, 0);
-        context.getMatrices().scale(scale, scale, 1);
-        context.getMatrices().translate((counterImgWidth * -1) / 2.0, (counterImgHeight * -1) / 2.0, 0);
-        context.setShaderColor(1.0f, 1.0f, 1.0f, alpha);
-        context.drawTexture(comboIcon, 0, 0, 0, 0, counterImgWidth, counterImgHeight, counterImgWidth, counterImgHeight);
-        context.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
-        context.getMatrices().pop();
-        
-        String comboText = "Combo: " + comboCount;
-        int textWidth = client.textRenderer.getWidth(comboText);
-        int textX = (screenWidth / 2) - (textWidth / 2);
-        int textY = y + (y / 2) + 2;
+        context.getMatrices().translate(countTextX, countTextY, 0);
+        context.getMatrices().scale(scale, scale, 1.0F);
+        context.getMatrices().translate(-countTextX, -countTextY, 0);
 
-        int color = ((int)(alpha * 255) << 24) | 0xFFFFFF;
-        context.drawText(client.textRenderer, comboText, textX, textY, color, true);
+        context.drawText(client.textRenderer, countText, countTextX, countTextY, comboCountColour, true);
+
+        context.getMatrices().pop();
+
+        context.drawText(client.textRenderer, comboText, comboTextX, comboTextY, comboTextColour, true);
     }
 }

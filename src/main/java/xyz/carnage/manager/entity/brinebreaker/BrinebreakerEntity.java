@@ -1,13 +1,7 @@
 package xyz.carnage.manager.entity.brinebreaker;
 
-import foundry.veil.api.client.render.rendertype.VeilRenderType;
-import foundry.veil.api.quasar.particle.ParticleEmitter;
-import foundry.veil.api.resource.VeilResource;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.TridentEntity;
 import net.minecraft.item.ItemStack;
@@ -16,21 +10,18 @@ import net.minecraft.particle.ParticleTypes;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
-import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.joml.Vector2f;
-import xyz.carnage.Carnage;
-import xyz.carnage.manager.combo.ComboManager;
-import xyz.carnage.manager.combo.ComboTracker;
 
 
 public class BrinebreakerEntity extends TridentEntity {
 
     public static int shieldHealth = 0;
     public Vector2f groundOffset;
+    Entity hitEntity;
+    PlayerEntity entityOwner;
 
     public BrinebreakerEntity(EntityType<? extends BrinebreakerEntity> entityType, World world) {
         super(entityType, world);
@@ -88,36 +79,6 @@ public class BrinebreakerEntity extends TridentEntity {
                     0.5,
                     0.1
             );
-        }
-    }
-
-
-
-    @Override
-    protected void onEntityHit(EntityHitResult entityHitResult) {
-        if (!this.getWorld().isClient()) {
-            super.onEntityHit(entityHitResult);
-            Entity entity = entityHitResult.getEntity();
-
-            DamageSource damageSource = this.getDamageSources().thrown(this, this.getOwner());
-            entity.damage(damageSource, 6);
-
-            entity.damage(this.getDamageSources().thrown(this, this.getOwner()), 6);
-            if (this.getOwner() instanceof PlayerEntity playerEntity) {
-                ComboTracker tracker = ComboManager.getComboTracker(playerEntity);
-                tracker.hit();
-                if (tracker.getComboCount() / 2 >= 5) {
-                    PlayerEntity player = (PlayerEntity) this.getOwner();
-                    player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 100, 255));
-
-                    tracker.reset();
-                }
-                tracker.clearHitFlag();
-            }
-
-        }
-        if (!this.getWorld().isClient()) {
-            this.getWorld().sendEntityStatus(this, (byte) 3);
         }
     }
 
