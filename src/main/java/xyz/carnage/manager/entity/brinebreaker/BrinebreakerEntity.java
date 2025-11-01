@@ -41,10 +41,7 @@ public class BrinebreakerEntity extends TridentEntity {
         super(world, x, y, z, itemStack);
     }
 
-    @Override
-    protected ItemStack getDefaultItemStack() {
-        return new ItemStack(Items.AIR);
-    }
+
 
 
     private int age = 0;
