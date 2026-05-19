@@ -1,7 +1,6 @@
 package xyz.carnage;
 
 import net.fabricmc.api.ModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,7 +9,6 @@ import xyz.carnage.manager.item.CarnageItems;
 import xyz.carnage.manager.item.CarnageItemGroups;
 import xyz.carnage.manager.sound.SoundManager;
 import xyz.carnage.manager.combo.ComboEventHandler;
-import xyz.carnage.manager.ui.ComboUIOverlay;
 
 public class Carnage implements ModInitializer {
 	public static final String MOD_ID = "carnage";
@@ -32,7 +30,7 @@ public class Carnage implements ModInitializer {
 		CarnageItemGroups carnageItemGroups = new CarnageItemGroups();
 		SoundManager soundManager = new SoundManager();
 		ComboEventHandler comboEventHandler = new ComboEventHandler();
-        HudRenderCallback.EVENT.register(new ComboUIOverlay());
+
 
 
         // Pass them to CarnageManager constructor

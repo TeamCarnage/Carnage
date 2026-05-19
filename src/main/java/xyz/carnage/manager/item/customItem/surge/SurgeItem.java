@@ -1,6 +1,7 @@
 
 package xyz.carnage.manager.item.customItem.surge;
 
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
 import net.minecraft.entity.LivingEntity;
@@ -14,10 +15,13 @@ import net.minecraft.sound.SoundCategory;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import xyz.carnage.manager.sound.SoundManager;
 import xyz.carnage.manager.combo.ComboManager;
 import xyz.carnage.manager.combo.ComboTracker;
+
+import java.util.List;
 
 import static xyz.carnage.Carnage.MOD_ID;
 import static xyz.carnage.manager.sound.SoundManager.SOUND_EVENTS;
@@ -53,28 +57,81 @@ public class SurgeItem extends SwordItem {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity player, Hand hand) {
         ItemStack stack = player.getStackInHand(hand);
-
         if (!world.isClient) {
-            // Set a cooldown for the item
-            player.getItemCooldownManager().set(this, 50); // Cooldown: 400 ticks (20 seconds)
-
-            // Add effects to the player
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 300, 0));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 2));
-            player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 300, 0));
-            world.playSound(null,player.getX(),player.getY(),player.getZ(),SOUND_EVENTS.get(Identifier.of(MOD_ID, "surge_discharge")),SoundCategory.PLAYERS,1.0F,1.0F);
-            SoundManager.playCustomSound("carnage:surge_use", player);
-            // Create and spawn a LightningEntity at the player's position
-            LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(world); // Create a lightning entity
-            if (lightning != null) {
-                lightning.setPos(player.getX(), player.getY(), player.getZ()); // Set the lightning's position
-                world.spawnEntity(lightning); // Spawn the lightning in the world
+            player.getItemCooldownManager().set(this, 50);
+            Entity targetPos = entityLookingAt(player);
+            if (targetPos != null) {
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 300, 0));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED, 300, 2));
+                player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 300, 0));
+                world.playSound(null,player.getX(),player.getY(),player.getZ(),SOUND_EVENTS.get(Identifier.of(MOD_ID, "surge_discharge")),SoundCategory.PLAYERS,1.0F,1.0F);
+                SoundManager.playCustomSound("carnage:surge_use", player);
+                createLightningWave(player);
             }
         }
-
         return TypedActionResult.success(stack);
 
     }
-}
 
-// YES i used gpt to finalise this class, YES im too stupid for coding - tfemboy
+    public Entity entityLookingAt(PlayerEntity player) {
+        // Raycast :D
+        World world = player.getWorld();
+        Vec3d start = player.getCameraPosVec(1.0F);
+        Vec3d direction = player.getRotationVec(1.0F);
+        double maxDistance = 100.0;
+
+        Entity closestEntity = null;
+        double closestDistance = Double.MAX_VALUE;
+
+        // Checks for all entities in the path of the raycast
+        for (Entity entity : world.getOtherEntities(player, player.getBoundingBox().stretch(direction.multiply(maxDistance)).expand(10))) {
+            if (entity.isSpectator() || !entity.isAttackable()) {
+                continue;
+            }
+
+            Vec3d entityPos = entity.getPos();
+            Vec3d toEntity = entityPos.subtract(start);
+            double t = toEntity.dotProduct(direction);
+
+            // Checks for if the entity is within range
+            if (t < 0 || t > maxDistance) {
+                continue;
+            }
+
+            // get the entity closest to the raycast (within 2 blocks of looking distance - literal aimbot)
+            Vec3d closestPoint = start.add(direction.multiply(t));
+            double distToRay = entityPos.distanceTo(closestPoint);
+
+            if (distToRay < 2.0 && t < closestDistance) {
+                closestDistance = t;
+                closestEntity = entity;
+            }
+        }
+        if (closestEntity == null) closestEntity = player;
+        return closestEntity;
+    }
+
+    // Gets all entities within a range of the entity that is passed as a parameter
+    public List<Entity> getEntitiesWithinRange(Entity entity, double range) {
+        World world = entity.getWorld();
+        Vec3d center = entity.getPos();
+        List<Entity> otherEntities = world.getOtherEntities(entity, entity.getBoundingBox().expand(range), e -> e.isAttackable());
+        otherEntities.add(entity);
+        return otherEntities;
+    }
+
+    // Creates lightning bolts on all entities within set range of the entity that the player was looking at
+    public void createLightningWave(PlayerEntity player) {
+        Entity entity = entityLookingAt(player);
+        List<Entity> entities = getEntitiesWithinRange(entity, 5.0);
+        if (entities.contains(player)) entities.remove(player);
+        if (entities.isEmpty()) entities.add(player);
+        for (Entity target : entities) {
+            LightningEntity lightning = EntityType.LIGHTNING_BOLT.create(player.getWorld());
+            if (lightning != null) {
+                lightning.setPos(target.getX() + 0.5, target.getY(), target.getZ() + 0.5);
+                player.getWorld().spawnEntity(lightning);
+            }
+        }
+    }
+}

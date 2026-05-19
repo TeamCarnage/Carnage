@@ -5,8 +5,10 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 import xyz.carnage.manager.ui.ComboUIOverlay;
+import xyz.carnage.manager.ui.UIManager;
 
 import static xyz.carnage.manager.combo.ComboEventHandler.comboMaxTime;
 
@@ -51,6 +53,7 @@ public class ComboTracker {
             }
             ComboUIOverlay.setComboCount(comboCount);
             ComboUIOverlay.show();
+
             lastHitTime = currentTimeMillis;
         }
 
