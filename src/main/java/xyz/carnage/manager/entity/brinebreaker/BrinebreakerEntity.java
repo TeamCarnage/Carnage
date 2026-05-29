@@ -14,6 +14,7 @@ import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import org.joml.Vector2f;
+import xyz.carnage.manager.item.CarnageItems;
 
 
 public class BrinebreakerEntity extends TridentEntity {
@@ -34,7 +35,7 @@ public class BrinebreakerEntity extends TridentEntity {
 
     @Override
     protected ItemStack getDefaultItemStack() {
-        return new ItemStack(Items.AIR);
+        return new ItemStack(CarnageItems.BRINEBREAKER, 1);
     }
 
 
@@ -115,5 +116,9 @@ public class BrinebreakerEntity extends TridentEntity {
         if (result.getSide() == Direction.UP) {
             groundOffset = new Vector2f(285f, 180f);
         }
+    }
+
+    @Override
+    public void onPlayerCollision(PlayerEntity player) {
     }
 }

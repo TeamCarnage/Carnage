@@ -51,6 +51,7 @@ public class ComboTracker {
             }
             ComboUIOverlay.setComboCount(comboCount);
             ComboUIOverlay.show();
+
             lastHitTime = currentTimeMillis;
         }
 
