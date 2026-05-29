@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
-import xyz.carnage.Carnage;
 import xyz.carnage.manager.item.CarnageItemGroups;
 
 public class ComboEventHandler {
@@ -20,7 +19,6 @@ public class ComboEventHandler {
             if (source.getAttacker() instanceof PlayerEntity player) {
                 if (CarnageItemGroups.isItemTriggerable(source.getWeaponStack().getItem()) || CarnageItemGroups.isItemTriggerable(source.getWeaponStack().getItem())) {
                     ComboTracker tracker = ComboManager.getComboTracker(player);
-                    Carnage.LOGGER.info(source.getAttacker().getWeaponStack().toString());
                     tracker.hit();
                 }
             }
@@ -32,7 +30,6 @@ public class ComboEventHandler {
                 if (CarnageItemGroups.isItemTriggerable(source.getWeaponStack().getItem()) || CarnageItemGroups.isItemTriggerable(source.getWeaponStack().getItem())) {
                     ComboTracker tracker = ComboManager.getComboTracker(player);
                     tracker.hit();
-                    Carnage.LOGGER.info(source.getAttacker().getWeaponStack().toString());
                 }
             }
         });

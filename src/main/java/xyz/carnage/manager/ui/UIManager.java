@@ -58,6 +58,7 @@ public class UIManager implements HudRenderCallback {
             }
         }
         if (!visible && animationProgress <= 0.0f) return;
+        if (uiTexture == null) return;
 
         float alpha = animationProgress;
 

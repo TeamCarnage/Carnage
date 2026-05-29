@@ -120,6 +120,5 @@ public class BrinebreakerEntity extends TridentEntity {
 
     @Override
     public void onPlayerCollision(PlayerEntity player) {
-        return;
     }
 }
