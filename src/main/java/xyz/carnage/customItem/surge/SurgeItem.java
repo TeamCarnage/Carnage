@@ -68,7 +68,7 @@ public class SurgeItem extends SwordItem {
                 player.addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE, 300, 0));
                 world.playSound(null,player.getX(),player.getY(),player.getZ(),SOUND_EVENTS.get(Identifier.of(MOD_ID, "surge_discharge")),SoundCategory.PLAYERS,1.0F,1.0F);
                 SoundManager.playCustomSound("carnage:surge_use", player);
-                createLightningWave(player);
+                createLightningWave(player, targetPos);
             }
         }
         return TypedActionResult.success(stack);
@@ -133,8 +133,7 @@ public class SurgeItem extends SwordItem {
     }
 
     // Creates lightning bolts on all entities within set range of the entity that the player was looking at
-    public void createLightningWave(PlayerEntity player) {
-        Entity entity = entityLookingAt(player);
+    public void createLightningWave(PlayerEntity player, Entity entity) {
         List<Entity> entities = getEntitiesWithinRange(entity, 5.0);
         if (entities.contains(player)) entities.remove(player);
         if (entities.isEmpty()) entities.add(player);
