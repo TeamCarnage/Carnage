@@ -4,7 +4,7 @@ import net.fabricmc.api.ModInitializer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import xyz.carnage.manager.particle.CustomParticles;
+import xyz.carnage.manager.particle.CarnageParticles;
 import xyz.carnage.manager.item.CarnageItems;
 import xyz.carnage.manager.item.CarnageItemGroups;
 import xyz.carnage.manager.sound.SoundManager;
@@ -25,7 +25,7 @@ public class Carnage implements ModInitializer {
 		LOGGER.info("Carnage onInitialize triggered!");
 
 		// Initialise all required classes
-		CustomParticles customParticles = new CustomParticles();
+		CarnageParticles customParticles = new CarnageParticles();
 		CarnageItems carnageItems = new CarnageItems();
 		CarnageItemGroups carnageItemGroups = new CarnageItemGroups();
 		SoundManager soundManager = new SoundManager();

@@ -5,7 +5,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleEffect;
-import net.minecraft.particle.ParticleTypes;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -14,7 +13,7 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import xyz.carnage.manager.particle.CustomParticles;
+import xyz.carnage.manager.particle.CarnageParticles;
 
 import java.util.List;
 
@@ -131,7 +130,7 @@ public abstract class PushItem extends Item {
         private double upwardForce = 0.5;
         private int cooldownTicks = 400;
         private int particleCount = 50;
-        private ParticleEffect particleType = CustomParticles.HELLFIRE;
+        private ParticleEffect particleType = CarnageParticles.HELLFIRE;
         private SoundEvent useSound = SoundEvents.ENTITY_BLAZE_SHOOT;
         private float soundVolume = 0.5f;
         private float soundPitch = 1.2f;

@@ -6,12 +6,12 @@ import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
-import xyz.carnage.manager.item.customItem.blazeRender.BlazerenderItem;
-import xyz.carnage.manager.item.customItem.bloodEssence.BloodEssenceItem;
-import xyz.carnage.manager.item.customItem.echoingTwinBlade.EchoingTwinbladeItem;
-import xyz.carnage.manager.item.customItem.phantomsKiss.PhantomsKissItem;
-import xyz.carnage.manager.item.customItem.surge.SurgeItem;
-import xyz.carnage.manager.item.customItem.brineBreaker.BrinebreakerItem;
+import xyz.carnage.customItem.blazeRender.BlazerenderItem;
+import xyz.carnage.customItem.bloodEssence.BloodEssenceItem;
+import xyz.carnage.customItem.echoingTwinBlade.EchoingTwinbladeItem;
+import xyz.carnage.customItem.phantomsKiss.PhantomsKissItem;
+import xyz.carnage.customItem.surge.SurgeItem;
+import xyz.carnage.customItem.brineBreaker.BrinebreakerItem;
 
 import static xyz.carnage.Carnage.MOD_ID;
 

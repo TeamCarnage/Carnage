@@ -4,12 +4,8 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
-import net.minecraft.item.Item;
 
 import net.minecraft.util.Identifier;
-import xyz.carnage.manager.item.CarnageItems;
-import xyz.carnage.manager.item.customItem.bloodEssence.BloodEssenceItem;
-import xyz.carnage.manager.item.customItem.phantomsKiss.PhantomsKissItem;
 
 public class UIManager implements HudRenderCallback {
     private static boolean visible = false;

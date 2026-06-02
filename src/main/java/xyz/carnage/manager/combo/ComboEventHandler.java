@@ -2,7 +2,6 @@ package xyz.carnage.manager.combo;
 
 import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import xyz.carnage.Carnage;
@@ -19,9 +18,7 @@ public class ComboEventHandler {
 
             if (source.getAttacker() instanceof PlayerEntity player) {
                 if (CarnageItemGroups.isItemTriggerable(source.getWeaponStack().getItem()) || CarnageItemGroups.isItemTriggerable(source.getWeaponStack().getItem())) {
-                    ComboTracker tracker = ComboManager.getComboTracker(player);
-                    Carnage.LOGGER.info(source.getAttacker().getWeaponStack().toString());
-                    tracker.hit();
+                    handleTrigger(player, source);
                 }
             }
         });
@@ -30,9 +27,7 @@ public class ComboEventHandler {
         ServerLivingEntityEvents.AFTER_DEATH.register((entity, source) -> {
             if (source.getAttacker() instanceof PlayerEntity player) {
                 if (CarnageItemGroups.isItemTriggerable(source.getWeaponStack().getItem()) || CarnageItemGroups.isItemTriggerable(source.getWeaponStack().getItem())) {
-                    ComboTracker tracker = ComboManager.getComboTracker(player);
-                    tracker.hit();
-                    Carnage.LOGGER.info(source.getAttacker().getWeaponStack().toString());
+                    handleTrigger(player, source);
                 }
             }
         });
@@ -49,6 +44,12 @@ public class ComboEventHandler {
                 }
             });
         });
+    }
+
+    private static void handleTrigger(PlayerEntity playerEntity, DamageSource source) {
+        ComboTracker tracker = ComboManager.getComboTracker(playerEntity);
+        tracker.hit();
+        Carnage.LOGGER.info(source.getAttacker().getWeaponStack().toString()); // Logger for debugging
     }
 
     public void initialize() {
